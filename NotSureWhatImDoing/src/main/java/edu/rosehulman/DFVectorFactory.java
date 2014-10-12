@@ -43,7 +43,7 @@ public class DFVectorFactory {
 				//String freq = vals[4];
 				if (year > currentYear) {
 					if (currentYear > 0) {
-						sfwriter.append(new Text(String.valueOf(currentYear)), new VectorWritable(new NamedVector(v,String.valueOf(year))));
+						sfwriter.append(new Text(String.valueOf(currentYear)), new VectorWritable(new NamedVector(v,String.valueOf(currentYear))));
 					}
 					currentYear = year;
 					v = new RandomAccessSparseVector(Integer.MAX_VALUE);
