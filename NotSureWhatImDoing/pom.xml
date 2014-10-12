@@ -19,5 +19,10 @@
   		<artifactId>mahout-utils</artifactId>
   		<version>0.5</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.apache.mahout</groupId>
+  		<artifactId>mahout-math</artifactId>
+  		<version>0.9</version>
+  	</dependency>
   </dependencies>
 </project>
