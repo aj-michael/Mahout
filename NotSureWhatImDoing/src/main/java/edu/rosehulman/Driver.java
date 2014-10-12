@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
 
+import org.apache.commons.io.Charsets;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -17,12 +18,31 @@ import org.apache.mahout.math.VectorWritable;
 import org.apache.mahout.utils.vectors.io.SequenceFileVectorWriter;
 import org.apache.mahout.utils.vectors.io.VectorWriter;
 
+import com.google.common.io.Files;
+
 
 public class Driver {
 	
 	public static void main(String args[]) throws IOException {
-		Iterable<Vector> vectors = getVectors(args[0]);
-		writeVectors(vectors,args[1]);
+		//Iterable<Vector> vectors = getVectors(args[0]);
+		//writeVectors(vectors,args[1]);
+		
+//		Configuration conf = new Configuration();
+//		FileSystem fs = FileSystem.get(conf);
+//		Path inputPath = new Path(args[0]);
+//		InputStreamReader in = new InputStreamReader(fs.open(inputPath));
+//		BufferedReader reader = new BufferedReader(in);
+		
+//		for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+//			System.out.println(line);
+//		}
+		for (File file : new File(args[0]).listFiles()) {
+			for (String line : Files.toString(file, Charsets.UTF_8).split("\n")) {
+				System.out.println(line);
+				
+			}
+		}
+		
 	}
 
 	@SuppressWarnings("deprecation")
@@ -33,16 +53,13 @@ public class Driver {
 		FileSystem fs = FileSystem.get(outputURI,conf);
 		SequenceFile.Writer sfwriter = SequenceFile.createWriter(fs,conf,outputPath, LongWritable.class, VectorWritable.class);
 		VectorWriter vwriter = new SequenceFileVectorWriter(sfwriter);
-		vwriter.write(vectors);
 		vwriter.close();
+		vwriter.write(vectors);
 	}
 	
 	private static Iterable<Vector> getVectors(String path) throws IOException {
 		
 		
-		for (File file : new File(path).listFiles()) {
-			
-		}
 		
 		
 		Path inputPath = new Path(path);
