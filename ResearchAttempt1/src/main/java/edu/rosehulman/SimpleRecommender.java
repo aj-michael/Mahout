@@ -30,6 +30,17 @@ public class SimpleRecommender {
 			System.out.println(rec);
 		}
 		
+		System.out.println("---");
+		
+		int NUM_PERSONS = 4;
+		for (int i = 1; i <= NUM_PERSONS; i++) {
+			List<RecommendedItem> recs = recommender.recommend(i,1);
+			if (recs.size() > 0) {
+				RecommendedItem rec = recs.get(0);
+				System.out.println("Recommended for person " + i + ": " + rec);
+			}
+		}
+		
 	}
 
 }
