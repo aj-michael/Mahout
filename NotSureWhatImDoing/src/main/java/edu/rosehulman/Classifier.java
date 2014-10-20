@@ -49,7 +49,7 @@ public class Classifier {
 
 	private static Path docToSeq(Path documents,Path work,FileSystem fs) throws FileNotFoundException, IOException{
 		Path sequenceFile = work.suffix("documents");
-		SequenceFile.Writer writer = SequenceFile.createWriter(fs, fs.getConf(),documents,Text.class,BytesWritable.class);
+		SequenceFile.Writer writer = SequenceFile.createWriter(fs, fs.getConf(),sequenceFile,Text.class,BytesWritable.class);
 		Text name = new Text();
 		BytesWritable bytes = new BytesWritable();
 		for(FileStatus s : fs.listStatus(documents)){
