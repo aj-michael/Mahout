@@ -33,7 +33,7 @@ public class DictWriter {
                 if (word.equals(previousWord))
                     continue;
                 previousWord = word;
-                writer.append(new IntWritable(rank), new Text(word));
+                writer.append(new Text(word), new IntWritable(rank));
             }
             buf.close();
         }
