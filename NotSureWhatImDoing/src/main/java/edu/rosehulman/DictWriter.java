@@ -35,8 +35,8 @@ public class DictWriter {
                 previousWord = word;
                 writer.append(new IntWritable(rank), new Text(word));
             }
+            buf.close();
         }
-        buf.close();
         writer.close();
     }
 
