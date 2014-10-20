@@ -38,10 +38,10 @@ import com.google.common.collect.Lists;
 public class Classifier {
 
 	private final static int NGRAM_SIZE = 1;
-	private final static int NORM_POWER = 1;
+	private final static int NORM_POWER = 2;
 	private final static int MIN_SUPPORT = 1;
 	private final static int MIN_LLR_VALUE = 1;
-	private final static boolean LOG_NORMALIZE = false;
+	private final static boolean LOG_NORMALIZE = true;
 
 	// classifier.jar document-dir work-dir model-dir dictionary-dir output-dir
 	public static void main(String[] args) throws Exception {
