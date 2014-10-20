@@ -1,5 +1,6 @@
 package edu.rosehulman;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;
@@ -7,10 +8,12 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -33,6 +36,7 @@ import org.apache.mahout.vectorizer.common.PartialVectorMerger;
 import org.apache.mahout.vectorizer.term.TFPartialVectorReducer;
 
 import com.google.common.collect.Lists;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 @SuppressWarnings("deprecation")
 public class Classifier {
@@ -43,11 +47,33 @@ public class Classifier {
 	private final static int MIN_LLR_VALUE = 1;
 	private final static boolean LOG_NORMALIZE = true;
 
+	private static Path docToSeq(Path documents,Path work,FileSystem fs) throws FileNotFoundException, IOException{
+		Path sequenceFile = work.suffix("documents");
+		SequenceFile.Writer writer = SequenceFile.createWriter(fs, fs.getConf(),documents,Text.class,BytesWritable.class);
+		Text name = new Text();
+		BytesWritable bytes = new BytesWritable();
+		for(FileStatus s : fs.listStatus(documents)){
+			if(s.isDirectory()){
+				continue;
+			}
+			Path p = s.getPath();
+			FSDataInputStream in = fs.open(p);
+			int length = in.available();
+			byte[] buf = new byte[length];
+			in.readFully(buf);
+			name.set(s.getPath().getName());
+			bytes.set(buf, 0, length);
+			writer.append(name,bytes);
+		}
+		return sequenceFile;
+	}
+
 	// classifier.jar document-dir work-dir model-dir dictionary-dir output-dir
 	public static void main(String[] args) throws Exception {
-		Path doc = new Path(args[0]);
 		Configuration baseConf = new Configuration();
+		FileSystem fs = FileSystem.get(baseConf);
 		Path work = new Path(args[1]);
+		Path doc = docToSeq(new Path(args[0]),work,fs);
 		Path tokenizedDoc = work.suffix("tokenized-document");
 		Path modelPath = new Path(args[2]);
 		Path dictionary = new Path(args[3]);
@@ -60,7 +86,6 @@ public class Classifier {
 				tokenizedDoc, baseConf);
 		CollocDriver.generateAllGrams(tokenizedDoc, grams, baseConf, NGRAM_SIZE, MIN_SUPPORT,
 				MIN_LLR_VALUE, 1);
-		FileSystem fs = FileSystem.get(baseConf);
 		FileStatus[] statuses = fs.listStatus(dictionary);
 		List<Path> dictionaryChunks = Arrays.asList(FileUtil
 				.stat2Paths(statuses));
@@ -135,6 +160,5 @@ public class Classifier {
 		if (!succeeded) {
 			throw new IllegalStateException("Job failed!");
 		}
-
 	}
 }
