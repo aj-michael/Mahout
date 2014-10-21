@@ -1,5 +1,6 @@
 package edu.rosehulman;
 
+import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
@@ -7,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileStatus;
@@ -36,7 +38,6 @@ import org.apache.mahout.vectorizer.common.PartialVectorMerger;
 import org.apache.mahout.vectorizer.term.TFPartialVectorReducer;
 
 import com.google.common.collect.Lists;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 @SuppressWarnings("deprecation")
 public class Classifier {
@@ -48,8 +49,8 @@ public class Classifier {
 	private final static boolean LOG_NORMALIZE = true;
 
 	private static Path docToSeq(Path documents,Path work,FileSystem fs) throws FileNotFoundException, IOException{
-		Path sequenceFile = work.suffix("documents");
-		SequenceFile.Writer writer = SequenceFile.createWriter(fs, fs.getConf(),documents,Text.class,BytesWritable.class);
+		Path sequenceFile = new Path(work,"documents");
+		SequenceFile.Writer writer = SequenceFile.createWriter(fs, fs.getConf(),sequenceFile,Text.class,BytesWritable.class);
 		Text name = new Text();
 		BytesWritable bytes = new BytesWritable();
 		for(FileStatus s : fs.listStatus(documents)){
@@ -57,12 +58,16 @@ public class Classifier {
 				continue;
 			}
 			Path p = s.getPath();
-			FSDataInputStream in = fs.open(p);
-			int length = in.available();
-			byte[] buf = new byte[length];
-			in.readFully(buf);
+			FSDataInputStream in;
+			try {
+				in = fs.open(p);
+			} catch (EOFException e){
+				System.out.println(p.getName());
+				continue;
+			}
 			name.set(s.getPath().getName());
-			bytes.set(buf, 0, length);
+			byte[] buf = IOUtils.toByteArray(in);
+			bytes.set(buf,0,buf.length);
 			writer.append(name,bytes);
 		}
 		return sequenceFile;
@@ -74,14 +79,14 @@ public class Classifier {
 		FileSystem fs = FileSystem.get(baseConf);
 		Path work = new Path(args[1]);
 		Path doc = docToSeq(new Path(args[0]),work,fs);
-		Path tokenizedDoc = work.suffix("tokenized-document");
+		Path tokenizedDoc = new Path(work,"tokenized-document");
 		Path modelPath = new Path(args[2]);
 		Path dictionary = new Path(args[3]);
 		Path output = new Path(args[4]);
-		Path grams = work.suffix("grams");
-		Path partialVectors = work.suffix("partial-vectors");
-		Path tfvectors = work.suffix("tf-Vectors");
-		Path tfidfvectors = work.suffix("tfidf-vectors");
+		Path grams = new Path(work,"grams");
+		Path partialVectors = new Path(work,"partial-vectors");
+		Path tfvectors = new Path(work,"tf-Vectors");
+		Path tfidfvectors = new Path(work,"tfidf-vectors");
 		DocumentProcessor.tokenizeDocuments(doc, StandardAnalyzer.class,
 				tokenizedDoc, baseConf);
 		CollocDriver.generateAllGrams(tokenizedDoc, grams, baseConf, NGRAM_SIZE, MIN_SUPPORT,
@@ -93,7 +98,7 @@ public class Classifier {
 		Collection<Path> partialVectorPaths = Lists.newArrayList();
 		int[] maxTermDimension = new int[1];
 		for (Path dictionaryChunk : dictionaryChunks) {
-			Path partialVectorOutputPath = partialVectors.suffix("pv-"+partialVectorIndex++);
+			Path partialVectorOutputPath = new Path(partialVectors,"pv-"+partialVectorIndex++);
 			partialVectorPaths.add(partialVectorOutputPath);
 			makePartialVectors(tokenizedDoc, baseConf, NGRAM_SIZE, dictionaryChunk,
 					partialVectorOutputPath, maxTermDimension[0], true, true, 1);
@@ -105,10 +110,9 @@ public class Classifier {
 		String[] convArgs = new String[3];
 
 		convArgs[0] = tfvectors.toString();
-		convArgs[1] = work.suffix("conversion").toString();
+		convArgs[1] = new Path(work,"conversion").toString();
 		convArgs[2] = tfidfvectors.toString();
 		Converter.main(convArgs);
-
 		
 		NaiveBayesModel model = NaiveBayesModel.materialize(modelPath, conf);
 		StandardNaiveBayesClassifier classifier = new StandardNaiveBayesClassifier(model);
