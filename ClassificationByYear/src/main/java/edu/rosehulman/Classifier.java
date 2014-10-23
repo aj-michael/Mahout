@@ -113,7 +113,7 @@ public class Classifier {
 		convArgs[1] = new Path(work,"conversion").toString();
 		convArgs[2] = tfidfvectors.toString();
 		Converter.main(convArgs);
-		
+
 		NaiveBayesModel model = NaiveBayesModel.materialize(modelPath, conf);
 		StandardNaiveBayesClassifier classifier = new StandardNaiveBayesClassifier(model);
 		SequenceFile.Reader reader = new SequenceFile.Reader(fs,tfidfvectors,baseConf);
