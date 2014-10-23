@@ -1,5 +1,8 @@
 package edu.rosehulman;
 
+import edu.rosehulman.CollocDriver;
+import edu.rosehulman.TFPartialVectorReducer;
+
 import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,7 +18,6 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -33,26 +35,23 @@ import org.apache.mahout.common.StringTuple;
 import org.apache.mahout.math.VectorWritable;
 import org.apache.mahout.vectorizer.DictionaryVectorizer;
 import org.apache.mahout.vectorizer.DocumentProcessor;
-import org.apache.mahout.vectorizer.collocations.llr.CollocDriver;
 import org.apache.mahout.vectorizer.common.PartialVectorMerger;
-import org.apache.mahout.vectorizer.term.TFPartialVectorReducer;
 
 import com.google.common.collect.Lists;
 
 @SuppressWarnings("deprecation")
 public class Classifier {
 
-	private final static int NGRAM_SIZE = 1;
+	private final static int NGRAM_SIZE = 2;
 	private final static int NORM_POWER = 2;
 	private final static int MIN_SUPPORT = 1;
 	private final static int MIN_LLR_VALUE = 1;
 	private final static boolean LOG_NORMALIZE = true;
 
 	private static Path docToSeq(Path documents,Path work,FileSystem fs) throws FileNotFoundException, IOException{
-		Path sequenceFile = new Path(work,"documents");
-		SequenceFile.Writer writer = SequenceFile.createWriter(fs, fs.getConf(),sequenceFile,Text.class,BytesWritable.class);
+		Path sequenceFile = new Path(work,"documents-seq");
+		SequenceFile.Writer writer = SequenceFile.createWriter(fs, fs.getConf(),sequenceFile,Text.class,Text.class);
 		Text name = new Text();
-		BytesWritable bytes = new BytesWritable();
 		for(FileStatus s : fs.listStatus(documents)){
 			if(s.isDirectory()){
 				continue;
@@ -62,14 +61,13 @@ public class Classifier {
 			try {
 				in = fs.open(p);
 			} catch (EOFException e){
-				System.out.println(p.getName());
 				continue;
 			}
 			name.set(s.getPath().getName());
 			byte[] buf = IOUtils.toByteArray(in);
-			bytes.set(buf,0,buf.length);
-			writer.append(name,bytes);
+			writer.append(name,new Text(buf));
 		}
+		writer.close();
 		return sequenceFile;
 	}
 
@@ -89,6 +87,7 @@ public class Classifier {
 		Path tfidfvectors = new Path(work,"tfidf-vectors");
 		DocumentProcessor.tokenizeDocuments(doc, StandardAnalyzer.class,
 				tokenizedDoc, baseConf);
+		System.out.println("PROCCESSED DOCUMENT");
 		CollocDriver.generateAllGrams(tokenizedDoc, grams, baseConf, NGRAM_SIZE, MIN_SUPPORT,
 				MIN_LLR_VALUE, 1);
 		FileStatus[] statuses = fs.listStatus(dictionary);

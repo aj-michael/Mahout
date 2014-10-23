@@ -16,7 +16,8 @@ import java.util.zip.GZIPInputStream;
  */
 public class DictWriter {
 
-    public static void main(String args[]) throws IOException {
+    @SuppressWarnings("deprecation")
+	public static void main(String args[]) throws IOException {
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(args[0]),conf);
         SequenceFile.Writer writer = SequenceFile.createWriter(fs, conf, new Path(args[1]), Text.class, IntWritable.class);
