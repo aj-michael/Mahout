@@ -1,6 +1,8 @@
 package edu.rosehulman;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -16,13 +18,16 @@ import java.util.zip.GZIPInputStream;
  */
 public class DictWriter {
 
-    public static void main(String args[]) throws IOException {
+    @SuppressWarnings("deprecation")
+	public static void main(String args[]) throws IOException {
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(args[0]),conf);
         SequenceFile.Writer writer = SequenceFile.createWriter(fs, conf, new Path(args[1]), Text.class, IntWritable.class);
-        for (File file : new File(args[0]).listFiles()) {
-            InputStream fileStream = new FileInputStream(file);
-            InputStream gzipStream = new GZIPInputStream(fileStream);
+        for (FileStatus fileStatus : fs.listStatus(new Path(args[0]))) {
+        	Path p = fileStatus.getPath();
+        	System.out.println("DictWriter - Processing file " + p.getName());
+        	FSDataInputStream dis = fs.open(p);
+            InputStream gzipStream = new GZIPInputStream(dis);
             Reader decoder = new InputStreamReader(gzipStream, "UTF-8");
             BufferedReader buf = new BufferedReader(decoder);
             String previousWord = "";
