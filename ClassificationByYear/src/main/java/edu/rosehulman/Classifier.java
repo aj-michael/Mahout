@@ -43,7 +43,7 @@ import com.google.common.collect.Lists;
 public class Classifier {
 
 	private final static int NGRAM_SIZE = 2;
-	private final static int NORM_POWER = 2;
+	private final static float NORM_POWER = PartialVectorMerger.NO_NORMALIZING;
 	private final static int MIN_SUPPORT = 1;
 	private final static int MIN_LLR_VALUE = 1;
 	private final static boolean LOG_NORMALIZE = true;
@@ -112,7 +112,7 @@ public class Classifier {
 		convArgs[1] = new Path(work,"conversion").toString();
 		convArgs[2] = tfidfvectors.toString();
 		Converter.main(convArgs);
-		
+
 		NaiveBayesModel model = NaiveBayesModel.materialize(modelPath, conf);
 		StandardNaiveBayesClassifier classifier = new StandardNaiveBayesClassifier(model);
 		SequenceFile.Reader reader = new SequenceFile.Reader(fs,tfidfvectors,baseConf);
