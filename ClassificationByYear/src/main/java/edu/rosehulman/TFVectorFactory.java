@@ -8,9 +8,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.GZIPInputStream;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.SequenceFile;
@@ -29,9 +33,13 @@ public class TFVectorFactory {
 		SequenceFile.Writer sfwriter = SequenceFile.createWriter(fs,conf,new Path(args[1]),Text.class,VectorWritable.class);
 		Vector v = new RandomAccessSparseVector(Integer.MAX_VALUE);
 		int currentYear = 0;
-		for (File file : new File(args[0]).listFiles()) {
-			InputStream fileStream = new FileInputStream(file);
-			InputStream gzipStream = new GZIPInputStream(fileStream);
+	
+		for (FileStatus fileStatus : fs.listStatus(new Path(args[0]))) {
+			Path p = fileStatus.getPath();
+			System.out.println("Started a new iteration of the loop");
+			System.out.println(p.getName());
+			FSDataInputStream dis = fs.open(p);
+			InputStream gzipStream = new GZIPInputStream(dis);
 			Reader decoder = new InputStreamReader(gzipStream, "UTF-8");
 			BufferedReader buf = new BufferedReader(decoder);
 			for (String line = buf.readLine(); line != null; line = buf.readLine()) {
