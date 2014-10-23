@@ -28,8 +28,10 @@ import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.mahout.classifier.naivebayes.NaiveBayesModel;
-import org.apache.mahout.classifier.naivebayes.StandardNaiveBayesClassifier;
+//import org.apache.mahout.classifier.naivebayes.NaiveBayesModel;
+import edu.rosehulman.mahout.classifier.naivebayes.NaiveBayesModel;
+//import org.apache.mahout.classifier.naivebayes.StandardNaiveBayesClassifier;
+import edu.rosehulman.mahout.classifier.naivebayes.StandardNaiveBayesClassifier;
 import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.common.StringTuple;
 import org.apache.mahout.math.VectorWritable;
@@ -87,7 +89,6 @@ public class Classifier {
 		Path tfidfvectors = new Path(work,"tfidf-vectors");
 		DocumentProcessor.tokenizeDocuments(doc, StandardAnalyzer.class,
 				tokenizedDoc, baseConf);
-		System.out.println("PROCCESSED DOCUMENT");
 		CollocDriver.generateAllGrams(tokenizedDoc, grams, baseConf, NGRAM_SIZE, MIN_SUPPORT,
 				MIN_LLR_VALUE, 1);
 		FileStatus[] statuses = fs.listStatus(dictionary);
