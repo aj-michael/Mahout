@@ -47,7 +47,7 @@ import com.google.common.collect.Multiset;
 
 
 public class Classifier {
-	
+
 	public static Map<String, Integer> readDictionnary(Configuration conf, Path dictionnaryPath) {
 		Map<String, Integer> dictionnary = new HashMap<String, Integer>();
 		for (Pair<Text, IntWritable> pair : new SequenceFileIterable<Text, IntWritable>(dictionnaryPath, true, conf)) {
@@ -74,12 +74,12 @@ public class Classifier {
 		String dictionaryPath = args[2];
 		String documentFrequencyPath = args[3];
 		String tweetsPath = args[4];
-		
+
 		Configuration configuration = new Configuration();
 
 		// model is a matrix (wordId, labelId) => probability score
 		NaiveBayesModel model = NaiveBayesModel.materialize(new Path(modelPath), configuration);
-		
+	
 		StandardNaiveBayesClassifier classifier = new StandardNaiveBayesClassifier(model);
 
 		// labels is a map label => classId
@@ -87,13 +87,12 @@ public class Classifier {
 		Map<String, Integer> dictionary = readDictionnary(configuration, new Path(dictionaryPath));
 		Map<Integer, Long> documentFrequency = readDocumentFrequency(configuration, new Path(documentFrequencyPath));
 
-		
 		// analyzer used to extract word from tweet
 		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_43);
-		
+
 		int labelCount = labels.size();
 		int documentCount = documentFrequency.get(-1).intValue();
-		
+
 		System.out.println("Number of labels: " + labelCount);
 		System.out.println("Number of documents in training set: " + documentCount);
 		BufferedReader reader = new BufferedReader(new FileReader(tweetsPath));
@@ -102,7 +101,7 @@ public class Classifier {
 			if (line == null) {
 				break;
 			}
-			
+	
 			String[] tokens = line.split("\t", 2);
 			String tweetId = tokens[0];
 			String tweet = tokens[1];
@@ -110,7 +109,7 @@ public class Classifier {
 			System.out.println("Tweet: " + tweetId + "\t" + tweet);
 
 			Multiset<String> words = ConcurrentHashMultiset.create();
-			
+	
 			// extract words from tweet
 			TokenStream ts = analyzer.tokenStream("text", new StringReader(tweet));
 			CharTermAttribute termAtt = ts.addAttribute(CharTermAttribute.class);
