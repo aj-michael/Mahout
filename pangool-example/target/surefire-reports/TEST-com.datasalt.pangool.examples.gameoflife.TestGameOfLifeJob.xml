@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.datasalt.pangool.examples.gameoflife.TestGameOfLifeJob" time="2.316" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.datasalt.pangool.examples.gameoflife.TestGameOfLifeJob" time="2.574" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64"/>
@@ -24,7 +24,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/home/hansondg/workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf4185543630814654554.tmp"/>
+    <property name="classworlds.conf" value="/home/hansondg/workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf6715280093353427555.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -60,5 +60,5 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.datasalt.pangool.examples.gameoflife.TestGameOfLifeJob" name="test" time="2.316"/>
+  <testcase classname="com.datasalt.pangool.examples.gameoflife.TestGameOfLifeJob" name="test" time="2.574"/>
 </testsuite>

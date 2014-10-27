@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.datasalt.pangool.examples.solr.TestMultiShakespeareIndexer
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.714 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.912 sec

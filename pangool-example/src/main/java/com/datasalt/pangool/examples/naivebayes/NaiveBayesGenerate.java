@@ -34,7 +34,7 @@ import com.datasalt.pangool.tuplemr.mapred.lib.input.HadoopInputFormat;
 public class NaiveBayesGenerate extends BaseExampleJob implements Serializable {
 
 	private static Schema INTERMEDIATE_SCHEMA = new Schema("categoryCounter", Fields.parse(
-		"category:string, word:string, count:int"
+		"category:string, word:string, count:long"
 	));
 
 	public static String normalizeWord(String word) {
@@ -58,6 +58,7 @@ public class NaiveBayesGenerate extends BaseExampleJob implements Serializable {
 		TupleMRBuilder job = new TupleMRBuilder(conf, "Naive Bayes Model Generator");
 		job.addIntermediateSchema(INTERMEDIATE_SCHEMA);
 		// perform per-category word count mapping
+		
 		job.addInput(new Path(inputExamples), new HadoopInputFormat(TextInputFormat.class),
 		    new TupleMapper<LongWritable, Text>() {
 
@@ -67,14 +68,13 @@ public class NaiveBayesGenerate extends BaseExampleJob implements Serializable {
 			    public void map(LongWritable toIgnore, Text value, TupleMRContext context, Collector collector)
 			        throws IOException, InterruptedException {
 
-				    String category = value.toString().split("\t")[0];
-				    StringTokenizer itr = new StringTokenizer(value.toString().split("\t")[1]);
-				    tuple.set("category", category);
-				    tuple.set("count", 1);
-				    while(itr.hasMoreTokens()) {
-					    tuple.set("word", normalizeWord(itr.nextToken()));
-					    collector.write(tuple);
-				    }
+			    	String[] tokens = value.toString().split("\t");
+				    String category = tokens[1];
+				    String word = tokens[0];
+				    long frequency = Long.parseLong(tokens[2]);
+				    tuple.set("category",category);
+				    tuple.set("word",word);
+				    tuple.set("count",frequency);
 			    }
 		    });
 
