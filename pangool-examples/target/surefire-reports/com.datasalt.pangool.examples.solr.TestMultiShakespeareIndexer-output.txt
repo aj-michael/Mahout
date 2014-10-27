@@ -1,0 +1,265 @@
+2014-10-27 13:57:49,791 [main] WARN  org.apache.hadoop.security.authentication.util.KerberosName - Kerberos krb5 configuration not found, setting default realm to empty
+2014-10-27 13:57:50,120 [main] WARN  org.apache.hadoop.util.NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2014-10-27 13:57:50,131 [main] INFO  com.datasalt.pangool.solr.TupleSolrOutputFormat - Set Solr cache: [file:/tmp/832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip#832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip]
+2014-10-27 13:57:50,145 [main] INFO  com.datasalt.pangool.solr.TupleSolrOutputFormat - Set Solr cache: [file:/tmp/832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip#832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip, file:/tmp/b26c8c31-99e7-4341-bb58-e5d5be085d56.solr.zip#b26c8c31-99e7-4341-bb58-e5d5be085d56.solr.zip]
+2014-10-27 13:57:50,157 [main] INFO  com.datasalt.pangool.solr.TupleSolrOutputFormat - Set Solr cache: [file:/tmp/832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip#832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip, file:/tmp/b26c8c31-99e7-4341-bb58-e5d5be085d56.solr.zip#b26c8c31-99e7-4341-bb58-e5d5be085d56.solr.zip, file:/tmp/bf71e642-79dc-443d-8ea6-b325d2b38499.solr.zip#bf71e642-79dc-443d-8ea6-b325d2b38499.solr.zip]
+2014-10-27 13:57:50,168 [main] INFO  com.datasalt.pangool.solr.TupleSolrOutputFormat - Set Solr cache: [file:/tmp/832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip#832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip, file:/tmp/b26c8c31-99e7-4341-bb58-e5d5be085d56.solr.zip#b26c8c31-99e7-4341-bb58-e5d5be085d56.solr.zip, file:/tmp/bf71e642-79dc-443d-8ea6-b325d2b38499.solr.zip#bf71e642-79dc-443d-8ea6-b325d2b38499.solr.zip, file:/tmp/065e726d-a176-4adf-aa20-45208fadfe0c.solr.zip#065e726d-a176-4adf-aa20-45208fadfe0c.solr.zip]
+2014-10-27 13:57:50,333 [main] WARN  org.apache.hadoop.conf.Configuration - session.id is deprecated. Instead, use dfs.metrics.session-id
+2014-10-27 13:57:50,333 [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics - Initializing JVM Metrics with processName=JobTracker, sessionId=
+2014-10-27 13:57:50,356 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - No job jar file set.  User classes may not be found. See Job or Job#setJar(String).
+2014-10-27 13:57:50,565 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
+2014-10-27 13:57:50,576 [main] WARN  org.apache.hadoop.io.compress.snappy.LoadSnappy - Snappy native library not loaded
+2014-10-27 13:57:50,581 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
+2014-10-27 13:57:50,584 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
+2014-10-27 13:57:50,587 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
+2014-10-27 13:57:50,633 [main] INFO  org.apache.hadoop.mapreduce.JobSubmitter - number of splits:4
+2014-10-27 13:57:50,656 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files.timestamps is deprecated. Instead, use mapreduce.job.cache.files.timestamps
+2014-10-27 13:57:50,656 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.map.class is deprecated. Instead, use mapreduce.job.map.class
+2014-10-27 13:57:50,656 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.used.genericoptionsparser is deprecated. Instead, use mapreduce.client.genericoptionsparser.used
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.reduce.class is deprecated. Instead, use mapreduce.job.reduce.class
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.inputformat.class is deprecated. Instead, use mapreduce.job.inputformat.class
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.groupfn.class is deprecated. Instead, use mapreduce.job.output.group.comparator.class
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.outputformat.class is deprecated. Instead, use mapreduce.job.outputformat.class
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.class is deprecated. Instead, use mapreduce.job.output.value.class
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.archives is deprecated. Instead, use mapreduce.job.cache.archives
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files is deprecated. Instead, use mapreduce.job.cache.files
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.working.dir is deprecated. Instead, use mapreduce.job.working.dir
+2014-10-27 13:57:50,657 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.value.class is deprecated. Instead, use mapreduce.map.output.value.class
+2014-10-27 13:57:50,658 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+2014-10-27 13:57:50,658 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.key.class is deprecated. Instead, use mapreduce.map.output.key.class
+2014-10-27 13:57:50,658 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.comparator.class is deprecated. Instead, use mapreduce.job.output.key.comparator.class
+2014-10-27 13:57:50,658 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.archives.timestamps is deprecated. Instead, use mapreduce.job.cache.archives.timestamps
+2014-10-27 13:57:50,658 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.partitioner.class is deprecated. Instead, use mapreduce.job.partitioner.class
+2014-10-27 13:57:50,658 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.class is deprecated. Instead, use mapreduce.job.output.key.class
+2014-10-27 13:57:50,766 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-871403791/.staging/job_local_0001/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
+2014-10-27 13:57:50,766 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-871403791/.staging/job_local_0001/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
+2014-10-27 13:57:51,154 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/tmp/832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip as file:/tmp/hadoop-hansondg/mapred/local/6636141970379853781/832c0860-b5c5-46fd-a01e-6b2fa04af2df.solr.zip
+2014-10-27 13:57:51,191 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/tmp/b26c8c31-99e7-4341-bb58-e5d5be085d56.solr.zip as file:/tmp/hadoop-hansondg/mapred/local/-281698714890029049/b26c8c31-99e7-4341-bb58-e5d5be085d56.solr.zip
+2014-10-27 13:57:51,191 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/tmp/bf71e642-79dc-443d-8ea6-b325d2b38499.solr.zip as file:/tmp/hadoop-hansondg/mapred/local/-4667414388939368797/bf71e642-79dc-443d-8ea6-b325d2b38499.solr.zip
+2014-10-27 13:57:51,199 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/tmp/065e726d-a176-4adf-aa20-45208fadfe0c.solr.zip as file:/tmp/hadoop-hansondg/mapred/local/5962327273364656682/065e726d-a176-4adf-aa20-45208fadfe0c.solr.zip
+2014-10-27 13:57:51,199 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/33de6063-1a54-4a27-81f9-dfd5fe11ead6.group-handler.dat as file:/tmp/hadoop-hansondg/mapred/local/-3003263543495287996/33de6063-1a54-4a27-81f9-dfd5fe11ead6.group-handler.dat
+2014-10-27 13:57:51,199 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/d87ac369-f041-4c51-8c78-3e7809e53d5d.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/-3501218747012714110/d87ac369-f041-4c51-8c78-3e7809e53d5d.mapper.dat
+2014-10-27 13:57:51,199 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/b61b8213-89f2-4109-b11b-ca8c5c23f7c3.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/-2742077334881781950/b61b8213-89f2-4109-b11b-ca8c5c23f7c3.inputFormat.dat
+2014-10-27 13:57:51,199 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/98fc2bc2-c265-4bec-a843-b509229b18f8.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/-192380594560273682/98fc2bc2-c265-4bec-a843-b509229b18f8.mapper.dat
+2014-10-27 13:57:51,200 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/a91fcf84-802f-4f49-9f6a-74ce56c58753.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/703253839753864418/a91fcf84-802f-4f49-9f6a-74ce56c58753.inputFormat.dat
+2014-10-27 13:57:51,200 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/15812491-c2da-4f82-80e1-6d9d4934274e.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/1370148532095654405/15812491-c2da-4f82-80e1-6d9d4934274e.mapper.dat
+2014-10-27 13:57:51,200 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/a2016e71-d2a7-488d-954a-9a5932139a1a.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/3776798387241604330/a2016e71-d2a7-488d-954a-9a5932139a1a.inputFormat.dat
+2014-10-27 13:57:51,200 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/bef9ca23-fb8d-4703-a8ab-f18a3ba7693b.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/-5425118526576091746/bef9ca23-fb8d-4703-a8ab-f18a3ba7693b.mapper.dat
+2014-10-27 13:57:51,200 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/9a0a5b00-0e4b-4a98-87a9-b6a866b5b06b.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/5473256450386535069/9a0a5b00-0e4b-4a98-87a9-b6a866b5b06b.inputFormat.dat
+2014-10-27 13:57:51,200 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/b4179512-5e81-460e-ae02-ce5895ef6c28.out-format.dat as file:/tmp/hadoop-hansondg/mapred/local/-7312373011729936421/b4179512-5e81-460e-ae02-ce5895ef6c28.out-format.dat
+2014-10-27 13:57:51,200 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/dd484088-254f-438d-83f3-04db7489d381.out-format.dat as file:/tmp/hadoop-hansondg/mapred/local/-2646962784528286457/dd484088-254f-438d-83f3-04db7489d381.out-format.dat
+2014-10-27 13:57:51,201 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/d8dd7950-9596-40c9-b00c-3f190b90d387.out-format.dat as file:/tmp/hadoop-hansondg/mapred/local/6066797233871200341/d8dd7950-9596-40c9-b00c-3f190b90d387.out-format.dat
+2014-10-27 13:57:51,201 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/examples/pangool-instances/078436ee-557d-4fde-a541-ee655b6c30c4.out-format.dat as file:/tmp/hadoop-hansondg/mapred/local/8544309375971276999/078436ee-557d-4fde-a541-ee655b6c30c4.out-format.dat
+2014-10-27 13:57:51,207 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.localFiles is deprecated. Instead, use mapreduce.job.cache.local.files
+2014-10-27 13:57:51,207 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.localArchives is deprecated. Instead, use mapreduce.job.cache.local.archives
+2014-10-27 13:57:51,246 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0001.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
+2014-10-27 13:57:51,246 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0001.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
+2014-10-27 13:57:51,252 [main] INFO  org.apache.hadoop.mapreduce.Job - The url to track the job: http://localhost:8080/
+2014-10-27 13:57:51,253 [main] INFO  org.apache.hadoop.mapreduce.Job - Running job: job_local_0001
+2014-10-27 13:57:51,255 [Thread-78] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter set in config null
+2014-10-27 13:57:51,259 [Thread-78] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
+2014-10-27 13:57:51,265 [Thread-78] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter is com.datasalt.pangool.tuplemr.mapred.lib.output.ProxyOutputFormat$ProxyOutputCommitter
+2014-10-27 13:57:51,272 [Thread-78] INFO  org.apache.hadoop.mapred.LocalJobRunner - Waiting for map tasks
+2014-10-27 13:57:51,272 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0001_m_000000_0
+2014-10-27 13:57:51,314 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@4496a2fe
+2014-10-27 13:57:51,347 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
+2014-10-27 13:57:51,347 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
+2014-10-27 13:57:51,347 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
+2014-10-27 13:57:51,347 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
+2014-10-27 13:57:51,347 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
+2014-10-27 13:57:51,368 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
+2014-10-27 13:57:51,372 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
+2014-10-27 13:57:51,375 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:51,375 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
+2014-10-27 13:57:51,375 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Spilling map output
+2014-10-27 13:57:51,375 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufend = 32; bufvoid = 104857600
+2014-10-27 13:57:51,375 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396(104857584); kvend = 26214396(104857584); length = 1/6553600
+2014-10-27 13:57:51,382 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Finished spill 0
+2014-10-27 13:57:51,384 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0001_m_000000_0 is done. And is in the process of committing
+2014-10-27 13:57:51,391 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:51,392 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0001_m_000000_0 is allowed to commit now
+2014-10-27 13:57:51,393 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_m_000000_0
+2014-10-27 13:57:51,394 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
+2014-10-27 13:57:51,394 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0001_m_000000_0' done.
+2014-10-27 13:57:51,394 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0001_m_000000_0
+2014-10-27 13:57:51,395 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0001_m_000001_0
+2014-10-27 13:57:51,399 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@15419e90
+2014-10-27 13:57:51,419 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
+2014-10-27 13:57:51,420 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
+2014-10-27 13:57:51,420 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
+2014-10-27 13:57:51,420 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
+2014-10-27 13:57:51,420 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
+2014-10-27 13:57:51,424 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
+2014-10-27 13:57:51,426 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
+2014-10-27 13:57:51,427 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:51,427 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
+2014-10-27 13:57:51,427 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Spilling map output
+2014-10-27 13:57:51,427 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufend = 32; bufvoid = 104857600
+2014-10-27 13:57:51,428 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396(104857584); kvend = 26214396(104857584); length = 1/6553600
+2014-10-27 13:57:51,429 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Finished spill 0
+2014-10-27 13:57:51,431 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0001_m_000001_0 is done. And is in the process of committing
+2014-10-27 13:57:51,431 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:51,431 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0001_m_000001_0 is allowed to commit now
+2014-10-27 13:57:51,431 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_m_000001_0
+2014-10-27 13:57:51,432 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
+2014-10-27 13:57:51,432 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0001_m_000001_0' done.
+2014-10-27 13:57:51,432 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0001_m_000001_0
+2014-10-27 13:57:51,432 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0001_m_000002_0
+2014-10-27 13:57:51,435 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@3030e651
+2014-10-27 13:57:51,458 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
+2014-10-27 13:57:51,458 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
+2014-10-27 13:57:51,458 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
+2014-10-27 13:57:51,458 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
+2014-10-27 13:57:51,458 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
+2014-10-27 13:57:51,462 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
+2014-10-27 13:57:51,464 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
+2014-10-27 13:57:51,465 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:51,465 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
+2014-10-27 13:57:51,465 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Spilling map output
+2014-10-27 13:57:51,465 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufend = 30; bufvoid = 104857600
+2014-10-27 13:57:51,465 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396(104857584); kvend = 26214396(104857584); length = 1/6553600
+2014-10-27 13:57:51,467 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Finished spill 0
+2014-10-27 13:57:51,468 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0001_m_000002_0 is done. And is in the process of committing
+2014-10-27 13:57:51,468 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:51,468 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0001_m_000002_0 is allowed to commit now
+2014-10-27 13:57:51,469 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_m_000002_0
+2014-10-27 13:57:51,469 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
+2014-10-27 13:57:51,469 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0001_m_000002_0' done.
+2014-10-27 13:57:51,469 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0001_m_000002_0
+2014-10-27 13:57:51,470 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0001_m_000003_0
+2014-10-27 13:57:51,472 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@1c75606e
+2014-10-27 13:57:51,491 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
+2014-10-27 13:57:51,491 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
+2014-10-27 13:57:51,491 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
+2014-10-27 13:57:51,491 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
+2014-10-27 13:57:51,491 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
+2014-10-27 13:57:51,494 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
+2014-10-27 13:57:51,497 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
+2014-10-27 13:57:51,499 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:51,499 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
+2014-10-27 13:57:51,499 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Spilling map output
+2014-10-27 13:57:51,499 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufend = 28; bufvoid = 104857600
+2014-10-27 13:57:51,499 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396(104857584); kvend = 26214396(104857584); length = 1/6553600
+2014-10-27 13:57:51,501 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Finished spill 0
+2014-10-27 13:57:51,503 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0001_m_000003_0 is done. And is in the process of committing
+2014-10-27 13:57:51,503 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:51,503 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0001_m_000003_0 is allowed to commit now
+2014-10-27 13:57:51,504 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_m_000003_0
+2014-10-27 13:57:51,504 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
+2014-10-27 13:57:51,504 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0001_m_000003_0' done.
+2014-10-27 13:57:51,505 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0001_m_000003_0
+2014-10-27 13:57:51,505 [Thread-78] INFO  org.apache.hadoop.mapred.LocalJobRunner - Map task executor complete.
+2014-10-27 13:57:51,518 [Thread-78] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@5a47bd3f
+2014-10-27 13:57:51,524 [Thread-78] INFO  org.apache.hadoop.mapred.Merger - Merging 4 sorted segments
+2014-10-27 13:57:51,527 [Thread-78] INFO  org.apache.hadoop.mapred.Merger - Down to the last merge-pass, with 4 segments left of total size: 8 bytes
+2014-10-27 13:57:51,527 [Thread-78] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:51,530 [Thread-78] WARN  org.apache.hadoop.conf.Configuration - mapred.skip.on is deprecated. Instead, use mapreduce.job.skiprecords
+2014-10-27 13:57:51,548 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:51,548 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:51,553 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:51,554 [Thread-78] INFO  com.datasalt.pangool.solr.HeartBeater - Heart beat reporting class is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+2014-10-27 13:57:51,554 [Thread-205] INFO  com.datasalt.pangool.solr.HeartBeater - HeartBeat thread running
+2014-10-27 13:57:51,554 [Thread-205] INFO  com.datasalt.pangool.solr.HeartBeater - Issuing heart beat for 1 threads
+2014-10-27 13:57:51,554 [Thread-78] WARN  org.apache.hadoop.conf.Configuration - mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id
+2014-10-27 13:57:51,554 [Thread-78] WARN  org.apache.hadoop.conf.Configuration - mapred.local.dir is deprecated. Instead, use mapreduce.cluster.local.dir
+2014-10-27 13:57:51,555 [Thread-78] INFO  com.datasalt.pangool.solr.SolrRecordWriter - SolrHome: /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr
+2014-10-27 13:57:51,653 [Thread-78] INFO  com.datasalt.pangool.solr.SolrRecordWriter - Constructed instance information solr.home /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr (/home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr), instance dir /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr/, conf dir /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr/conf/, writing index to temporary directory /tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.1/data, with permdir file:/home/hansondg/workspace/pangool/examples/out-com.datasalt.pangool.examples.solr.TestMultiShakespeareIndexer/_temporary/0/_temporary/attempt_local_0001_r_000000_0/poetry/part-00000
+2014-10-27 13:57:51,804 [Thread-78] WARN  org.apache.solr.core.SolrConfig - <indexDefaults> and <mainIndex> configuration sections are deprecated and will fail for luceneMatchVersion=LUCENE_40 and later. Please use <indexConfig> instead.
+2014-10-27 13:57:52,053 [Thread-78] WARN  org.apache.solr.schema.IndexSchema - no uniqueKey specified in schema.
+2014-10-27 13:57:52,093 [Thread-78] WARN  org.apache.solr.core.SolrCore - New index directory detected: old=null new=/tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.1/data/index/
+2014-10-27 13:57:52,093 [Thread-78] WARN  org.apache.solr.core.SolrCore - [core1] Solr index directory '/tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.1/data/index' doesn't exist. Creating new index...
+2014-10-27 13:57:52,257 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0001 running in uber mode : false
+2014-10-27 13:57:52,258 [main] INFO  org.apache.hadoop.mapreduce.Job -  map 100% reduce 0%
+2014-10-27 13:57:52,467 [Thread-78] WARN  org.apache.solr.handler.UpdateRequestHandler - Using deprecated class: XmlUpdateRequestHandler -- replace with UpdateRequestHandler
+2014-10-27 13:57:52,467 [Thread-78] WARN  org.apache.solr.handler.UpdateRequestHandler - Using deprecated class: BinaryUpdateRequestHandler -- replace with UpdateRequestHandler
+2014-10-27 13:57:52,693 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:52,693 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:52,693 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:52,693 [Thread-78] INFO  com.datasalt.pangool.solr.HeartBeater - Heart beat reporting class is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+2014-10-27 13:57:52,693 [Thread-206] INFO  com.datasalt.pangool.solr.HeartBeater - HeartBeat thread running
+2014-10-27 13:57:52,693 [Thread-206] INFO  com.datasalt.pangool.solr.HeartBeater - Issuing heart beat for 1 threads
+2014-10-27 13:57:52,694 [Thread-78] INFO  com.datasalt.pangool.solr.SolrRecordWriter - SolrHome: /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr
+2014-10-27 13:57:52,713 [Thread-78] INFO  com.datasalt.pangool.solr.SolrRecordWriter - Constructed instance information solr.home /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr (/home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr), instance dir /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr/, conf dir /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr/conf/, writing index to temporary directory /tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.2/data, with permdir file:/home/hansondg/workspace/pangool/examples/out-com.datasalt.pangool.examples.solr.TestMultiShakespeareIndexer/_temporary/0/_temporary/attempt_local_0001_r_000000_0/tragedies/part-00000
+2014-10-27 13:57:52,740 [Thread-78] WARN  org.apache.solr.core.SolrConfig - <indexDefaults> and <mainIndex> configuration sections are deprecated and will fail for luceneMatchVersion=LUCENE_40 and later. Please use <indexConfig> instead.
+2014-10-27 13:57:52,812 [Thread-78] WARN  org.apache.solr.schema.IndexSchema - no uniqueKey specified in schema.
+2014-10-27 13:57:52,827 [Thread-78] WARN  org.apache.solr.core.SolrCore - New index directory detected: old=null new=/tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.2/data/index/
+2014-10-27 13:57:52,827 [Thread-78] WARN  org.apache.solr.core.SolrCore - [core1] Solr index directory '/tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.2/data/index' doesn't exist. Creating new index...
+2014-10-27 13:57:52,982 [Thread-78] WARN  org.apache.solr.handler.UpdateRequestHandler - Using deprecated class: XmlUpdateRequestHandler -- replace with UpdateRequestHandler
+2014-10-27 13:57:52,983 [Thread-78] WARN  org.apache.solr.handler.UpdateRequestHandler - Using deprecated class: BinaryUpdateRequestHandler -- replace with UpdateRequestHandler
+2014-10-27 13:57:53,007 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:53,008 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:53,008 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:53,008 [Thread-78] INFO  com.datasalt.pangool.solr.HeartBeater - Heart beat reporting class is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+2014-10-27 13:57:53,008 [Thread-207] INFO  com.datasalt.pangool.solr.HeartBeater - HeartBeat thread running
+2014-10-27 13:57:53,008 [Thread-207] INFO  com.datasalt.pangool.solr.HeartBeater - Issuing heart beat for 1 threads
+2014-10-27 13:57:53,009 [Thread-78] INFO  com.datasalt.pangool.solr.SolrRecordWriter - SolrHome: /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr
+2014-10-27 13:57:53,015 [Thread-78] INFO  com.datasalt.pangool.solr.SolrRecordWriter - Constructed instance information solr.home /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr (/home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr), instance dir /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr/, conf dir /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr/conf/, writing index to temporary directory /tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.3/data, with permdir file:/home/hansondg/workspace/pangool/examples/out-com.datasalt.pangool.examples.solr.TestMultiShakespeareIndexer/_temporary/0/_temporary/attempt_local_0001_r_000000_0/histories/part-00000
+2014-10-27 13:57:53,033 [Thread-78] WARN  org.apache.solr.core.SolrConfig - <indexDefaults> and <mainIndex> configuration sections are deprecated and will fail for luceneMatchVersion=LUCENE_40 and later. Please use <indexConfig> instead.
+2014-10-27 13:57:53,101 [Thread-78] WARN  org.apache.solr.schema.IndexSchema - no uniqueKey specified in schema.
+2014-10-27 13:57:53,103 [Thread-78] WARN  org.apache.solr.core.SolrCore - New index directory detected: old=null new=/tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.3/data/index/
+2014-10-27 13:57:53,103 [Thread-78] WARN  org.apache.solr.core.SolrCore - [core1] Solr index directory '/tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.3/data/index' doesn't exist. Creating new index...
+2014-10-27 13:57:53,182 [Thread-78] WARN  org.apache.solr.handler.UpdateRequestHandler - Using deprecated class: XmlUpdateRequestHandler -- replace with UpdateRequestHandler
+2014-10-27 13:57:53,183 [Thread-78] WARN  org.apache.solr.handler.UpdateRequestHandler - Using deprecated class: BinaryUpdateRequestHandler -- replace with UpdateRequestHandler
+2014-10-27 13:57:53,207 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:53,207 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:53,207 [Thread-78] WARN  com.datasalt.pangool.solr.SolrRecordWriter - logger class:org.apache.commons.logging.impl.Log4JLogger
+2014-10-27 13:57:53,207 [Thread-78] INFO  com.datasalt.pangool.solr.HeartBeater - Heart beat reporting class is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+2014-10-27 13:57:53,208 [Thread-208] INFO  com.datasalt.pangool.solr.HeartBeater - HeartBeat thread running
+2014-10-27 13:57:53,208 [Thread-208] INFO  com.datasalt.pangool.solr.HeartBeater - Issuing heart beat for 1 threads
+2014-10-27 13:57:53,209 [Thread-78] INFO  com.datasalt.pangool.solr.SolrRecordWriter - SolrHome: /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr
+2014-10-27 13:57:53,216 [Thread-78] INFO  com.datasalt.pangool.solr.SolrRecordWriter - Constructed instance information solr.home /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr (/home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr), instance dir /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr/, conf dir /home/hansondg/workspace/pangool/examples/src/test/resources/shakespeare-solr/conf/, writing index to temporary directory /tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.4/data, with permdir file:/home/hansondg/workspace/pangool/examples/out-com.datasalt.pangool.examples.solr.TestMultiShakespeareIndexer/_temporary/0/_temporary/attempt_local_0001_r_000000_0/comedies/part-00000
+2014-10-27 13:57:53,230 [Thread-78] WARN  org.apache.solr.core.SolrConfig - <indexDefaults> and <mainIndex> configuration sections are deprecated and will fail for luceneMatchVersion=LUCENE_40 and later. Please use <indexConfig> instead.
+2014-10-27 13:57:53,297 [Thread-78] WARN  org.apache.solr.schema.IndexSchema - no uniqueKey specified in schema.
+2014-10-27 13:57:53,298 [Thread-78] WARN  org.apache.solr.core.SolrCore - New index directory detected: old=null new=/tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.4/data/index/
+2014-10-27 13:57:53,298 [Thread-78] WARN  org.apache.solr.core.SolrCore - [core1] Solr index directory '/tmp/hadoop-hansondg/mapred/local/localRunner/hansondg/jobcache/job_local_0001/attempt_local_0001_r_000000_0/solr_attempt_local_0001_r_000000_0.4/data/index' doesn't exist. Creating new index...
+2014-10-27 13:57:53,369 [Thread-78] WARN  org.apache.solr.handler.UpdateRequestHandler - Using deprecated class: XmlUpdateRequestHandler -- replace with UpdateRequestHandler
+2014-10-27 13:57:53,369 [Thread-78] WARN  org.apache.solr.handler.UpdateRequestHandler - Using deprecated class: BinaryUpdateRequestHandler -- replace with UpdateRequestHandler
+2014-10-27 13:57:53,382 [Thread-78] INFO  com.datasalt.pangool.solr.BatchWriter - Waiting for 0 items and 1 threads to finish executing
+2014-10-27 13:57:53,891 [Thread-78] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_r_000000_0
+2014-10-27 13:57:53,892 [Thread-78] INFO  com.datasalt.pangool.solr.BatchWriter - Waiting for 0 items and 1 threads to finish executing
+2014-10-27 13:57:54,311 [Thread-78] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_r_000000_0
+2014-10-27 13:57:54,312 [Thread-78] INFO  com.datasalt.pangool.solr.BatchWriter - Waiting for 0 items and 1 threads to finish executing
+2014-10-27 13:57:54,712 [Thread-78] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_r_000000_0
+2014-10-27 13:57:54,713 [Thread-78] INFO  com.datasalt.pangool.solr.BatchWriter - Waiting for 0 items and 1 threads to finish executing
+2014-10-27 13:57:55,109 [Thread-78] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_r_000000_0
+2014-10-27 13:57:55,110 [Thread-78] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0001_r_000000_0 is done. And is in the process of committing
+2014-10-27 13:57:55,111 [Thread-78] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-27 13:57:55,111 [Thread-78] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0001_r_000000_0 is allowed to commit now
+2014-10-27 13:57:55,112 [Thread-78] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0001_r_000000_0' to file:/home/hansondg/workspace/pangool/examples/out-com.datasalt.pangool.examples.solr.TestMultiShakespeareIndexer/_temporary/0/task_local_0001_r_000000
+2014-10-27 13:57:55,112 [Thread-78] INFO  org.apache.hadoop.mapred.LocalJobRunner - reduce > reduce
+2014-10-27 13:57:55,112 [Thread-78] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0001_r_000000_0' done.
+2014-10-27 13:57:55,262 [main] INFO  org.apache.hadoop.mapreduce.Job -  map 100% reduce 100%
+2014-10-27 13:57:55,264 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0001 completed successfully
+2014-10-27 13:57:55,290 [main] INFO  org.apache.hadoop.mapreduce.Job - Counters: 27
+	File System Counters
+		FILE: Number of bytes read=1153976
+		FILE: Number of bytes written=1937993
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+	Map-Reduce Framework
+		Map input records=4
+		Map output records=4
+		Map output bytes=122
+		Map output materialized bytes=154
+		Input split bytes=1330
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=1
+		Reduce shuffle bytes=0
+		Reduce input records=4
+		Reduce output records=0
+		Spilled Records=8
+		Shuffled Maps =0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=81
+		CPU time spent (ms)=0
+		Physical memory (bytes) snapshot=0
+		Virtual memory (bytes) snapshot=0
+		Total committed heap usage (bytes)=2244476928
+	File Input Format Counters 
+		Bytes Read=0
+	File Output Format Counters 
+		Bytes Written=0
