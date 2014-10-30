@@ -36,7 +36,7 @@ import com.datasalt.pangool.tuplemr.mapred.lib.output.HadoopOutputFormat;
 public class NaiveBayesClassifier implements Serializable, Tool {
 
 	public final static Charset UTF8 = Charset.forName("UTF-8");
-	protected Configuration conf;
+//	protected Configuration conf = new Configuration();
 	
 	private static final Long ZERO = new Long(0);
 	Map<String, Long> tokensPerCategory = new HashMap<String, Long>();
@@ -54,6 +54,7 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 	 * @throws ClassNotFoundException 
 	 */
 	public String classify(String text, Path generatedModel) throws IOException, ClassNotFoundException, InterruptedException, TupleMRException {
+		Configuration conf = new Configuration();
 		FileSystem fileSystem = FileSystem.get(conf);
 		// Read tuples from generate job
 		StringTokenizer itr = new StringTokenizer(text);
@@ -85,8 +86,9 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 					tokensPerCategory.put(category, MapUtils.getLong(tokensPerCategory, category,ZERO) + count);
 				}
 			});
+			//job.setTupleOutput(new Path("garbage"),new Schema("asdasdasda",new ArrayList()));
 			if(!job.createJob().waitForCompletion(true)){
-				throw new Error();
+				throw new Error("classify job failed");
 			}
 /*			TupleFile.Reader reader = new TupleFile.Reader(fileSystem, conf, fileStatus.getPath());
 			Tuple tuple = new Tuple(reader.getSchema());
@@ -136,7 +138,7 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 		final String modelFolder = args[0];
 		String input = args[1];
 		String output = args[2];
-
+		Configuration conf = new Configuration();
 		FileSystem.get(conf).delete(new Path(output),true);
 
 		MapOnlyJobBuilder job = new MapOnlyJobBuilder(conf);
@@ -168,10 +170,10 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 	}
 
 	public void setConf(Configuration conf) {
-		this.conf = conf;
+		//this.conf = conf;
 	}
 
 	public Configuration getConf() {
-		return this.conf;
+		return new Configuration();
 	}
 }
