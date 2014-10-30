@@ -23,11 +23,16 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
+import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Tuple;
 import com.datasalt.pangool.io.TupleFile;
 import com.datasalt.pangool.tuplemr.MapOnlyJobBuilder;
+import com.datasalt.pangool.tuplemr.TupleMRBuilder;
+import com.datasalt.pangool.tuplemr.TupleMRException;
+import com.datasalt.pangool.tuplemr.TupleMapper;
 import com.datasalt.pangool.tuplemr.mapred.MapOnlyMapper;
 import com.datasalt.pangool.tuplemr.mapred.lib.input.HadoopInputFormat;
+import com.datasalt.pangool.tuplemr.mapred.lib.input.TupleInputFormat;
 import com.datasalt.pangool.tuplemr.mapred.lib.output.HadoopOutputFormat;
 
 /**
@@ -51,13 +56,16 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 	 * Naive Bayes Text Classification with Add-1 Smoothing
 	 * @param text Input text
 	 * @return the best Category
+	 * @throws TupleMRException 
+	 * @throws InterruptedException 
+	 * @throws ClassNotFoundException 
 	 */
-	public String classify(String text, Path generatedModel) throws IOException {
+	public String classify(String text, Path generatedModel) throws IOException, ClassNotFoundException, InterruptedException, TupleMRException {
 		Configuration conf = new Configuration();
 		FileSystem fileSystem = FileSystem.get(conf);
 		// Read tuples from generate job
 		StringTokenizer itr = new StringTokenizer(text);
-		Set<String> textSet = new HashSet<String>(text.length()*5);
+		final Set<String> textSet = new HashSet<String>(text.length()*5);
 		while(itr.hasMoreTokens()){
 			String key = itr.nextToken();
 			if(textSet.contains(key)){
@@ -67,7 +75,28 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 		V = 0;
 
 		for(FileStatus fileStatus : fileSystem.globStatus(generatedModel)) {
-			TupleFile.Reader reader = new TupleFile.Reader(fileSystem, conf, fileStatus.getPath());
+			TupleMRBuilder job = new TupleMRBuilder(conf);
+			job.addTupleInput(fileStatus.getPath(),new TupleMapper<ITuple,NullWritable>(){
+
+				@Override
+				public void map(ITuple tuple, NullWritable n, TupleMapper<ITuple, NullWritable>.TupleMRContext con,TupleMapper.Collector col) throws IOException, InterruptedException {
+					long count = tuple.getLong("count");
+					String category = tuple.get("category").toString();
+					String word = tuple.get("word").toString();
+					V += count;
+					if(textSet.contains(word)){
+						if(!wordCountPerCategory.containsKey(category)){
+							wordCountPerCategory.put(category,new HashMap<String,Long>());
+						}
+						wordCountPerCategory.get(category).put(word, count);
+					}
+					tokensPerCategory.put(category, MapUtils.getLong(tokensPerCategory, category,ZERO) + count);
+				}
+			});
+			if(!job.createJob().waitForCompletion(true)){
+				throw new Error();
+			}
+/*			TupleFile.Reader reader = new TupleFile.Reader(fileSystem, conf, fileStatus.getPath());
 			Tuple tuple = new Tuple(reader.getSchema());
 			while(reader.next(tuple)) {
 				// Read Tuple
@@ -79,12 +108,11 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 					if(!wordCountPerCategory.containsKey(category)){
 						wordCountPerCategory.put(category,new HashMap<String,Long>());
 					}
-					wordCountPerCategory.get(category).put(word, count);				
+					wordCountPerCategory.get(category).put(word, count);
 				}
 				tokensPerCategory.put(category, MapUtils.getLong(tokensPerCategory, category,ZERO) + count);
-
 			}
-			reader.close();
+			reader.close();*/
 		}
 
 		itr = new StringTokenizer(text);
