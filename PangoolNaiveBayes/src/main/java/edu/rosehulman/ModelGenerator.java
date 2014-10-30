@@ -26,7 +26,7 @@ public class ModelGenerator implements Tool, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static Schema INTERMEDIATE_SCHEMA = new Schema("categoryCounter", Fields.parse("year:string, word:string, count:long"));
+	public static Schema INTERMEDIATE_SCHEMA = new Schema("categoryCounter", Fields.parse("year:string, word:string, count:long"));
 	
 	private Configuration conf;
 	
@@ -51,10 +51,10 @@ public class ModelGenerator implements Tool, Serializable {
 		String input = args[0];
 		String output = args[1];
 		FileSystem.get(conf).delete(new Path(output), true);
-		
+
 		TupleMRBuilder job = new TupleMRBuilder(conf,"Naive Bayes Model Generator");
 		job.addIntermediateSchema(INTERMEDIATE_SCHEMA);
-		
+
 		TupleMapper<LongWritable, Text> mapper = new TupleMapper<LongWritable, Text>() {
 
 			private static final long serialVersionUID = 1L;
@@ -80,8 +80,15 @@ public class ModelGenerator implements Tool, Serializable {
 
 			private static final long serialVersionUID = 1L;
 
-			public void reduce(ITuple group, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) {
-				
+			public void reduce(ITuple group, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
+				int count = 0;
+				ITuple outTuple = null;
+				for (ITuple tuple : tuples) {
+					count += (Integer) tuple.get("count");
+					outTuple = tuple;
+				}
+				outTuple.set("count", count);
+				collector.write(outTuple,NullWritable.get());
 			}
 		};
 		
