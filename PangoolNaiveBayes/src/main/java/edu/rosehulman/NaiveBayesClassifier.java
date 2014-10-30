@@ -54,7 +54,6 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 	 * @throws ClassNotFoundException 
 	 */
 	public String classify(String text, Path generatedModel) throws IOException, ClassNotFoundException, InterruptedException, TupleMRException {
-		Configuration conf = new Configuration();
 		FileSystem fileSystem = FileSystem.get(conf);
 		// Read tuples from generate job
 		StringTokenizer itr = new StringTokenizer(text);
@@ -137,7 +136,7 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 		final String modelFolder = args[0];
 		String input = args[1];
 		String output = args[2];
-		Configuration conf = new Configuration();
+
 		FileSystem.get(conf).delete(new Path(output),true);
 
 		MapOnlyJobBuilder job = new MapOnlyJobBuilder(conf);
