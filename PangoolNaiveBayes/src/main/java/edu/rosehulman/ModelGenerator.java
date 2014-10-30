@@ -80,8 +80,15 @@ public class ModelGenerator implements Tool, Serializable {
 
 			private static final long serialVersionUID = 1L;
 
-			public void reduce(ITuple group, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) {
-				
+			public void reduce(ITuple group, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
+				int count = 0;
+				ITuple outTuple = null;
+				for (ITuple tuple : tuples) {
+					count += (Integer) tuple.get("count");
+					outTuple = tuple;
+				}
+				outTuple.set("count", count);
+				collector.write(outTuple,NullWritable.get());
 			}
 		};
 		
