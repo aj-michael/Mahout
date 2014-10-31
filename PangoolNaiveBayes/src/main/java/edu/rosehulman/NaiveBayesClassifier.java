@@ -16,38 +16,25 @@ import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
-import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 import com.datasalt.pangool.io.Fields;
 import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
-import com.datasalt.pangool.io.Tuple;
-import com.datasalt.pangool.tuplemr.MapOnlyJobBuilder;
 import com.datasalt.pangool.tuplemr.TupleMRBuilder;
 import com.datasalt.pangool.tuplemr.TupleMRException;
 import com.datasalt.pangool.tuplemr.TupleMapper;
 import com.datasalt.pangool.tuplemr.TupleReducer;
-import com.datasalt.pangool.tuplemr.mapred.MapOnlyMapper;
-import com.datasalt.pangool.tuplemr.mapred.lib.input.HadoopInputFormat;
 import com.datasalt.pangool.tuplemr.mapred.lib.output.HadoopOutputFormat;
-import com.datasalt.pangool.tuplemr.mapred.lib.output.TupleOutputFormat;
 
 @SuppressWarnings("serial")
 public class NaiveBayesClassifier implements Serializable, Tool {
 
-	private static Schema INTERMEDIATE_SCHEMA = new Schema("categoryCounter", Fields.parse("doc:string, category:string"));
-
-	
 	public final static Charset UTF8 = Charset.forName("UTF-8");
-	protected Configuration conf;
+//	protected Configuration conf = new Configuration();
 	
 	private static final Long ZERO = new Long(0);
 	Map<String, Long> tokensPerCategory = new HashMap<String, Long>();
@@ -65,6 +52,7 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 	 * @throws ClassNotFoundException 
 	 */
 	public String classify(String text, Path generatedModel,Path outputPath) throws IOException, ClassNotFoundException, InterruptedException, TupleMRException {
+		Configuration conf = new Configuration();
 		FileSystem fileSystem = FileSystem.get(conf);
 		// Read tuples from generate job
 		StringTokenizer itr = new StringTokenizer(text);
@@ -96,12 +84,13 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 					tokensPerCategory.put(category, MapUtils.getLong(tokensPerCategory, category,ZERO) + count);
 				}
 			});
-			job.addIntermediateSchema(this.INTERMEDIATE_SCHEMA);
+			job.addIntermediateSchema(ModelGenerator.INTERMEDIATE_SCHEMA);
+			job.setGroupByFields("year");
 			job.setTupleReducer(new TupleReducer());
-			//job.setOutput(outputPath, new NullOutputFormat(), NullWritable.class, NullWritable.class);
-			job.setTupleOutput(outputPath,this.INTERMEDIATE_SCHEMA);
+			job.setOutput(outputPath, new HadoopOutputFormat(NullOutputFormat.class), NullWritable.class, NullWritable.class);
+			job.setTupleOutput(outputPath,ModelGenerator.INTERMEDIATE_SCHEMA);
 			if(!job.createJob().waitForCompletion(true)){
-				throw new Error();
+				throw new Error("classify job failed");
 			}
 /*			TupleFile.Reader reader = new TupleFile.Reader(fileSystem, conf, fileStatus.getPath());
 			Tuple tuple = new Tuple(reader.getSchema());
@@ -151,9 +140,9 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 		final String modelFolder = args[0];
 		String input = args[1];
 		String output = args[2];
-
+		Configuration conf = new Configuration();
 		FileSystem fs = FileSystem.get(conf);
-		for (FileStatus file : fs.listStatus(new Path(args[1]))) {
+		for (FileStatus file : fs.listStatus(new Path(input))) {
 			System.out.println("This should only run once");
 			FSDataInputStream in = fs.open(file.getPath());
 			String fullInputText = IOUtils.toString(in,"UTF-8");
@@ -168,10 +157,10 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 	}
 
 	public void setConf(Configuration conf) {
-		this.conf = conf;
+		//this.conf = conf;
 	}
 
 	public Configuration getConf() {
-		return this.conf;
+		return new Configuration();
 	}
 }

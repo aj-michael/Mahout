@@ -9,11 +9,6 @@
   		<artifactId>hadoop-client</artifactId>
   		<version>2.4.1</version>
   	</dependency>
-  	<dependency>
-  		<groupId>com.datasalt.pangool</groupId>
-  		<artifactId>pangool-core</artifactId>
-  		<version>0.70</version>
-  	</dependency>
   </dependencies>
   <build>
     <plugins>
