@@ -1,17 +1,17 @@
-package com.datasalt.pangool.examples.naivebayes;
+package edu.rosehulman;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.StringTokenizer;
 
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-import com.datasalt.pangool.examples.BaseExampleJob;
 import com.datasalt.pangool.io.Fields;
 import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
@@ -31,7 +31,9 @@ import com.datasalt.pangool.tuplemr.mapred.lib.input.HadoopInputFormat;
  * The output model can later be read by {@link NaiveBayesClassifier}.
  */
 @SuppressWarnings({ "rawtypes", "serial" })
-public class NaiveBayesGenerate extends BaseExampleJob implements Serializable {
+public class NaiveBayesGenerate implements Tool, Serializable {
+
+	protected Configuration conf = new Configuration();
 
 	private static Schema INTERMEDIATE_SCHEMA = new Schema("categoryCounter", Fields.parse(
 		"category:string, word:string, count:long"
@@ -41,20 +43,15 @@ public class NaiveBayesGenerate extends BaseExampleJob implements Serializable {
 		return word.replaceAll("\\p{Punct}", "").toLowerCase();
 	}
 
-	public NaiveBayesGenerate() {
-		super("Usage: NaiveBayesGenerate [input_examples] [output_path]");
-	}
-
-	@Override
 	public int run(String[] args) throws Exception {
 		if(args.length != 2) {
-			failArguments("Wrong number of arguments");
+			System.out.println("Wrong number of arguments");
 			return -1;
 		}
 		String inputExamples = args[0];
 		String output = args[1];
-		delete(output);
 
+		Configuration conf = new Configuration();
 		TupleMRBuilder job = new TupleMRBuilder(conf, "Naive Bayes Model Generator");
 		job.addIntermediateSchema(INTERMEDIATE_SCHEMA);
 		// perform per-category word count mapping
@@ -109,5 +106,15 @@ public class NaiveBayesGenerate extends BaseExampleJob implements Serializable {
 
 	public static void main(String[] args) throws Exception {
 		ToolRunner.run(new NaiveBayesGenerate(), args);
+	}
+
+	public void setConf(Configuration conf) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Configuration getConf() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
