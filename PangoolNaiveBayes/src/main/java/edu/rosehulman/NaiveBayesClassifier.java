@@ -17,6 +17,7 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
@@ -27,13 +28,11 @@ import com.datasalt.pangool.tuplemr.TupleMRBuilder;
 import com.datasalt.pangool.tuplemr.TupleMRException;
 import com.datasalt.pangool.tuplemr.TupleMapper;
 import com.datasalt.pangool.tuplemr.TupleReducer;
+import com.datasalt.pangool.tuplemr.mapred.lib.output.HadoopOutputFormat;
 
 @SuppressWarnings("serial")
 public class NaiveBayesClassifier implements Serializable, Tool {
 
-	private static Schema INTERMEDIATE_SCHEMA = new Schema("categoryCounter", Fields.parse("doc:string, category:string"));
-
-	
 	public final static Charset UTF8 = Charset.forName("UTF-8");
 //	protected Configuration conf = new Configuration();
 	
@@ -85,10 +84,11 @@ public class NaiveBayesClassifier implements Serializable, Tool {
 					tokensPerCategory.put(category, MapUtils.getLong(tokensPerCategory, category,ZERO) + count);
 				}
 			});
-			job.addIntermediateSchema(this.INTERMEDIATE_SCHEMA);
+			job.addIntermediateSchema(ModelGenerator.INTERMEDIATE_SCHEMA);
+			job.setGroupByFields("year");
 			job.setTupleReducer(new TupleReducer());
-			//job.setOutput(outputPath, new NullOutputFormat(), NullWritable.class, NullWritable.class);
-			job.setTupleOutput(outputPath,this.INTERMEDIATE_SCHEMA);
+			job.setOutput(outputPath, new HadoopOutputFormat(NullOutputFormat.class), NullWritable.class, NullWritable.class);
+			job.setTupleOutput(outputPath,ModelGenerator.INTERMEDIATE_SCHEMA);
 			if(!job.createJob().waitForCompletion(true)){
 				throw new Error("classify job failed");
 			}
