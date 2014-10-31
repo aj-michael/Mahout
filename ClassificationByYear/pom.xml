@@ -32,7 +32,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>edu.rosehulman.TFVectorFactory</mainClass>
+              <mainClass>edu.rosehulman.Converter</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>

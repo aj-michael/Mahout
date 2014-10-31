@@ -84,7 +84,7 @@ public class Classifier {
         Vector resultVector = classifier.classifyFull(vector);
         double bestScore = -Double.MAX_VALUE;
         int bestCategoryId = -1;
-        for(Element element: resultVector) {
+        for(Element element: resultVector.all()) {
             int categoryId = element.index();
             double score = element.get();
             if (score > bestScore) {

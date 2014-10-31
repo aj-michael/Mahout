@@ -26,6 +26,7 @@ public class OldSchoolClassifier {
 		File modelfile = new File(args[0]);
 		File inputdir = new File(args[1]);
 		ClassifierContext classifier = newClassifier(modelfile);
+		System.out.println(classifier.getLabels());
 		for (File f : inputdir.listFiles()) {
 			String[] x = preprocess(f);
 			ClassifierResult[] results = classifier.classifyDocument(x, "unknown", 1);
@@ -46,6 +47,7 @@ public class OldSchoolClassifier {
 			tokens.add(value);
 		}
 		String[] processed = tokens.toArray(new String[tokens.size()]);
+		sa.close();
 		return processed;
 	}
 

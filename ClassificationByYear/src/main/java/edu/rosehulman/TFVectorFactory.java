@@ -1,15 +1,11 @@
 package edu.rosehulman;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.zip.GZIPInputStream;
 
 import org.apache.hadoop.conf.Configuration;
@@ -19,6 +15,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
+import org.apache.mahout.math.DenseVector;
 import org.apache.mahout.math.NamedVector;
 import org.apache.mahout.math.RandomAccessSparseVector;
 import org.apache.mahout.math.Vector;
@@ -30,11 +27,20 @@ public class TFVectorFactory {
 	public static void main(String args[]) throws IOException {
 		Configuration conf = new Configuration();
 		FileSystem fs = FileSystem.get(URI.create(args[0]),conf);
-		SequenceFile.Writer sfwriter = SequenceFile.createWriter(fs,conf,new Path(args[1]),Text.class,VectorWritable.class);
-		Vector v = new RandomAccessSparseVector(Integer.MAX_VALUE);
+		SequenceFile.Writer sfwriter = SequenceFile.createWriter(fs,conf,new Path(args[1]+"/seq-0"),Text.class,VectorWritable.class);
+		//Vector v = new RandomAccessSparseVector(Integer.MAX_VALUE);
+		Vector v = new DenseVector();
 		int currentYear = 0;
-	
+
+		int filecounter = 0;
 		for (FileStatus fileStatus : fs.listStatus(new Path(args[0]))) {
+			/*
+			if (filecounter % 10 == 0) {
+				sfwriter.close();
+				sfwriter = SequenceFile.createWriter(fs, conf, new Path(args[1]+"/seq-"+(filecounter / 10)), Text.class, VectorWritable.class);
+			}
+			*/
+			
 			Path p = fileStatus.getPath();
 			System.out.println("Started a new iteration of the loop");
 			System.out.println(p.getName());
@@ -49,9 +55,12 @@ public class TFVectorFactory {
 				int year = Integer.parseInt(vals[2]);
 				//String docs = vals[3];
 				String freq = vals[4];
+				if (year % 2 == 0) {
+					continue;
+				}
 				if (year > currentYear) {
 					if (currentYear > 0) {
-						sfwriter.append(new Text(String.valueOf(currentYear)), new VectorWritable(new NamedVector(v,String.valueOf(currentYear))));
+						sfwriter.append(new Text("/"+String.valueOf(currentYear)), new VectorWritable(new NamedVector(v,String.valueOf(currentYear))));
 					}
 					currentYear = year;
 					v = new RandomAccessSparseVector(Integer.MAX_VALUE);
@@ -59,6 +68,9 @@ public class TFVectorFactory {
 				v.set(Integer.parseInt(id), Double.parseDouble(freq));
 			}
 			buf.close();
+			gzipStream.close();
+			dis.close();
+			filecounter++;
 		}
 		sfwriter.close();
 	}
