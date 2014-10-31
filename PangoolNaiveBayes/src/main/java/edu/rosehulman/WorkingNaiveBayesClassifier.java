@@ -22,7 +22,6 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-import com.datasalt.pangool.examples.BaseExampleJob;
 import com.datasalt.pangool.io.Tuple;
 import com.datasalt.pangool.io.TupleFile;
 import com.datasalt.pangool.tuplemr.MapOnlyJobBuilder;
@@ -37,7 +36,7 @@ import com.datasalt.pangool.tuplemr.mapred.lib.output.HadoopOutputFormat;
 @SuppressWarnings("serial")
 public class WorkingNaiveBayesClassifier implements Serializable, Tool {
 	
-	private Configuration conf;
+	//protected Configuration conf;
 
 	private static final Long ZERO = new Long(0);
 	Map<String, Long> tokensPerCategory = new HashMap<String, Long>();
@@ -141,10 +140,11 @@ public class WorkingNaiveBayesClassifier implements Serializable, Tool {
 	}
 
 	public void setConf(Configuration conf) {
-		this.conf = conf;
+		//this.conf = conf;
 	}
 
 	public Configuration getConf() {
-		return this.conf;
+		//return this.conf;
+		return new Configuration();
 	}
 }
