@@ -1,0 +1,12 @@
+{
+  "name" : "common",
+  "fields" : [ {
+    "name" : "b",
+    "type" : "STRING",
+    "nullable" : true
+  }, {
+    "name" : "c",
+    "type" : "STRING",
+    "nullable" : false
+  } ]
+}

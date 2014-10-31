@@ -1,0 +1,50 @@
+2014-10-25 21:49:32,094 [main] WARN  org.apache.hadoop.security.authentication.util.KerberosName - Kerberos krb5 configuration not found, setting default realm to empty
+{
+  "name" : "common",
+  "fields" : [ {
+    "name" : "b",
+    "type" : "STRING",
+    "nullable" : false
+  }, {
+    "name" : "c",
+    "type" : "STRING",
+    "nullable" : false
+  } ]
+}
+[[I@67c33749, [I@fba92d3]
+{
+  "sourceSchemas" : [ {
+    "name" : "schema1",
+    "fields" : [ {
+      "name" : "a",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "b",
+      "type" : "STRING",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema2",
+    "fields" : [ {
+      "name" : "b",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "a",
+      "type" : "INT",
+      "nullable" : false
+    } ]
+  } ],
+  "fieldAliases" : {
+  },
+  "groupByFields" : [ "a" ],
+  "customPartitionFields" : [ "b" ],
+  "commonOrderBy" : [ {
+    "name" : "a",
+    "order" : "ASC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ],
+  "schemasOrder" : "ASC",
+  "specificOrderBys" : [ null, null ]
+}
