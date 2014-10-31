@@ -1,0 +1,1 @@
+2014-10-30 20:17:51,665 [main] WARN  org.apache.hadoop.security.authentication.util.KerberosName - Kerberos krb5 configuration not found, setting default realm to empty

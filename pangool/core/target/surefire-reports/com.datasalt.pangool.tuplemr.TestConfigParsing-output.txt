@@ -1,0 +1,550 @@
+2014-10-25 21:49:26,487 [main] WARN  org.apache.hadoop.security.authentication.util.KerberosName - Kerberos krb5 configuration not found, setting default realm to empty
+2014-10-25 21:49:26,651 [main] WARN  org.apache.hadoop.util.NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+{
+  "sourceSchemas" : [ {
+    "name" : "schema1",
+    "fields" : [ {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "string_field",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema2",
+    "fields" : [ {
+      "name" : "long_field",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    }, {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema3",
+    "fields" : [ {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "string_field",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "long_field",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "float_field",
+      "type" : "FLOAT",
+      "nullable" : false
+    }, {
+      "name" : "double_field",
+      "type" : "DOUBLE",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    }, {
+      "name" : "enum_field",
+      "type" : "ENUM",
+      "nullable" : false,
+      "object_class" : "com.datasalt.pangool.tuplemr.Criteria$Order"
+    }, {
+      "name" : "thrift_field",
+      "type" : "OBJECT",
+      "nullable" : false,
+      "object_class" : "com.datasalt.pangool.thrift.test.A"
+    } ]
+  } ],
+  "fieldAliases" : {
+  },
+  "groupByFields" : [ "int_field" ],
+  "rollupFrom" : "int_field",
+  "commonOrderBy" : [ {
+    "name" : "int_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ],
+  "schemasOrder" : "DESC",
+  "specificOrderBys" : [ [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  }, {
+    "name" : "thrift_field",
+    "order" : "ASC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ] ]
+}
+------------
+{
+  "sourceSchemas" : [ {
+    "name" : "schema1",
+    "fields" : [ {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "string_field",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema2",
+    "fields" : [ {
+      "name" : "long_field",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    }, {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema3",
+    "fields" : [ {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "string_field",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "long_field",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "float_field",
+      "type" : "FLOAT",
+      "nullable" : false
+    }, {
+      "name" : "double_field",
+      "type" : "DOUBLE",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    }, {
+      "name" : "enum_field",
+      "type" : "ENUM",
+      "nullable" : false,
+      "object_class" : "com.datasalt.pangool.tuplemr.Criteria$Order"
+    }, {
+      "name" : "thrift_field",
+      "type" : "OBJECT",
+      "nullable" : false,
+      "object_class" : "com.datasalt.pangool.thrift.test.A"
+    } ]
+  } ],
+  "fieldAliases" : {
+  },
+  "groupByFields" : [ "int_field" ],
+  "rollupFrom" : "int_field",
+  "commonOrderBy" : [ {
+    "name" : "int_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ],
+  "schemasOrder" : "DESC",
+  "specificOrderBys" : [ [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  }, {
+    "name" : "thrift_field",
+    "order" : "ASC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ] ]
+}
+{
+  "sourceSchemas" : [ {
+    "name" : "schema1",
+    "fields" : [ {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "string_field",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema2",
+    "fields" : [ {
+      "name" : "long_field",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    }, {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema3",
+    "fields" : [ {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "string_field",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "long_field",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "float_field",
+      "type" : "FLOAT",
+      "nullable" : false
+    }, {
+      "name" : "double_field",
+      "type" : "DOUBLE",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    }, {
+      "name" : "enum_field",
+      "type" : "ENUM",
+      "nullable" : false,
+      "object_class" : "com.datasalt.pangool.tuplemr.Criteria$Order"
+    }, {
+      "name" : "thrift_field",
+      "type" : "OBJECT",
+      "nullable" : false,
+      "object_class" : "com.datasalt.pangool.thrift.test.A"
+    } ]
+  } ],
+  "fieldAliases" : {
+  },
+  "groupByFields" : [ "int_field" ],
+  "customPartitionFields" : [ "int_field", "boolean_field" ],
+  "rollupFrom" : "int_field",
+  "commonOrderBy" : [ {
+    "name" : "int_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ],
+  "schemasOrder" : "DESC",
+  "specificOrderBys" : [ [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  }, {
+    "name" : "thrift_field",
+    "order" : "ASC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ] ]
+}
+{
+  "sourceSchemas" : [ {
+    "name" : "schema1",
+    "fields" : [ {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "string_field",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema2",
+    "fields" : [ {
+      "name" : "long_field",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    }, {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema3",
+    "fields" : [ {
+      "name" : "int_field",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "string_field",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "long_field",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "float_field",
+      "type" : "FLOAT",
+      "nullable" : false
+    }, {
+      "name" : "double_field",
+      "type" : "DOUBLE",
+      "nullable" : false
+    }, {
+      "name" : "boolean_field",
+      "type" : "BOOLEAN",
+      "nullable" : false
+    }, {
+      "name" : "enum_field",
+      "type" : "ENUM",
+      "nullable" : false,
+      "object_class" : "com.datasalt.pangool.tuplemr.Criteria$Order"
+    }, {
+      "name" : "thrift_field",
+      "type" : "OBJECT",
+      "nullable" : false,
+      "object_class" : "com.datasalt.pangool.thrift.test.A"
+    } ]
+  } ],
+  "fieldAliases" : {
+  },
+  "groupByFields" : [ "int_field" ],
+  "customPartitionFields" : [ "int_field", "boolean_field" ],
+  "rollupFrom" : "int_field",
+  "commonOrderBy" : [ {
+    "name" : "int_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ],
+  "schemasOrder" : "DESC",
+  "specificOrderBys" : [ [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "boolean_field",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  }, {
+    "name" : "thrift_field",
+    "order" : "ASC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ] ]
+}
+{
+  "sourceSchemas" : [ {
+    "name" : "schema1",
+    "fields" : [ {
+      "name" : "user_id",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "operation",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "age",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "timestamp",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "country",
+      "type" : "STRING",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema2",
+    "fields" : [ {
+      "name" : "id",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "op",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "another_id",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "time",
+      "type" : "INT",
+      "nullable" : false
+    } ]
+  } ],
+  "fieldAliases" : {
+    "schema2" : {
+      "timestamp" : "time"
+    },
+    "schema1" : {
+      "op" : "operation",
+      "id" : "user_id"
+    }
+  },
+  "groupByFields" : [ "id", "op" ],
+  "commonOrderBy" : [ {
+    "name" : "op",
+    "order" : "ASC",
+    "nullOrder" : "NULL_SMALLEST"
+  }, {
+    "name" : "id",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ],
+  "schemasOrder" : "DESC",
+  "specificOrderBys" : [ [ {
+    "name" : "timestamp",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  }, {
+    "name" : "country",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "timestamp",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ] ]
+}
+------------
+{
+  "sourceSchemas" : [ {
+    "name" : "schema1",
+    "fields" : [ {
+      "name" : "user_id",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "operation",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "age",
+      "type" : "LONG",
+      "nullable" : false
+    }, {
+      "name" : "timestamp",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "country",
+      "type" : "STRING",
+      "nullable" : false
+    } ]
+  }, {
+    "name" : "schema2",
+    "fields" : [ {
+      "name" : "id",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "op",
+      "type" : "STRING",
+      "nullable" : false
+    }, {
+      "name" : "another_id",
+      "type" : "INT",
+      "nullable" : false
+    }, {
+      "name" : "time",
+      "type" : "INT",
+      "nullable" : false
+    } ]
+  } ],
+  "fieldAliases" : {
+    "schema2" : {
+      "timestamp" : "time"
+    },
+    "schema1" : {
+      "op" : "operation",
+      "id" : "user_id"
+    }
+  },
+  "groupByFields" : [ "id", "op" ],
+  "commonOrderBy" : [ {
+    "name" : "op",
+    "order" : "ASC",
+    "nullOrder" : "NULL_SMALLEST"
+  }, {
+    "name" : "id",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ],
+  "schemasOrder" : "DESC",
+  "specificOrderBys" : [ [ {
+    "name" : "timestamp",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  }, {
+    "name" : "country",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ], [ {
+    "name" : "timestamp",
+    "order" : "DESC",
+    "nullOrder" : "NULL_SMALLEST"
+  } ] ]
+}
