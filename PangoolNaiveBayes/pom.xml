@@ -22,7 +22,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>edu.rosehulman.NaiveBayesClassifier</mainClass>
+              <mainClass>edu.rosehulman.AdamClassifier</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
