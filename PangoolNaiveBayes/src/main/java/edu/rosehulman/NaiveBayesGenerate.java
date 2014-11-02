@@ -3,11 +3,13 @@ package edu.rosehulman;
 import java.io.IOException;
 import java.io.Serializable;
 
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 import com.datasalt.pangool.io.Fields;
@@ -21,7 +23,7 @@ import com.datasalt.pangool.tuplemr.TupleReducer;
 import com.datasalt.pangool.tuplemr.mapred.lib.input.HadoopInputFormat;
 
 @SuppressWarnings({ "rawtypes", "serial" })
-public class NaiveBayesGenerate extends PangoolJob implements Serializable {
+public class NaiveBayesGenerate implements Serializable, Tool {
 
 	private static Schema INTERMEDIATE_SCHEMA = new Schema("categoryCounter", Fields.parse(
 		"category:string, word:string, count:long"
@@ -31,7 +33,6 @@ public class NaiveBayesGenerate extends PangoolJob implements Serializable {
 		return word.replaceAll("\\p{Punct}", "").toLowerCase();
 	}
 
-	@Override
 	public int run(String[] args) throws Exception {
 		if(args.length != 2) {
 			System.out.println("Wrong number of arguments");
@@ -39,7 +40,7 @@ public class NaiveBayesGenerate extends PangoolJob implements Serializable {
 		}
 		String inputExamples = args[0];
 		String output = args[1];
-
+		Configuration conf = new Configuration();
 		TupleMRBuilder job = new TupleMRBuilder(conf, "Naive Bayes Model Generator");
 		job.addIntermediateSchema(INTERMEDIATE_SCHEMA);
 		
@@ -93,5 +94,15 @@ public class NaiveBayesGenerate extends PangoolJob implements Serializable {
 
 	public static void main(String[] args) throws Exception {
 		ToolRunner.run(new NaiveBayesGenerate(), args);
+	}
+
+	public void setConf(Configuration conf) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Configuration getConf() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

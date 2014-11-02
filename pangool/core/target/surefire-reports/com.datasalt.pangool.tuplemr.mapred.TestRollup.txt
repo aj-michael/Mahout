@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.datasalt.pangool.tuplemr.mapred.TestRollup
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.601 sec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.682 sec

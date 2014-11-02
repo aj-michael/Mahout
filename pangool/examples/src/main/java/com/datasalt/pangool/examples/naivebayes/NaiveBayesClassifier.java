@@ -69,7 +69,7 @@ public class NaiveBayesClassifier extends BaseExampleJob implements Serializable
 			Tuple tuple = new Tuple(reader.getSchema());
 			while(reader.next(tuple)) {
 				// Read Tuple
-				long count = tuple.getLong("count");
+				long count = ((Number)tuple.get("count")).longValue();
 				String category = tuple.get("category").toString();
 				String word = tuple.get("word").toString();
 				V += count;

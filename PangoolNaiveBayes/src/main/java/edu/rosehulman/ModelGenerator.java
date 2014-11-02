@@ -74,7 +74,7 @@ public class ModelGenerator implements Tool, Serializable {
 				collector.write(tuple);
 			}
 		};
-		
+
 		TupleReducer<ITuple, NullWritable> reducer = new TupleReducer<ITuple,NullWritable>() {
 		
 

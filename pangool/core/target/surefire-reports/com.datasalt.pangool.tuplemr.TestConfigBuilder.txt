@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.datasalt.pangool.tuplemr.TestConfigBuilder
 -------------------------------------------------------------------------------
-Tests run: 38, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 2.147 sec
+Tests run: 38, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 2.369 sec

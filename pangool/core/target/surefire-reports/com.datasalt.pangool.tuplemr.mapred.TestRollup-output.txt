@@ -1,81 +1,215 @@
-2014-10-25 21:49:34,469 [main] WARN  org.apache.hadoop.security.authentication.util.KerberosName - Kerberos krb5 configuration not found, setting default realm to empty
-2014-10-25 21:49:35,621 [main] WARN  org.apache.hadoop.util.NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-2014-10-25 21:49:35,754 [main] WARN  org.apache.hadoop.conf.Configuration - session.id is deprecated. Instead, use dfs.metrics.session-id
-2014-10-25 21:49:35,755 [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics - Initializing JVM Metrics with processName=JobTracker, sessionId=
-2014-10-25 21:49:35,774 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
-2014-10-25 21:49:35,777 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - No job jar file set.  User classes may not be found. See Job or Job#setJar(String).
-2014-10-25 21:49:35,825 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
-2014-10-25 21:49:35,867 [main] INFO  org.apache.hadoop.mapreduce.JobSubmitter - number of splits:1
-2014-10-25 21:49:35,877 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files.timestamps is deprecated. Instead, use mapreduce.job.cache.files.timestamps
-2014-10-25 21:49:35,877 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.map.class is deprecated. Instead, use mapreduce.job.map.class
-2014-10-25 21:49:35,877 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.reduce.class is deprecated. Instead, use mapreduce.job.reduce.class
-2014-10-25 21:49:35,878 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.inputformat.class is deprecated. Instead, use mapreduce.job.inputformat.class
-2014-10-25 21:49:35,878 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.groupfn.class is deprecated. Instead, use mapreduce.job.output.group.comparator.class
-2014-10-25 21:49:35,878 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.outputformat.class is deprecated. Instead, use mapreduce.job.outputformat.class
-2014-10-25 21:49:35,878 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.class is deprecated. Instead, use mapreduce.job.output.value.class
-2014-10-25 21:49:35,878 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
-2014-10-25 21:49:35,878 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files is deprecated. Instead, use mapreduce.job.cache.files
-2014-10-25 21:49:35,878 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.working.dir is deprecated. Instead, use mapreduce.job.working.dir
-2014-10-25 21:49:35,879 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.value.class is deprecated. Instead, use mapreduce.map.output.value.class
-2014-10-25 21:49:35,879 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
-2014-10-25 21:49:35,879 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.key.class is deprecated. Instead, use mapreduce.map.output.key.class
-2014-10-25 21:49:35,879 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.reduce.tasks is deprecated. Instead, use mapreduce.job.reduces
-2014-10-25 21:49:35,879 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.comparator.class is deprecated. Instead, use mapreduce.job.output.key.comparator.class
-2014-10-25 21:49:35,879 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.partitioner.class is deprecated. Instead, use mapreduce.job.partitioner.class
-2014-10-25 21:49:35,879 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.class is deprecated. Instead, use mapreduce.job.output.key.class
-2014-10-25 21:49:35,970 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-1671645946/.staging/job_local_0001/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
-2014-10-25 21:49:35,970 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-1671645946/.staging/job_local_0001/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
-2014-10-25 21:49:36,193 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/core/pangool-instances/cc921ad8-d0dd-4f27-af70-d9a264c6384d.group-handler.dat as file:/tmp/hadoop-hansondg/mapred/local/-6955485411328160706/cc921ad8-d0dd-4f27-af70-d9a264c6384d.group-handler.dat
-2014-10-25 21:49:36,209 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/core/pangool-instances/9e9abd5d-8846-42f7-b6ab-5b098d25a9a1.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/998123489249770185/9e9abd5d-8846-42f7-b6ab-5b098d25a9a1.mapper.dat
-2014-10-25 21:49:36,210 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/core/pangool-instances/189c18a8-e02b-4413-8655-7ae1612c70bd.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/-4289600672620015266/189c18a8-e02b-4413-8655-7ae1612c70bd.inputFormat.dat
-2014-10-25 21:49:36,213 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.localFiles is deprecated. Instead, use mapreduce.job.cache.local.files
-2014-10-25 21:49:36,240 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0001.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
-2014-10-25 21:49:36,240 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0001.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
-2014-10-25 21:49:36,245 [main] INFO  org.apache.hadoop.mapreduce.Job - The url to track the job: http://localhost:8080/
-2014-10-25 21:49:36,246 [main] INFO  org.apache.hadoop.mapreduce.Job - Running job: job_local_0001
-2014-10-25 21:49:36,247 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter set in config null
-2014-10-25 21:49:36,250 [Thread-23] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
-2014-10-25 21:49:36,253 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter is com.datasalt.pangool.tuplemr.mapred.lib.output.ProxyOutputFormat$ProxyOutputCommitter
-2014-10-25 21:49:36,258 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - Waiting for map tasks
-2014-10-25 21:49:36,259 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0001_m_000000_0
-2014-10-25 21:49:36,288 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@3ef1940e
-2014-10-25 21:49:36,335 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
-2014-10-25 21:49:36,335 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
-2014-10-25 21:49:36,335 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
-2014-10-25 21:49:36,335 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
-2014-10-25 21:49:36,335 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
-2014-10-25 21:49:36,356 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
-2014-10-25 21:49:36,357 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
-2014-10-25 21:49:36,360 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:36,360 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
-2014-10-25 21:49:36,368 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0001_m_000000_0 is done. And is in the process of committing
-2014-10-25 21:49:36,376 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:36,376 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0001_m_000000_0 is allowed to commit now
-2014-10-25 21:49:36,376 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_m_000000_0
-2014-10-25 21:49:36,381 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0001_m_000000_0' to file:/home/hansondg/workspace/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0001_m_000000
-2014-10-25 21:49:36,382 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
-2014-10-25 21:49:36,382 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0001_m_000000_0' done.
-2014-10-25 21:49:36,383 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0001_m_000000_0
-2014-10-25 21:49:36,383 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - Map task executor complete.
-2014-10-25 21:49:36,394 [Thread-23] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@785eed83
-2014-10-25 21:49:36,399 [Thread-23] INFO  org.apache.hadoop.mapred.Merger - Merging 1 sorted segments
-2014-10-25 21:49:36,402 [Thread-23] INFO  org.apache.hadoop.mapred.Merger - Down to the last merge-pass, with 0 segments left of total size: 0 bytes
-2014-10-25 21:49:36,402 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:36,411 [Thread-23] WARN  org.apache.hadoop.conf.Configuration - mapred.skip.on is deprecated. Instead, use mapreduce.job.skiprecords
-2014-10-25 21:49:36,420 [Thread-23] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0001_r_000000_0 is done. And is in the process of committing
-2014-10-25 21:49:36,421 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:36,421 [Thread-23] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0001_r_000000_0 is allowed to commit now
-2014-10-25 21:49:36,421 [Thread-23] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0001_r_000000_0' to file:/home/hansondg/workspace/pangool/core/TEST-OUTPUT/output/_temporary/0/_temporary/attempt_local_0001_r_000000_0/_temporary/0/task_local_0001_r_000000
-2014-10-25 21:49:36,426 [Thread-23] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0001_r_000000_0' to file:/home/hansondg/workspace/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0001_r_000000
-2014-10-25 21:49:36,427 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - reduce > reduce
-2014-10-25 21:49:36,427 [Thread-23] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0001_r_000000_0' done.
-2014-10-25 21:49:37,249 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0001 running in uber mode : false
-2014-10-25 21:49:37,250 [main] INFO  org.apache.hadoop.mapreduce.Job -  map 100% reduce 100%
-2014-10-25 21:49:37,252 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0001 completed successfully
-2014-10-25 21:49:37,270 [main] INFO  org.apache.hadoop.mapreduce.Job - Counters: 27
+2014-10-30 20:52:31,150 [main] WARN  org.apache.hadoop.security.authentication.util.KerberosName - Kerberos krb5 configuration not found, setting default realm to empty
+2014-10-30 20:52:31,331 [main] WARN  org.apache.hadoop.util.NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2014-10-30 20:52:31,435 [main] WARN  org.apache.hadoop.conf.Configuration - session.id is deprecated. Instead, use dfs.metrics.session-id
+2014-10-30 20:52:31,436 [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics - Initializing JVM Metrics with processName=JobTracker, sessionId=
+2014-10-30 20:52:31,452 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+2014-10-30 20:52:31,453 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - No job jar file set.  User classes may not be found. See Job or Job#setJar(String).
+2014-10-30 20:52:31,498 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
+2014-10-30 20:52:31,527 [main] INFO  org.apache.hadoop.mapreduce.JobSubmitter - number of splits:1
+2014-10-30 20:52:31,535 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files.timestamps is deprecated. Instead, use mapreduce.job.cache.files.timestamps
+2014-10-30 20:52:31,536 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.map.class is deprecated. Instead, use mapreduce.job.map.class
+2014-10-30 20:52:31,536 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.reduce.class is deprecated. Instead, use mapreduce.job.reduce.class
+2014-10-30 20:52:31,536 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.inputformat.class is deprecated. Instead, use mapreduce.job.inputformat.class
+2014-10-30 20:52:31,536 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.groupfn.class is deprecated. Instead, use mapreduce.job.output.group.comparator.class
+2014-10-30 20:52:31,536 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.outputformat.class is deprecated. Instead, use mapreduce.job.outputformat.class
+2014-10-30 20:52:31,536 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.class is deprecated. Instead, use mapreduce.job.output.value.class
+2014-10-30 20:52:31,536 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
+2014-10-30 20:52:31,537 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files is deprecated. Instead, use mapreduce.job.cache.files
+2014-10-30 20:52:31,537 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.working.dir is deprecated. Instead, use mapreduce.job.working.dir
+2014-10-30 20:52:31,537 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.value.class is deprecated. Instead, use mapreduce.map.output.value.class
+2014-10-30 20:52:31,537 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+2014-10-30 20:52:31,537 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.key.class is deprecated. Instead, use mapreduce.map.output.key.class
+2014-10-30 20:52:31,537 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.reduce.tasks is deprecated. Instead, use mapreduce.job.reduces
+2014-10-30 20:52:31,537 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.comparator.class is deprecated. Instead, use mapreduce.job.output.key.comparator.class
+2014-10-30 20:52:31,537 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.partitioner.class is deprecated. Instead, use mapreduce.job.partitioner.class
+2014-10-30 20:52:31,537 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.class is deprecated. Instead, use mapreduce.job.output.key.class
+2014-10-30 20:52:31,613 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg1544696622/.staging/job_local_0001/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
+2014-10-30 20:52:31,613 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg1544696622/.staging/job_local_0001/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
+2014-10-30 20:52:31,829 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/ngrams/pangool/core/pangool-instances/3ac3a619-262d-42d3-be79-562b2226d55d.group-handler.dat as file:/tmp/hadoop-hansondg/mapred/local/-7208765908716863974/3ac3a619-262d-42d3-be79-562b2226d55d.group-handler.dat
+2014-10-30 20:52:31,848 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/ngrams/pangool/core/pangool-instances/b9f467cd-8aef-4c3d-b209-353acb8487fc.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/-2024279104004461339/b9f467cd-8aef-4c3d-b209-353acb8487fc.mapper.dat
+2014-10-30 20:52:31,848 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/ngrams/pangool/core/pangool-instances/a4f62a8a-c34e-428d-b57a-b23644353413.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/-4804050562338463799/a4f62a8a-c34e-428d-b57a-b23644353413.inputFormat.dat
+2014-10-30 20:52:31,854 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.localFiles is deprecated. Instead, use mapreduce.job.cache.local.files
+2014-10-30 20:52:31,893 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0001.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
+2014-10-30 20:52:31,894 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0001.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
+2014-10-30 20:52:31,898 [main] INFO  org.apache.hadoop.mapreduce.Job - The url to track the job: http://localhost:8080/
+2014-10-30 20:52:31,899 [main] INFO  org.apache.hadoop.mapreduce.Job - Running job: job_local_0001
+2014-10-30 20:52:31,900 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter set in config null
+2014-10-30 20:52:31,904 [Thread-23] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
+2014-10-30 20:52:31,907 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter is com.datasalt.pangool.tuplemr.mapred.lib.output.ProxyOutputFormat$ProxyOutputCommitter
+2014-10-30 20:52:31,912 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - Waiting for map tasks
+2014-10-30 20:52:31,913 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0001_m_000000_0
+2014-10-30 20:52:31,948 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@547d66bc
+2014-10-30 20:52:31,992 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
+2014-10-30 20:52:31,992 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
+2014-10-30 20:52:31,993 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
+2014-10-30 20:52:31,993 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
+2014-10-30 20:52:31,993 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
+2014-10-30 20:52:32,010 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
+2014-10-30 20:52:32,011 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
+2014-10-30 20:52:32,016 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:32,016 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
+2014-10-30 20:52:32,016 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Spilling map output
+2014-10-30 20:52:32,016 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufend = 84; bufvoid = 104857600
+2014-10-30 20:52:32,016 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396(104857584); kvend = 26214372(104857488); length = 25/6553600
+2014-10-30 20:52:32,024 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Finished spill 0
+2014-10-30 20:52:32,025 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0001_m_000000_0 is done. And is in the process of committing
+2014-10-30 20:52:32,032 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:32,032 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0001_m_000000_0 is allowed to commit now
+2014-10-30 20:52:32,032 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0001_m_000000_0
+2014-10-30 20:52:32,037 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0001_m_000000_0' to file:/home/hansondg/workspace/ngrams/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0001_m_000000
+2014-10-30 20:52:32,037 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
+2014-10-30 20:52:32,037 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0001_m_000000_0' done.
+2014-10-30 20:52:32,038 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0001_m_000000_0
+2014-10-30 20:52:32,038 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - Map task executor complete.
+2014-10-30 20:52:32,049 [Thread-23] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@39abda8c
+2014-10-30 20:52:32,053 [Thread-23] INFO  org.apache.hadoop.mapred.Merger - Merging 1 sorted segments
+2014-10-30 20:52:32,055 [Thread-23] INFO  org.apache.hadoop.mapred.Merger - Down to the last merge-pass, with 1 segments left of total size: 86 bytes
+2014-10-30 20:52:32,055 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:32,067 [Thread-23] WARN  org.apache.hadoop.conf.Configuration - mapred.skip.on is deprecated. Instead, use mapreduce.job.skiprecords
+OPEN 1 => {"country":"ES","age":20,"name":"listo","height":250}
+OPEN 2 => {"country":"ES","age":20,"name":"listo","height":250}
+ELEMENT => {"country":"ES","age":20,"name":"listo","height":250}
+CLOSE 2 => {"country":"ES","age":20,"name":"listo","height":250}
+CLOSE 1 => {"country":"ES","age":20,"name":"listo","height":250}
+OPEN 1 => {"country":"US","age":14,"name":"beber","height":202}
+OPEN 2 => {"country":"US","age":14,"name":"beber","height":202}
+ELEMENT => {"country":"US","age":14,"name":"beber","height":202}
+CLOSE 2 => {"country":"US","age":14,"name":"beber","height":202}
+OPEN 2 => {"country":"US","age":14,"name":"perro","height":180}
+ELEMENT => {"country":"US","age":14,"name":"perro","height":180}
+ELEMENT => {"country":"US","age":14,"name":"perro","height":170}
+CLOSE 2 => {"country":"US","age":14,"name":"perro","height":170}
+CLOSE 1 => {"country":"US","age":14,"name":"perro","height":170}
+OPEN 1 => {"country":"US","age":15,"name":"jauja","height":160}
+OPEN 2 => {"country":"US","age":15,"name":"jauja","height":160}
+ELEMENT => {"country":"US","age":15,"name":"jauja","height":160}
+CLOSE 2 => {"country":"US","age":15,"name":"jauja","height":160}
+CLOSE 1 => {"country":"US","age":15,"name":"jauja","height":160}
+OPEN 1 => {"country":"US","age":16,"name":"listo","height":160}
+OPEN 2 => {"country":"US","age":16,"name":"listo","height":160}
+ELEMENT => {"country":"US","age":16,"name":"listo","height":160}
+CLOSE 2 => {"country":"US","age":16,"name":"listo","height":160}
+CLOSE 1 => {"country":"US","age":16,"name":"listo","height":160}
+OPEN 1 => {"country":"XE","age":16,"name":"listo","height":230}
+OPEN 2 => {"country":"XE","age":16,"name":"listo","height":230}
+ELEMENT => {"country":"XE","age":16,"name":"listo","height":230}
+CLOSE 2 => {"country":"XE","age":16,"name":"listo","height":230}
+CLOSE 1 => {"country":"XE","age":16,"name":"listo","height":230}
+2014-10-30 20:52:32,084 [Thread-23] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0001_r_000000_0 is done. And is in the process of committing
+2014-10-30 20:52:32,084 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:32,085 [Thread-23] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0001_r_000000_0 is allowed to commit now
+2014-10-30 20:52:32,085 [Thread-23] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0001_r_000000_0' to file:/home/hansondg/workspace/ngrams/pangool/core/TEST-OUTPUT/output/_temporary/0/_temporary/attempt_local_0001_r_000000_0/_temporary/0/task_local_0001_r_000000
+2014-10-30 20:52:32,089 [Thread-23] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0001_r_000000_0' to file:/home/hansondg/workspace/ngrams/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0001_r_000000
+2014-10-30 20:52:32,090 [Thread-23] INFO  org.apache.hadoop.mapred.LocalJobRunner - reduce > reduce
+2014-10-30 20:52:32,090 [Thread-23] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0001_r_000000_0' done.
+2014-10-30 20:52:32,902 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0001 running in uber mode : false
+2014-10-30 20:52:32,903 [main] INFO  org.apache.hadoop.mapreduce.Job -  map 100% reduce 100%
+2014-10-30 20:52:32,907 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0001 completed successfully
+2014-10-30 20:52:32,919 [main] INFO  org.apache.hadoop.mapreduce.Job - Counters: 27
 	File System Counters
-		FILE: Number of bytes read=6096
-		FILE: Number of bytes written=274820
+		FILE: Number of bytes read=6642
+		FILE: Number of bytes written=277185
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+	Map-Reduce Framework
+		Map input records=7
+		Map output records=7
+		Map output bytes=84
+		Map output materialized bytes=104
+		Input split bytes=296
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=6
+		Reduce shuffle bytes=0
+		Reduce input records=7
+		Reduce output records=29
+		Spilled Records=14
+		Shuffled Maps =0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=0
+		CPU time spent (ms)=0
+		Physical memory (bytes) snapshot=0
+		Virtual memory (bytes) snapshot=0
+		Total committed heap usage (bytes)=514850816
+	File Input Format Counters 
+		Bytes Read=0
+	File Output Format Counters 
+		Bytes Written=2145
+2014-10-30 20:52:32,956 [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics - Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+2014-10-30 20:52:32,961 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+2014-10-30 20:52:32,964 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - No job jar file set.  User classes may not be found. See Job or Job#setJar(String).
+2014-10-30 20:52:33,013 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
+2014-10-30 20:52:33,023 [main] INFO  org.apache.hadoop.mapreduce.JobSubmitter - number of splits:1
+2014-10-30 20:52:33,027 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files.timestamps is deprecated. Instead, use mapreduce.job.cache.files.timestamps
+2014-10-30 20:52:33,027 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.map.class is deprecated. Instead, use mapreduce.job.map.class
+2014-10-30 20:52:33,027 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.reduce.class is deprecated. Instead, use mapreduce.job.reduce.class
+2014-10-30 20:52:33,027 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.inputformat.class is deprecated. Instead, use mapreduce.job.inputformat.class
+2014-10-30 20:52:33,027 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.groupfn.class is deprecated. Instead, use mapreduce.job.output.group.comparator.class
+2014-10-30 20:52:33,027 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.outputformat.class is deprecated. Instead, use mapreduce.job.outputformat.class
+2014-10-30 20:52:33,027 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.class is deprecated. Instead, use mapreduce.job.output.value.class
+2014-10-30 20:52:33,028 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files is deprecated. Instead, use mapreduce.job.cache.files
+2014-10-30 20:52:33,028 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.working.dir is deprecated. Instead, use mapreduce.job.working.dir
+2014-10-30 20:52:33,028 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.value.class is deprecated. Instead, use mapreduce.map.output.value.class
+2014-10-30 20:52:33,028 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+2014-10-30 20:52:33,028 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.key.class is deprecated. Instead, use mapreduce.map.output.key.class
+2014-10-30 20:52:33,028 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.reduce.tasks is deprecated. Instead, use mapreduce.job.reduces
+2014-10-30 20:52:33,028 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.comparator.class is deprecated. Instead, use mapreduce.job.output.key.comparator.class
+2014-10-30 20:52:33,028 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.partitioner.class is deprecated. Instead, use mapreduce.job.partitioner.class
+2014-10-30 20:52:33,028 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.class is deprecated. Instead, use mapreduce.job.output.key.class
+2014-10-30 20:52:33,055 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-257665174/.staging/job_local_0002/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
+2014-10-30 20:52:33,056 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-257665174/.staging/job_local_0002/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
+2014-10-30 20:52:33,107 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/ngrams/pangool/core/pangool-instances/962273bd-64c0-484a-a20b-8bf5200a10c8.group-handler.dat as file:/tmp/hadoop-hansondg/mapred/local/-3260141027695281118/962273bd-64c0-484a-a20b-8bf5200a10c8.group-handler.dat
+2014-10-30 20:52:33,111 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/ngrams/pangool/core/pangool-instances/2c70c2e9-167e-4dce-b047-67566bf94c29.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/-781153082532884482/2c70c2e9-167e-4dce-b047-67566bf94c29.mapper.dat
+2014-10-30 20:52:33,111 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/ngrams/pangool/core/pangool-instances/ae54eba4-6d66-47b3-8b57-11d8adaae00a.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/1335429859240095031/ae54eba4-6d66-47b3-8b57-11d8adaae00a.inputFormat.dat
+2014-10-30 20:52:33,114 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.localFiles is deprecated. Instead, use mapreduce.job.cache.local.files
+2014-10-30 20:52:33,135 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0002.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
+2014-10-30 20:52:33,135 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0002.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
+2014-10-30 20:52:33,136 [main] INFO  org.apache.hadoop.mapreduce.Job - The url to track the job: http://localhost:8080/
+2014-10-30 20:52:33,136 [main] INFO  org.apache.hadoop.mapreduce.Job - Running job: job_local_0002
+2014-10-30 20:52:33,136 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter set in config null
+2014-10-30 20:52:33,137 [Thread-72] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
+2014-10-30 20:52:33,138 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter is com.datasalt.pangool.tuplemr.mapred.lib.output.ProxyOutputFormat$ProxyOutputCommitter
+2014-10-30 20:52:33,140 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - Waiting for map tasks
+2014-10-30 20:52:33,140 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0002_m_000000_0
+2014-10-30 20:52:33,142 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@7acdac7e
+2014-10-30 20:52:33,177 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
+2014-10-30 20:52:33,177 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
+2014-10-30 20:52:33,177 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
+2014-10-30 20:52:33,177 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
+2014-10-30 20:52:33,177 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
+2014-10-30 20:52:33,180 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
+2014-10-30 20:52:33,181 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
+2014-10-30 20:52:33,181 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:33,181 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
+2014-10-30 20:52:33,185 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0002_m_000000_0 is done. And is in the process of committing
+2014-10-30 20:52:33,185 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:33,185 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0002_m_000000_0 is allowed to commit now
+2014-10-30 20:52:33,186 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0002_m_000000_0
+2014-10-30 20:52:33,200 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0002_m_000000_0' to file:/home/hansondg/workspace/ngrams/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0002_m_000000
+2014-10-30 20:52:33,200 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
+2014-10-30 20:52:33,200 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0002_m_000000_0' done.
+2014-10-30 20:52:33,200 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0002_m_000000_0
+2014-10-30 20:52:33,200 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - Map task executor complete.
+2014-10-30 20:52:33,204 [Thread-72] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@32a1cf1
+2014-10-30 20:52:33,206 [Thread-72] INFO  org.apache.hadoop.mapred.Merger - Merging 1 sorted segments
+2014-10-30 20:52:33,206 [Thread-72] INFO  org.apache.hadoop.mapred.Merger - Down to the last merge-pass, with 0 segments left of total size: 0 bytes
+2014-10-30 20:52:33,206 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:33,213 [Thread-72] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0002_r_000000_0 is done. And is in the process of committing
+2014-10-30 20:52:33,213 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:33,213 [Thread-72] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0002_r_000000_0 is allowed to commit now
+2014-10-30 20:52:33,214 [Thread-72] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0002_r_000000_0' to file:/home/hansondg/workspace/ngrams/pangool/core/TEST-OUTPUT/output/_temporary/0/_temporary/attempt_local_0002_r_000000_0/_temporary/0/task_local_0002_r_000000
+2014-10-30 20:52:33,219 [Thread-72] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0002_r_000000_0' to file:/home/hansondg/workspace/ngrams/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0002_r_000000
+2014-10-30 20:52:33,219 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - reduce > reduce
+2014-10-30 20:52:33,219 [Thread-72] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0002_r_000000_0' done.
+2014-10-30 20:52:34,136 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0002 running in uber mode : false
+2014-10-30 20:52:34,137 [main] INFO  org.apache.hadoop.mapreduce.Job -  map 100% reduce 100%
+2014-10-30 20:52:34,137 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0002 completed successfully
+2014-10-30 20:52:34,142 [main] INFO  org.apache.hadoop.mapreduce.Job - Counters: 27
+	File System Counters
+		FILE: Number of bytes read=21908
+		FILE: Number of bytes written=553502
 		FILE: Number of read operations=0
 		FILE: Number of large read operations=0
 		FILE: Number of write operations=0
@@ -84,7 +218,7 @@
 		Map output records=0
 		Map output bytes=0
 		Map output materialized bytes=6
-		Input split bytes=289
+		Input split bytes=296
 		Combine input records=0
 		Combine output records=0
 		Reduce input groups=0
@@ -99,74 +233,74 @@
 		CPU time spent (ms)=0
 		Physical memory (bytes) snapshot=0
 		Virtual memory (bytes) snapshot=0
-		Total committed heap usage (bytes)=514850816
+		Total committed heap usage (bytes)=725614592
 	File Input Format Counters 
 		Bytes Read=0
 	File Output Format Counters 
 		Bytes Written=90
-2014-10-25 21:49:37,296 [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics - Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
-2014-10-25 21:49:37,299 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
-2014-10-25 21:49:37,300 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - No job jar file set.  User classes may not be found. See Job or Job#setJar(String).
-2014-10-25 21:49:37,320 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
-2014-10-25 21:49:37,328 [main] INFO  org.apache.hadoop.mapreduce.JobSubmitter - number of splits:1
-2014-10-25 21:49:37,332 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files.timestamps is deprecated. Instead, use mapreduce.job.cache.files.timestamps
-2014-10-25 21:49:37,332 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.map.class is deprecated. Instead, use mapreduce.job.map.class
-2014-10-25 21:49:37,332 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.reduce.class is deprecated. Instead, use mapreduce.job.reduce.class
-2014-10-25 21:49:37,332 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.inputformat.class is deprecated. Instead, use mapreduce.job.inputformat.class
-2014-10-25 21:49:37,332 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.groupfn.class is deprecated. Instead, use mapreduce.job.output.group.comparator.class
-2014-10-25 21:49:37,332 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.outputformat.class is deprecated. Instead, use mapreduce.job.outputformat.class
-2014-10-25 21:49:37,332 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.class is deprecated. Instead, use mapreduce.job.output.value.class
-2014-10-25 21:49:37,333 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files is deprecated. Instead, use mapreduce.job.cache.files
-2014-10-25 21:49:37,333 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.working.dir is deprecated. Instead, use mapreduce.job.working.dir
-2014-10-25 21:49:37,333 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.value.class is deprecated. Instead, use mapreduce.map.output.value.class
-2014-10-25 21:49:37,333 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
-2014-10-25 21:49:37,333 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.key.class is deprecated. Instead, use mapreduce.map.output.key.class
-2014-10-25 21:49:37,333 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.reduce.tasks is deprecated. Instead, use mapreduce.job.reduces
-2014-10-25 21:49:37,333 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.comparator.class is deprecated. Instead, use mapreduce.job.output.key.comparator.class
-2014-10-25 21:49:37,333 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.partitioner.class is deprecated. Instead, use mapreduce.job.partitioner.class
-2014-10-25 21:49:37,333 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.class is deprecated. Instead, use mapreduce.job.output.key.class
-2014-10-25 21:49:37,349 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-383389122/.staging/job_local_0002/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
-2014-10-25 21:49:37,349 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-383389122/.staging/job_local_0002/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
-2014-10-25 21:49:37,377 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/core/pangool-instances/42d8b1ae-44f3-43f7-bb56-776dddbc9ced.group-handler.dat as file:/tmp/hadoop-hansondg/mapred/local/2120008308072832511/42d8b1ae-44f3-43f7-bb56-776dddbc9ced.group-handler.dat
-2014-10-25 21:49:37,377 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/core/pangool-instances/f60bc806-6337-46e0-ba7a-3ef86ae51d93.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/1384427675861030564/f60bc806-6337-46e0-ba7a-3ef86ae51d93.mapper.dat
-2014-10-25 21:49:37,377 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/core/pangool-instances/7f09be84-039c-44bd-8bea-dce9ba509ca9.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/-16524731398418204/7f09be84-039c-44bd-8bea-dce9ba509ca9.inputFormat.dat
-2014-10-25 21:49:37,380 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.localFiles is deprecated. Instead, use mapreduce.job.cache.local.files
-2014-10-25 21:49:37,407 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0002.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
-2014-10-25 21:49:37,407 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0002.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
-2014-10-25 21:49:37,408 [main] INFO  org.apache.hadoop.mapreduce.Job - The url to track the job: http://localhost:8080/
-2014-10-25 21:49:37,409 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter set in config null
-2014-10-25 21:49:37,409 [main] INFO  org.apache.hadoop.mapreduce.Job - Running job: job_local_0002
-2014-10-25 21:49:37,412 [Thread-72] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
-2014-10-25 21:49:37,413 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter is com.datasalt.pangool.tuplemr.mapred.lib.output.ProxyOutputFormat$ProxyOutputCommitter
-2014-10-25 21:49:37,415 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - Waiting for map tasks
-2014-10-25 21:49:37,416 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0002_m_000000_0
-2014-10-25 21:49:37,419 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@317e3139
-2014-10-25 21:49:37,462 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
-2014-10-25 21:49:37,463 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
-2014-10-25 21:49:37,463 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
-2014-10-25 21:49:37,463 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
-2014-10-25 21:49:37,463 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
-2014-10-25 21:49:37,467 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
-2014-10-25 21:49:37,468 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
-2014-10-25 21:49:37,471 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:37,471 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
-2014-10-25 21:49:37,472 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Spilling map output
-2014-10-25 21:49:37,472 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufend = 84; bufvoid = 104857600
-2014-10-25 21:49:37,472 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396(104857584); kvend = 26214372(104857488); length = 25/6553600
-2014-10-25 21:49:37,475 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Finished spill 0
-2014-10-25 21:49:37,476 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0002_m_000000_0 is done. And is in the process of committing
-2014-10-25 21:49:37,476 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:37,476 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0002_m_000000_0 is allowed to commit now
-2014-10-25 21:49:37,477 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0002_m_000000_0
-2014-10-25 21:49:37,480 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0002_m_000000_0' to file:/home/hansondg/workspace/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0002_m_000000
-2014-10-25 21:49:37,480 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
-2014-10-25 21:49:37,481 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0002_m_000000_0' done.
-2014-10-25 21:49:37,481 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0002_m_000000_0
-2014-10-25 21:49:37,481 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - Map task executor complete.
-2014-10-25 21:49:37,484 [Thread-72] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@14743955
-2014-10-25 21:49:37,485 [Thread-72] INFO  org.apache.hadoop.mapred.Merger - Merging 1 sorted segments
-2014-10-25 21:49:37,485 [Thread-72] INFO  org.apache.hadoop.mapred.Merger - Down to the last merge-pass, with 1 segments left of total size: 86 bytes
-2014-10-25 21:49:37,485 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:34,175 [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics - Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+2014-10-30 20:52:34,179 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+2014-10-30 20:52:34,182 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - No job jar file set.  User classes may not be found. See Job or Job#setJar(String).
+2014-10-30 20:52:34,230 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
+2014-10-30 20:52:34,242 [main] INFO  org.apache.hadoop.mapreduce.JobSubmitter - number of splits:1
+2014-10-30 20:52:34,250 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files.timestamps is deprecated. Instead, use mapreduce.job.cache.files.timestamps
+2014-10-30 20:52:34,250 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.map.class is deprecated. Instead, use mapreduce.job.map.class
+2014-10-30 20:52:34,250 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.reduce.class is deprecated. Instead, use mapreduce.job.reduce.class
+2014-10-30 20:52:34,250 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.inputformat.class is deprecated. Instead, use mapreduce.job.inputformat.class
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.groupfn.class is deprecated. Instead, use mapreduce.job.output.group.comparator.class
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.outputformat.class is deprecated. Instead, use mapreduce.job.outputformat.class
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.class is deprecated. Instead, use mapreduce.job.output.value.class
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files is deprecated. Instead, use mapreduce.job.cache.files
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.working.dir is deprecated. Instead, use mapreduce.job.working.dir
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.value.class is deprecated. Instead, use mapreduce.map.output.value.class
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.key.class is deprecated. Instead, use mapreduce.map.output.key.class
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.reduce.tasks is deprecated. Instead, use mapreduce.job.reduces
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.comparator.class is deprecated. Instead, use mapreduce.job.output.key.comparator.class
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.partitioner.class is deprecated. Instead, use mapreduce.job.partitioner.class
+2014-10-30 20:52:34,251 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.class is deprecated. Instead, use mapreduce.job.output.key.class
+2014-10-30 20:52:34,266 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg637316111/.staging/job_local_0003/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
+2014-10-30 20:52:34,266 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg637316111/.staging/job_local_0003/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
+2014-10-30 20:52:34,322 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/ngrams/pangool/core/pangool-instances/9a92d72a-a576-4505-b9f3-35aed5b3e159.group-handler.dat as file:/tmp/hadoop-hansondg/mapred/local/1518681988337345380/9a92d72a-a576-4505-b9f3-35aed5b3e159.group-handler.dat
+2014-10-30 20:52:34,324 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/ngrams/pangool/core/pangool-instances/e5e591aa-ac37-4953-b9a3-5480d7ca1511.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/-2108193611833166001/e5e591aa-ac37-4953-b9a3-5480d7ca1511.mapper.dat
+2014-10-30 20:52:34,324 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/ngrams/pangool/core/pangool-instances/0c27f6e0-a8f0-4d66-872f-c8c77b686462.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/4789467895979565950/0c27f6e0-a8f0-4d66-872f-c8c77b686462.inputFormat.dat
+2014-10-30 20:52:34,329 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.localFiles is deprecated. Instead, use mapreduce.job.cache.local.files
+2014-10-30 20:52:34,344 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0003.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
+2014-10-30 20:52:34,344 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0003.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
+2014-10-30 20:52:34,345 [main] INFO  org.apache.hadoop.mapreduce.Job - The url to track the job: http://localhost:8080/
+2014-10-30 20:52:34,345 [main] INFO  org.apache.hadoop.mapreduce.Job - Running job: job_local_0003
+2014-10-30 20:52:34,345 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter set in config null
+2014-10-30 20:52:34,347 [Thread-119] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
+2014-10-30 20:52:34,348 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter is com.datasalt.pangool.tuplemr.mapred.lib.output.ProxyOutputFormat$ProxyOutputCommitter
+2014-10-30 20:52:34,351 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - Waiting for map tasks
+2014-10-30 20:52:34,351 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0003_m_000000_0
+2014-10-30 20:52:34,353 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@403d6e6a
+2014-10-30 20:52:34,379 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
+2014-10-30 20:52:34,379 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
+2014-10-30 20:52:34,379 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
+2014-10-30 20:52:34,379 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
+2014-10-30 20:52:34,380 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
+2014-10-30 20:52:34,384 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
+2014-10-30 20:52:34,385 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
+2014-10-30 20:52:34,387 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:34,388 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
+2014-10-30 20:52:34,388 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Spilling map output
+2014-10-30 20:52:34,388 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufend = 84; bufvoid = 104857600
+2014-10-30 20:52:34,388 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396(104857584); kvend = 26214372(104857488); length = 25/6553600
+2014-10-30 20:52:34,397 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Finished spill 0
+2014-10-30 20:52:34,398 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0003_m_000000_0 is done. And is in the process of committing
+2014-10-30 20:52:34,398 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:34,399 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0003_m_000000_0 is allowed to commit now
+2014-10-30 20:52:34,399 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0003_m_000000_0
+2014-10-30 20:52:34,403 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0003_m_000000_0' to file:/home/hansondg/workspace/ngrams/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0003_m_000000
+2014-10-30 20:52:34,404 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
+2014-10-30 20:52:34,404 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0003_m_000000_0' done.
+2014-10-30 20:52:34,404 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0003_m_000000_0
+2014-10-30 20:52:34,404 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - Map task executor complete.
+2014-10-30 20:52:34,412 [Thread-119] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@b3c49fc
+2014-10-30 20:52:34,413 [Thread-119] INFO  org.apache.hadoop.mapred.Merger - Merging 1 sorted segments
+2014-10-30 20:52:34,413 [Thread-119] INFO  org.apache.hadoop.mapred.Merger - Down to the last merge-pass, with 1 segments left of total size: 86 bytes
+2014-10-30 20:52:34,413 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
 OPEN 0 => {"country":"ES","age":20,"name":"listo","height":250}
 OPEN 1 => {"country":"ES","age":20,"name":"listo","height":250}
 OPEN 2 => {"country":"ES","age":20,"name":"listo","height":250}
@@ -202,20 +336,20 @@ ELEMENT => {"country":"XE","age":20,"name":"listo","height":230}
 CLOSE 2 => {"country":"XE","age":20,"name":"listo","height":230}
 CLOSE 1 => {"country":"XE","age":20,"name":"listo","height":230}
 CLOSE 0 => {"country":"XE","age":20,"name":"listo","height":230}
-2014-10-25 21:49:37,499 [Thread-72] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0002_r_000000_0 is done. And is in the process of committing
-2014-10-25 21:49:37,499 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:37,499 [Thread-72] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0002_r_000000_0 is allowed to commit now
-2014-10-25 21:49:37,500 [Thread-72] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0002_r_000000_0' to file:/home/hansondg/workspace/pangool/core/TEST-OUTPUT/output/_temporary/0/_temporary/attempt_local_0002_r_000000_0/_temporary/0/task_local_0002_r_000000
-2014-10-25 21:49:37,504 [Thread-72] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0002_r_000000_0' to file:/home/hansondg/workspace/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0002_r_000000
-2014-10-25 21:49:37,505 [Thread-72] INFO  org.apache.hadoop.mapred.LocalJobRunner - reduce > reduce
-2014-10-25 21:49:37,505 [Thread-72] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0002_r_000000_0' done.
-2014-10-25 21:49:38,409 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0002 running in uber mode : false
-2014-10-25 21:49:38,410 [main] INFO  org.apache.hadoop.mapreduce.Job -  map 100% reduce 100%
-2014-10-25 21:49:38,410 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0002 completed successfully
-2014-10-25 21:49:38,412 [main] INFO  org.apache.hadoop.mapreduce.Job - Counters: 27
+2014-10-30 20:52:34,441 [Thread-119] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0003_r_000000_0 is done. And is in the process of committing
+2014-10-30 20:52:34,442 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
+2014-10-30 20:52:34,442 [Thread-119] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0003_r_000000_0 is allowed to commit now
+2014-10-30 20:52:34,442 [Thread-119] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0003_r_000000_0' to file:/home/hansondg/workspace/ngrams/pangool/core/TEST-OUTPUT/output/_temporary/0/_temporary/attempt_local_0003_r_000000_0/_temporary/0/task_local_0003_r_000000
+2014-10-30 20:52:34,446 [Thread-119] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0003_r_000000_0' to file:/home/hansondg/workspace/ngrams/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0003_r_000000
+2014-10-30 20:52:34,446 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - reduce > reduce
+2014-10-30 20:52:34,446 [Thread-119] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0003_r_000000_0' done.
+2014-10-30 20:52:35,346 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0003 running in uber mode : false
+2014-10-30 20:52:35,346 [main] INFO  org.apache.hadoop.mapreduce.Job -  map 100% reduce 100%
+2014-10-30 20:52:35,346 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0003 completed successfully
+2014-10-30 20:52:35,351 [main] INFO  org.apache.hadoop.mapreduce.Job - Counters: 27
 	File System Counters
-		FILE: Number of bytes read=13202
-		FILE: Number of bytes written=552438
+		FILE: Number of bytes read=29028
+		FILE: Number of bytes written=830464
 		FILE: Number of read operations=0
 		FILE: Number of large read operations=0
 		FILE: Number of write operations=0
@@ -224,7 +358,7 @@ CLOSE 0 => {"country":"XE","age":20,"name":"listo","height":230}
 		Map output records=7
 		Map output bytes=84
 		Map output materialized bytes=104
-		Input split bytes=289
+		Input split bytes=296
 		Combine input records=0
 		Combine output records=0
 		Reduce input groups=6
@@ -235,146 +369,12 @@ CLOSE 0 => {"country":"XE","age":20,"name":"listo","height":230}
 		Shuffled Maps =0
 		Failed Shuffles=0
 		Merged Map outputs=0
-		GC time elapsed (ms)=0
+		GC time elapsed (ms)=18
 		CPU time spent (ms)=0
 		Physical memory (bytes) snapshot=0
 		Virtual memory (bytes) snapshot=0
-		Total committed heap usage (bytes)=851443712
+		Total committed heap usage (bytes)=857735168
 	File Input Format Counters 
 		Bytes Read=0
 	File Output Format Counters 
 		Bytes Written=2562
-2014-10-25 21:49:38,461 [main] INFO  org.apache.hadoop.metrics.jvm.JvmMetrics - Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
-2014-10-25 21:49:38,469 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
-2014-10-25 21:49:38,471 [main] WARN  org.apache.hadoop.mapreduce.JobSubmitter - No job jar file set.  User classes may not be found. See Job or Job#setJar(String).
-2014-10-25 21:49:38,500 [main] INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths to process : 1
-2014-10-25 21:49:38,510 [main] INFO  org.apache.hadoop.mapreduce.JobSubmitter - number of splits:1
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files.timestamps is deprecated. Instead, use mapreduce.job.cache.files.timestamps
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.map.class is deprecated. Instead, use mapreduce.job.map.class
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.reduce.class is deprecated. Instead, use mapreduce.job.reduce.class
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.inputformat.class is deprecated. Instead, use mapreduce.job.inputformat.class
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.groupfn.class is deprecated. Instead, use mapreduce.job.output.group.comparator.class
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.outputformat.class is deprecated. Instead, use mapreduce.job.outputformat.class
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.value.class is deprecated. Instead, use mapreduce.job.output.value.class
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.files is deprecated. Instead, use mapreduce.job.cache.files
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.working.dir is deprecated. Instead, use mapreduce.job.working.dir
-2014-10-25 21:49:38,515 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.value.class is deprecated. Instead, use mapreduce.map.output.value.class
-2014-10-25 21:49:38,516 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
-2014-10-25 21:49:38,517 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.mapoutput.key.class is deprecated. Instead, use mapreduce.map.output.key.class
-2014-10-25 21:49:38,517 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.reduce.tasks is deprecated. Instead, use mapreduce.job.reduces
-2014-10-25 21:49:38,517 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.comparator.class is deprecated. Instead, use mapreduce.job.output.key.comparator.class
-2014-10-25 21:49:38,517 [main] WARN  org.apache.hadoop.conf.Configuration - mapreduce.partitioner.class is deprecated. Instead, use mapreduce.job.partitioner.class
-2014-10-25 21:49:38,517 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.output.key.class is deprecated. Instead, use mapreduce.job.output.key.class
-2014-10-25 21:49:38,543 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-743799279/.staging/job_local_0003/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
-2014-10-25 21:49:38,543 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/staging/hansondg-743799279/.staging/job_local_0003/job.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
-2014-10-25 21:49:38,581 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/core/pangool-instances/37392b9e-ab26-400c-97b1-69ec8ed7bdc3.group-handler.dat as file:/tmp/hadoop-hansondg/mapred/local/-1661437891184559871/37392b9e-ab26-400c-97b1-69ec8ed7bdc3.group-handler.dat
-2014-10-25 21:49:38,581 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/core/pangool-instances/c1b84963-1bae-4b60-876a-3defd584f133.mapper.dat as file:/tmp/hadoop-hansondg/mapred/local/1932489812637949833/c1b84963-1bae-4b60-876a-3defd584f133.mapper.dat
-2014-10-25 21:49:38,582 [main] INFO  org.apache.hadoop.mapred.LocalDistributedCacheManager - Localized file:/home/hansondg/workspace/pangool/core/pangool-instances/af6040c5-886f-491d-a5b2-315854fc55d5.inputFormat.dat as file:/tmp/hadoop-hansondg/mapred/local/3130184103682019825/af6040c5-886f-491d-a5b2-315854fc55d5.inputFormat.dat
-2014-10-25 21:49:38,584 [main] WARN  org.apache.hadoop.conf.Configuration - mapred.cache.localFiles is deprecated. Instead, use mapreduce.job.cache.local.files
-2014-10-25 21:49:38,603 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0003.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.retry.interval;  Ignoring.
-2014-10-25 21:49:38,603 [main] WARN  org.apache.hadoop.conf.Configuration - file:/tmp/hadoop-hansondg/mapred/local/localRunner/job_local_0003.xml:an attempt to override final parameter: mapreduce.job.end-notification.max.attempts;  Ignoring.
-2014-10-25 21:49:38,604 [main] INFO  org.apache.hadoop.mapreduce.Job - The url to track the job: http://localhost:8080/
-2014-10-25 21:49:38,604 [main] INFO  org.apache.hadoop.mapreduce.Job - Running job: job_local_0003
-2014-10-25 21:49:38,605 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter set in config null
-2014-10-25 21:49:38,607 [Thread-119] WARN  org.apache.hadoop.conf.Configuration - mapred.output.dir is deprecated. Instead, use mapreduce.output.fileoutputformat.outputdir
-2014-10-25 21:49:38,609 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - OutputCommitter is com.datasalt.pangool.tuplemr.mapred.lib.output.ProxyOutputFormat$ProxyOutputCommitter
-2014-10-25 21:49:38,612 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - Waiting for map tasks
-2014-10-25 21:49:38,612 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Starting task: attempt_local_0003_m_000000_0
-2014-10-25 21:49:38,615 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@13ae794d
-2014-10-25 21:49:38,662 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - (EQUATOR) 0 kvi 26214396(104857584)
-2014-10-25 21:49:38,662 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - mapreduce.task.io.sort.mb: 100
-2014-10-25 21:49:38,662 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - soft limit at 83886080
-2014-10-25 21:49:38,662 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufvoid = 104857600
-2014-10-25 21:49:38,662 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396; length = 6553600
-2014-10-25 21:49:38,666 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Got input split. Going to look at DC.
-2014-10-25 21:49:38,666 [LocalJobRunner Map Task Executor #0] INFO  com.datasalt.pangool.tuplemr.mapred.lib.input.DelegatingMapper - [profile] Finished. Calling run() on delegate.
-2014-10-25 21:49:38,668 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:38,669 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Starting flush of map output
-2014-10-25 21:49:38,669 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Spilling map output
-2014-10-25 21:49:38,669 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - bufstart = 0; bufend = 84; bufvoid = 104857600
-2014-10-25 21:49:38,669 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - kvstart = 26214396(104857584); kvend = 26214372(104857488); length = 25/6553600
-2014-10-25 21:49:38,680 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.MapTask - Finished spill 0
-2014-10-25 21:49:38,681 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0003_m_000000_0 is done. And is in the process of committing
-2014-10-25 21:49:38,681 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:38,681 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0003_m_000000_0 is allowed to commit now
-2014-10-25 21:49:38,682 [LocalJobRunner Map Task Executor #0] WARN  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - No Output found for attempt_local_0003_m_000000_0
-2014-10-25 21:49:38,685 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0003_m_000000_0' to file:/home/hansondg/workspace/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0003_m_000000
-2014-10-25 21:49:38,686 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - map
-2014-10-25 21:49:38,686 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0003_m_000000_0' done.
-2014-10-25 21:49:38,686 [LocalJobRunner Map Task Executor #0] INFO  org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local_0003_m_000000_0
-2014-10-25 21:49:38,686 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - Map task executor complete.
-2014-10-25 21:49:38,733 [Thread-119] INFO  org.apache.hadoop.mapred.Task -  Using ResourceCalculatorPlugin : org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin@c30b95
-2014-10-25 21:49:38,735 [Thread-119] INFO  org.apache.hadoop.mapred.Merger - Merging 1 sorted segments
-2014-10-25 21:49:38,735 [Thread-119] INFO  org.apache.hadoop.mapred.Merger - Down to the last merge-pass, with 1 segments left of total size: 86 bytes
-2014-10-25 21:49:38,735 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-OPEN 1 => {"country":"ES","age":20,"name":"listo","height":250}
-OPEN 2 => {"country":"ES","age":20,"name":"listo","height":250}
-ELEMENT => {"country":"ES","age":20,"name":"listo","height":250}
-CLOSE 2 => {"country":"ES","age":20,"name":"listo","height":250}
-CLOSE 1 => {"country":"ES","age":20,"name":"listo","height":250}
-OPEN 1 => {"country":"US","age":14,"name":"beber","height":202}
-OPEN 2 => {"country":"US","age":14,"name":"beber","height":202}
-ELEMENT => {"country":"US","age":14,"name":"beber","height":202}
-CLOSE 2 => {"country":"US","age":14,"name":"beber","height":202}
-OPEN 2 => {"country":"US","age":14,"name":"perro","height":180}
-ELEMENT => {"country":"US","age":14,"name":"perro","height":180}
-ELEMENT => {"country":"US","age":14,"name":"perro","height":170}
-CLOSE 2 => {"country":"US","age":14,"name":"perro","height":170}
-CLOSE 1 => {"country":"US","age":14,"name":"perro","height":170}
-OPEN 1 => {"country":"US","age":15,"name":"jauja","height":160}
-OPEN 2 => {"country":"US","age":15,"name":"jauja","height":160}
-ELEMENT => {"country":"US","age":15,"name":"jauja","height":160}
-CLOSE 2 => {"country":"US","age":15,"name":"jauja","height":160}
-CLOSE 1 => {"country":"US","age":15,"name":"jauja","height":160}
-OPEN 1 => {"country":"US","age":16,"name":"listo","height":160}
-OPEN 2 => {"country":"US","age":16,"name":"listo","height":160}
-ELEMENT => {"country":"US","age":16,"name":"listo","height":160}
-CLOSE 2 => {"country":"US","age":16,"name":"listo","height":160}
-CLOSE 1 => {"country":"US","age":16,"name":"listo","height":160}
-OPEN 1 => {"country":"XE","age":16,"name":"listo","height":230}
-OPEN 2 => {"country":"XE","age":16,"name":"listo","height":230}
-ELEMENT => {"country":"XE","age":16,"name":"listo","height":230}
-CLOSE 2 => {"country":"XE","age":16,"name":"listo","height":230}
-CLOSE 1 => {"country":"XE","age":16,"name":"listo","height":230}
-2014-10-25 21:49:38,748 [Thread-119] INFO  org.apache.hadoop.mapred.Task - Task:attempt_local_0003_r_000000_0 is done. And is in the process of committing
-2014-10-25 21:49:38,748 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - 
-2014-10-25 21:49:38,748 [Thread-119] INFO  org.apache.hadoop.mapred.Task - Task attempt_local_0003_r_000000_0 is allowed to commit now
-2014-10-25 21:49:38,749 [Thread-119] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0003_r_000000_0' to file:/home/hansondg/workspace/pangool/core/TEST-OUTPUT/output/_temporary/0/_temporary/attempt_local_0003_r_000000_0/_temporary/0/task_local_0003_r_000000
-2014-10-25 21:49:38,754 [Thread-119] INFO  org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local_0003_r_000000_0' to file:/home/hansondg/workspace/pangool/core/TEST-OUTPUT/output/_temporary/0/task_local_0003_r_000000
-2014-10-25 21:49:38,754 [Thread-119] INFO  org.apache.hadoop.mapred.LocalJobRunner - reduce > reduce
-2014-10-25 21:49:38,763 [Thread-119] INFO  org.apache.hadoop.mapred.Task - Task 'attempt_local_0003_r_000000_0' done.
-2014-10-25 21:49:39,605 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0003 running in uber mode : false
-2014-10-25 21:49:39,605 [main] INFO  org.apache.hadoop.mapreduce.Job -  map 100% reduce 100%
-2014-10-25 21:49:39,606 [main] INFO  org.apache.hadoop.mapreduce.Job - Job job_local_0003 completed successfully
-2014-10-25 21:49:39,608 [main] INFO  org.apache.hadoop.mapreduce.Job - Counters: 27
-	File System Counters
-		FILE: Number of bytes read=30654
-		FILE: Number of bytes written=832103
-		FILE: Number of read operations=0
-		FILE: Number of large read operations=0
-		FILE: Number of write operations=0
-	Map-Reduce Framework
-		Map input records=7
-		Map output records=7
-		Map output bytes=84
-		Map output materialized bytes=104
-		Input split bytes=289
-		Combine input records=0
-		Combine output records=0
-		Reduce input groups=6
-		Reduce shuffle bytes=0
-		Reduce input records=7
-		Reduce output records=29
-		Spilled Records=14
-		Shuffled Maps =0
-		Failed Shuffles=0
-		Merged Map outputs=0
-		GC time elapsed (ms)=0
-		CPU time spent (ms)=0
-		Physical memory (bytes) snapshot=0
-		Virtual memory (bytes) snapshot=0
-		Total committed heap usage (bytes)=1062207488
-	File Input Format Counters 
-		Bytes Read=0
-	File Output Format Counters 
-		Bytes Written=2145

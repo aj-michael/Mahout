@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.datasalt.pangool.tuplemr.mapred.TestForProfiling
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0.063 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0.049 sec

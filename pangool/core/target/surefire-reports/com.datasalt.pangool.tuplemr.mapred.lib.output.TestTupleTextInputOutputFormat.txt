@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.datasalt.pangool.tuplemr.mapred.lib.output.TestTupleTextInputOutputFormat
 -------------------------------------------------------------------------------
-Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.811 sec
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.524 sec
