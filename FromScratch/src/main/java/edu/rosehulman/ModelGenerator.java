@@ -59,7 +59,7 @@ public class ModelGenerator implements Tool, Serializable {
 			}
 		};
 		job.addInput(new Path(input), new TupleTextInputFormat(input_schema,
-				false, false, '\t', '#', '@', null, "\\NULL"),
+				false, false, '\t', TupleTextInputFormat.NO_QUOTE_CHARACTER, TupleTextInputFormat.NO_ESCAPE_CHARACTER, null, "\\NULL"),
 				new IdentityTupleMapper());
 		reducer = new IdentityTupleReducer();
 		job.setTupleCombiner(reducer);
