@@ -28,8 +28,9 @@ public class BM25Classifier extends AbstractClassifier {
 			int wordcount = (Integer) tuple.get("count");
 			double idfval = idf(wordcount,vocabulary_size);
 			score += Math.max(
-					0, 
-					idfval*wordcount*(k+1)/(wordcount+k*(1-b+b*)
+				0, 
+				idfval*wordcount*(k+1)/(wordcount+k*(1-b+b*0)) //this is wrong
+			);
 		}
 		return 0;
 	}

@@ -66,7 +66,7 @@ public abstract class AbstractClassifier implements Tool, Serializable {
 		job.createJob().waitForCompletion(true);
 		job.cleanUpInstanceFiles();
 	}
-	
+
 	public void countByYear(String model, String countOutput) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
 		Configuration conf = new Configuration();
 		
