@@ -1,4 +1,4 @@
-package edu.rosehulman;
+package edu.rosehulman.dan;
 
 import java.io.IOException;
 import java.io.Serializable;

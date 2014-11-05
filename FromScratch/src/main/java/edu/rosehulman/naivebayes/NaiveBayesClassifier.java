@@ -1,4 +1,4 @@
-package edu.rosehulman;
+package edu.rosehulman.naivebayes;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -27,7 +27,7 @@ import com.datasalt.pangool.tuplemr.mapred.MapOnlyMapper;
 import com.datasalt.pangool.tuplemr.mapred.lib.output.TupleTextOutputFormat;
 import com.google.common.collect.Sets;
 
-public class Classifier implements Tool, Serializable {
+public class NaiveBayesClassifier implements Tool, Serializable {
 
 	private static final long serialVersionUID = -2375691330604388212L;
 
@@ -106,11 +106,11 @@ public class Classifier implements Tool, Serializable {
 				int words = 0;
 				for (ITuple tuple : tuples) {
 					if (tuple.getSchema().getName().equals("input schema")) {
-						int wordcount = (Integer) tuple.get("count");
+						int wordcount = (Integer) tuple.get("count") + 1;
 						score += Math.log(wordcount);
 						words += 1;
 					} else if (tuple.getSchema().getName().equals("count schema")) {
-						yeartotalwords = (Integer) tuple.get("count");
+						yeartotalwords = (Integer) tuple.get("count") + 1;
 					}
 				}
 				
@@ -165,7 +165,7 @@ public class Classifier implements Tool, Serializable {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		ToolRunner.run(new Classifier(), args);
+		ToolRunner.run(new NaiveBayesClassifier(), args);
 	}
 
 }

@@ -5,13 +5,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
@@ -35,9 +35,13 @@ public class BM25Modeler implements Tool, Serializable {
 	
 	static Schema line_schema = new Schema("line schema",Fields.parse("line: string"));
 	static Schema number_schema = new Schema("number schema",Fields.parse("value: int"));
+	static Schema double_schema = new Schema("double schema",Fields.parse("value: double"));
 	static Schema input_schema = new Schema("input schema",Fields.parse("word: string, year: int, count: int"));
 	static Schema years_per_word_schema = new Schema("years per word schema",Fields.parse("word: string, count: int"));
 	static Schema words_per_year_schema = new Schema("words per year schema",Fields.parse("year: int, count: int"));
+	static Schema total_word_count_schema = new Schema("total word count schema",Fields.parse("word: string, count: int"));
+	static Schema IDF_schema = new Schema("IDF schema",Fields.parse("word: string, idf: double"));
+	static Schema one_reducer_number_schema = new Schema("one reducer number schema",Fields.parse("value: int, reducer: int"));
 
 	public static void main(String[] args) throws Exception {
 		ToolRunner.run(new BM25Modeler(), args);
@@ -54,9 +58,7 @@ public class BM25Modeler implements Tool, Serializable {
 	public void filterBadRecords(String input, String output) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
 		Configuration conf = new Configuration();
 		MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable> mapper = new MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable>(){
-			
 			private static final long serialVersionUID = 8368049550008622173L;
-
 			@Override
 			public void map(ITuple key, NullWritable value, Context context)
 					throws IOException, InterruptedException {
@@ -116,20 +118,28 @@ public class BM25Modeler implements Tool, Serializable {
 			private static final long serialVersionUID = -8360227290180720239L;
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
 				int year = (Integer) key.get("year");
-				int count = 0;
+				int uniqueWords = 0;
+				int totalWords = 0;
 				for (ITuple t : tuples) {
-					count++;
+					uniqueWords += 1;
+					totalWords += (Integer) t.getInteger("count");
 				}
-				ITuple outTuple = new Tuple(words_per_year_schema);
-				outTuple.set("year", year); 
-				outTuple.set("count", count);
-				collector.write(outTuple, NullWritable.get());
+				ITuple uniqueOut = new Tuple(words_per_year_schema);
+				uniqueOut.set("year", year); 
+				uniqueOut.set("count", uniqueWords);
+				ITuple totalOut = new Tuple(words_per_year_schema);
+				totalOut.set("year", year);
+				totalOut.set("count", totalWords);
+				collector.getNamedOutput("unique").write(uniqueOut, NullWritable.get());
+				collector.getNamedOutput("total").write(totalOut, NullWritable.get());
 			}
 		};
 		TupleMRBuilder job = new TupleMRBuilder(conf,"words per year");
 		job.addTupleInput(new Path(input), new IdentityTupleMapper());
 		job.addIntermediateSchema(input_schema);
 		job.setTupleOutput(new Path(output), words_per_year_schema);
+		job.addNamedTupleOutput("unique", words_per_year_schema);
+		job.addNamedTupleOutput("total", words_per_year_schema);
 		job.setTupleReducer(reducer);
 		job.setGroupByFields("year");
 		job.createJob().waitForCompletion(true);
@@ -174,22 +184,140 @@ public class BM25Modeler implements Tool, Serializable {
 	public int readYearCount(String input) throws FileNotFoundException, IllegalArgumentException, IOException {
 		FileSystem fs = FileSystem.get(new Configuration());
 		for (FileStatus fileStatus : fs.listStatus(new Path(input))) {
-			
+			if (!fileStatus.getPath().getName().contains("part")) {
+				continue;
+			}
+			FSDataInputStream fsdis = fs.open(fileStatus.getPath());
+			String fulltext = IOUtils.toString(fsdis,"UTF-8").trim();
+			return Integer.parseInt(fulltext);
+		}
+		return 0;
+	}
+	
+	public void totalWordCount(String input, String output) throws TupleMRException, ClassNotFoundException, IOException, InterruptedException {
+		Configuration conf = new Configuration();
+		TupleReducer<ITuple,NullWritable> reducer = new TupleReducer<ITuple,NullWritable>() {
+			private static final long serialVersionUID = -3994149355198862871L;
+			@Override
+			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
+				String word = key.get("word").toString();
+				int count = 0;
+				for (ITuple t : tuples) {
+					int yearcount = (Integer) t.get("count");
+					count += yearcount;
+				}
+				ITuple outTuple = new Tuple(total_word_count_schema);
+				outTuple.set("word", word);
+				outTuple.set("count", count);
+				collector.write(outTuple, NullWritable.get());
+			}
+		};
+		TupleMRBuilder job = new TupleMRBuilder(conf,"total word count");
+		job.addTupleInput(new Path(input),new IdentityTupleMapper());
+		job.addIntermediateSchema(input_schema);
+		job.setGroupByFields("word");
+		job.setTupleOutput(new Path(output), total_word_count_schema);
+		job.setTupleReducer(reducer);
+		job.createJob().waitForCompletion(true);
+		job.cleanUpInstanceFiles();
+	}
+	
+	public void inverseDocumentFrequency(String input, String output, final int yearcount) throws IOException, ClassNotFoundException, InterruptedException, TupleMRException, URISyntaxException {
+		Configuration conf = new Configuration();
+		MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable> mapper = new MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable>() {
+			private static final long serialVersionUID = -3994149355198862871L;
+			@Override
+			public void map(ITuple key, NullWritable value, Context context) throws IOException, InterruptedException {
+				int numyears = (Integer) key.get("count");
+				double idf = (yearcount-numyears+0.5)/(numyears+0.5);
+				ITuple outTuple = new Tuple(IDF_schema);
+				outTuple.set("word",key.get("word"));
+				outTuple.set("idf", idf);
+				context.write(outTuple,NullWritable.get());
+				System.out.println(outTuple);
+			}
+		};
+		MapOnlyJobBuilder job = new MapOnlyJobBuilder(conf,"IDF");
+		job.addTupleInput(new Path(input),mapper);
+		job.setTupleOutput(new Path(output),IDF_schema);
+		job.createJob().waitForCompletion(true);
+		job.cleanUpInstanceFiles();
+	}
+	
+	public void averageYearCount(String input, String output) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException {
+		Configuration conf = new Configuration();
+		TupleMapper<ITuple,NullWritable> mapper = new TupleMapper<ITuple,NullWritable>() {
+			private static final long serialVersionUID = -8849931903889907589L;
+			@Override
+			public void map(ITuple key, NullWritable value, TupleMRContext context, Collector collector)
+					throws IOException, InterruptedException {
+				int count = (Integer) key.get("count");
+				ITuple out = new Tuple(one_reducer_number_schema);
+				out.set("value",count);
+				out.set("reducer",0);
+				collector.write(out);
+			}
+		};
+		TupleReducer<ITuple,NullWritable> reducer = new TupleReducer<ITuple,NullWritable>() {
+			private static final long serialVersionUID = 4335010215134962998L;
+			@Override
+			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
+				int total = 0;
+				int count = 0;
+				for (ITuple t : tuples) {
+					total += (Integer) t.get("value");
+					count++;
+				}
+				double avg = ((double) total) / ((double) count); 
+				ITuple out = new Tuple(double_schema);
+				out.set("value", avg);
+				collector.write(out, NullWritable.get());
+			}
+		};
+		TupleMRBuilder job = new TupleMRBuilder(conf,"average year count");
+		job.addTupleInput(new Path(input), mapper);
+		job.addIntermediateSchema(one_reducer_number_schema);
+		job.setGroupByFields("reducer");
+		job.setOutput(new Path(output), new TupleTextOutputFormat(double_schema, false, '\t', TupleTextOutputFormat.NO_QUOTE_CHARACTER, TupleTextOutputFormat.NO_ESCAPE_CHARACTER), ITuple.class, NullWritable.class);
+		job.setTupleReducer(reducer);
+		job.createJob().waitForCompletion(true);
+		job.cleanUpInstanceFiles();
+	}
+	
+	public double readAverageYearCount(String input) throws IOException {
+		FileSystem fs = FileSystem.get(new Configuration());
+		for (FileStatus fileStatus : fs.listStatus(new Path(input))) {
+			if (!fileStatus.getPath().getName().contains("part")) {
+				continue;
+			}
+			FSDataInputStream fsdis = fs.open(fileStatus.getPath());
+			String fulltext = IOUtils.toString(fsdis,"UTF-8").trim();
+			return Double.parseDouble(fulltext);
 		}
 		return 0;
 	}
 	
 	public int run(String[] args) throws Exception {
 		String input = args[0];
-		String filtered = args[1];
-		String yearsPerWord = args[2];
-		String wordsPerYear = args[3];
-		String yearCount = args[4];
+		String output = args[1];
+		String filtered = output+"/filtered";
+		String yearsPerWord = output+"/yearsperword";
+		String wordsPerYear = output+"/wordsperyear";
+		String yearCount = output+"/yearcount";
+		String totalWordCount = output+"/totalwordcount";
+		String IDF = output+"/idf";
+		String averageYearCount = output+"/averageyearcount";
+		String uniqueWordsPerYear = wordsPerYear+"/unique";
+		String totalWordsPerYear = wordsPerYear+"/total";
 		filterBadRecords(input,filtered);
 		yearsPerWord(filtered,yearsPerWord);
 		wordsPerYear(filtered,wordsPerYear);
-		countYears(wordsPerYear,yearCount);
+		countYears(uniqueWordsPerYear,yearCount);
+		totalWordCount(filtered,totalWordCount);
 		int numyears = readYearCount(yearCount);
+		inverseDocumentFrequency(yearsPerWord,IDF,numyears);
+		averageYearCount(totalWordsPerYear,averageYearCount);
+		double avgyearcount = readAverageYearCount(averageYearCount);
 		return 0;
 	}
 
