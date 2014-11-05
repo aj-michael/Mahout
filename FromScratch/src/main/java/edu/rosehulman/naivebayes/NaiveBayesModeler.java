@@ -1,4 +1,4 @@
-package edu.rosehulman;
+package edu.rosehulman.naivebayes;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -20,7 +20,7 @@ import com.datasalt.pangool.tuplemr.TupleMapper;
 import com.datasalt.pangool.tuplemr.TupleReducer;
 import com.datasalt.pangool.tuplemr.mapred.lib.input.TupleTextInputFormat;
 
-public class ModelGenerator implements Tool, Serializable {
+public class NaiveBayesModeler implements Tool, Serializable {
 
 	private static final long serialVersionUID = -5565331847345488539L;
 
@@ -31,7 +31,7 @@ public class ModelGenerator implements Tool, Serializable {
 			Fields.parse("word: string, year: int, count: int, dcount: int"));
 
 	public static void main(String[] args) throws Exception {
-		ToolRunner.run(new ModelGenerator(), args);
+		ToolRunner.run(new NaiveBayesModeler(), args);
 	}
 
 	public void setConf(Configuration conf) {

@@ -1,4 +1,4 @@
-package edu.rosehulman;
+package edu.rosehulman.dan;
 
 import org.apache.hadoop.util.ToolRunner;
 
