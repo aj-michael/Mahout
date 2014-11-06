@@ -1,5 +1,7 @@
 package edu.rosehulman.dan;
 
+import java.util.Set;
+
 import org.apache.hadoop.util.ToolRunner;
 
 import com.datasalt.pangool.io.ITuple;
@@ -8,7 +10,6 @@ public class NaiveBayesClassifier extends AbstractClassifier {
 
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	protected double score(Iterable<ITuple> tuples, long vocabulary_size) {
 		double score = 0;
 		int words = 0;
@@ -32,5 +33,12 @@ public class NaiveBayesClassifier extends AbstractClassifier {
 
 	public static void main(String[] args) throws Exception {
 		ToolRunner.run(new NaiveBayesClassifier(), args);
+	}
+
+
+	@Override
+	public int run(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

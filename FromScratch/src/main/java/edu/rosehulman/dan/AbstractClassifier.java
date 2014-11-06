@@ -3,15 +3,12 @@ package edu.rosehulman.dan;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
-import java.util.HashMap;
 import java.util.Set;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.util.Tool;
-import org.apache.hadoop.util.ToolRunner;
-
 import com.datasalt.pangool.io.Fields;
 import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
@@ -25,11 +22,12 @@ import com.datasalt.pangool.tuplemr.TupleMRException;
 import com.datasalt.pangool.tuplemr.TupleReducer;
 import com.datasalt.pangool.tuplemr.mapred.MapOnlyMapper;
 import com.datasalt.pangool.tuplemr.mapred.lib.output.TupleTextOutputFormat;
-import com.google.common.collect.Sets;
 
 public abstract class AbstractClassifier implements Tool, Serializable {
 
 	private static final long serialVersionUID = -2375691330604388212L;
+
+	protected Configuration conf = new Configuration();
 
 	static Schema input_schema = new Schema("input schema",
 			Fields.parse("word: string, year: int, count: int, dcount: int"));	
@@ -46,15 +44,13 @@ public abstract class AbstractClassifier implements Tool, Serializable {
 		return null;
 	}
 
-	public void preprocess(String model, final Set<String> words, String filterOutput) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
+	public static void filter(String model, final Set<String> words, String output) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
 		Configuration conf = new Configuration();
 		MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable> mapper = new MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable>() {
 			private static final long serialVersionUID = -5104195321429602029L;
 			@Override
 			protected void map(ITuple key, NullWritable value, Context context) throws IOException, InterruptedException {
 				String word = key.get("word").toString();
-				int year = (Integer) key.get("year");
-				int count = (Integer) key.get("count");
 				if (words.contains(word.toLowerCase())) {
 					context.write(key,value);
 				}
@@ -62,12 +58,12 @@ public abstract class AbstractClassifier implements Tool, Serializable {
 		};
 		MapOnlyJobBuilder job = new MapOnlyJobBuilder(conf,"Filter");
 		job.addTupleInput(new Path(model), mapper);
-		job.setTupleOutput(new Path(filterOutput), input_schema);
+		job.setTupleOutput(new Path(output), input_schema);
 		job.createJob().waitForCompletion(true);
 		job.cleanUpInstanceFiles();
 	}
 
-	public void countByYear(String model, String countOutput) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
+	public static void countByYear(Path model, Path countOutput) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
 		Configuration conf = new Configuration();
 		
 		TupleReducer<ITuple, NullWritable> reducer = new TupleReducer<ITuple,NullWritable>() {
@@ -84,72 +80,15 @@ public abstract class AbstractClassifier implements Tool, Serializable {
 				collector.write(outTuple, NullWritable.get() );
 			}
 		};
-		
 		TupleMRBuilder job = new TupleMRBuilder(conf,"Count");
-		job.addTupleInput(new Path(model),new IdentityTupleMapper());
+		job.addTupleInput(model,new IdentityTupleMapper());
 		job.addIntermediateSchema(input_schema);
 		job.setGroupByFields("year");
-		job.setTupleOutput(new Path(countOutput), count_schema);
+		job.setTupleOutput(countOutput, count_schema);
 		job.setTupleReducer(reducer);
 		job.createJob().waitForCompletion(true);
 		job.cleanUpInstanceFiles();
 	}
 
-	protected abstract double score(Iterable<ITuple> tuples,long vocabulary_size);
-
-	public void distributedScore(Set<String> words, final int vocabulary_size, String filtered, String counts, String tempOutput, String scoresOutput) throws TupleMRException, ClassNotFoundException, IOException, InterruptedException {
-		Configuration conf = new Configuration();
-		TupleReducer<ITuple,NullWritable> reducer = new TupleReducer<ITuple,NullWritable>() {
-			private static final long serialVersionUID = -7293758282851758882L;
-			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
-				int year = (Integer) key.get("year");
-				double score = score(tuples, vocabulary_size);
-				if(score == Double.NaN){
-					return;
-				}
-				// construct the output
-				ITuple outTuple = new Tuple(score_schema);
-				outTuple.set("year", year);
-				outTuple.set("score", score);
-				collector.write(outTuple, NullWritable.get());
-				System.out.println(outTuple);
-			}
-		};
-		TupleMRBuilder job = new TupleMRBuilder(conf,"Distributed Scorer");
-		job.addIntermediateSchema(input_schema);
-		job.addIntermediateSchema(count_schema);
-		job.addTupleInput(new Path(filtered),new IdentityTupleMapper());
-		job.addTupleInput(new Path(counts), new IdentityTupleMapper());
-		job.setTupleOutput(new Path(tempOutput), score_schema);
-		job.setTupleReducer(reducer);
-		job.setGroupByFields("year");
-		job.createJob().waitForCompletion(true);
-		job.cleanUpInstanceFiles();
-		
-		TupleMRBuilder sort = new TupleMRBuilder(conf,"Sort scores");
-		sort.addIntermediateSchema(score_schema);
-		sort.addTupleInput(new Path(tempOutput), new IdentityTupleMapper());
-		sort.setGroupByFields("score");
-		sort.setOrderBy(OrderBy.parse("score:desc"));
-		sort.setTupleReducer(new IdentityTupleReducer());
-		sort.setOutput(new Path(scoresOutput), new TupleTextOutputFormat(score_schema, true, '\t', TupleTextOutputFormat.NO_QUOTE_CHARACTER, TupleTextOutputFormat.NO_ESCAPE_CHARACTER), ITuple.class, NullWritable.class);
-		sort.createJob().waitForCompletion(true);
-		sort.cleanUpInstanceFiles();
-	}
-	
-	public int run(String[] args) throws Exception {
-		String model = args[0];
-		String text = args[1];
-		String filterOutput = args[2];
-		String countsOutput = args[3];
-		String tempOutput = args[4];
-		String scoresOutput = args[5];
-		final Set<String> words = Sets.newHashSet(text.toLowerCase().split(" "));
-		this.preprocess(model, words, filterOutput);
-		this.countByYear(model,countsOutput);
-		this.distributedScore(words,0,filterOutput,countsOutput,tempOutput,scoresOutput);
-		return 0;
-	}
-	
-
+	public abstract int run(String[] args) throws Exception;
 }
