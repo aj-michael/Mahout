@@ -181,7 +181,7 @@ public class BM25Modeler implements Tool, Serializable {
 		job.cleanUpInstanceFiles();
 	}
 	
-	public int readYearCount(String input) throws FileNotFoundException, IllegalArgumentException, IOException {
+	public static int readYearCount(String input) throws FileNotFoundException, IllegalArgumentException, IOException {
 		FileSystem fs = FileSystem.get(new Configuration());
 		for (FileStatus fileStatus : fs.listStatus(new Path(input))) {
 			if (!fileStatus.getPath().getName().contains("part")) {
@@ -234,7 +234,6 @@ public class BM25Modeler implements Tool, Serializable {
 				outTuple.set("word",key.get("word"));
 				outTuple.set("idf", idf);
 				context.write(outTuple,NullWritable.get());
-				System.out.println(outTuple);
 			}
 		};
 		MapOnlyJobBuilder job = new MapOnlyJobBuilder(conf,"IDF");
@@ -284,7 +283,7 @@ public class BM25Modeler implements Tool, Serializable {
 		job.cleanUpInstanceFiles();
 	}
 	
-	public double readAverageYearCount(String input) throws IOException {
+	public static double readAverageYearCount(String input) throws IOException {
 		FileSystem fs = FileSystem.get(new Configuration());
 		for (FileStatus fileStatus : fs.listStatus(new Path(input))) {
 			if (!fileStatus.getPath().getName().contains("part")) {
@@ -317,7 +316,6 @@ public class BM25Modeler implements Tool, Serializable {
 		int numyears = readYearCount(yearCount);
 		inverseDocumentFrequency(yearsPerWord,IDF,numyears);
 		averageYearCount(totalWordsPerYear,averageYearCount);
-		double avgyearcount = readAverageYearCount(averageYearCount);
 		return 0;
 	}
 
