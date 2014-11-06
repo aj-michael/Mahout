@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    <link rel="icon" href="http://www.clipartlord.com/wp-content/uploads/2013/04/elephant8.png">
 
     <link rel="stylesheet" type="text/css" href="style.css">
-
-    <title>Cover Template for Bootstrap</title>
+    <script src="https://cdn.firebase.com/js/client/2.0.1/firebase.js"></script>
+    <title>The Large NGram Collider</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -53,9 +53,13 @@
       });     
     });
     </script>
+
+        <script src="./scripts/fb.js"></script>
   </head>
 
   <body>
+    
+    </script>
     <div id="slideshow">
       <img src="skyline.jpg" class="bgM"/>
       <img src="skyline2.jpg" class="bgM"/>
@@ -72,10 +76,10 @@
           <div class="masthead clearfix">
             <div class="inner">
               <h3 class="masthead-brand"><?php $bullshit = array("Powerful", "Precise", "Stunning", "Innovative", "Massive", "Advanced", "Stylish", "Fresh");
-                  $rand1 = rand(0,6);
+                  $rand1 = rand(0,7);
                   $rand2 = $rand1;
                   while ($rand2 == $rand1) {
-                    $rand2 = rand(0,6);
+                    $rand2 = rand(0,7);
                   }
                   $output = $bullshit[$rand1] . ". " . $bullshit[$rand2] . ". ";
                   echo $output;
@@ -86,7 +90,15 @@
           <div class="inner cover">
        <!--     <h1 class="cover-heading">Type a phrase:</h1>
            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p> -->
-            <form class="dark-matter" action="index.php" method="GET">
+            <div id="resultDiv" class="dark-matter">
+              <p id="queryString"></p><br />
+              <h1 id="firstResult"></h1>
+              <h2 id="secondResult"></h2>
+              <h3 id="thirdResult"></h3>
+              <div id="fireworks"></div>
+            </div>
+            
+            <form id="initialForm" class="dark-matter" action="index.php" method="GET">
               <input type="text" name="words" value="The quick brown fox jumps over the lazy dog" onfocus="this.value = '';"/>
               <input type="hidden" name='submitted' value="1" />
               <input type="submit" value="Go!" class="button"/><br />
