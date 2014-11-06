@@ -1,14 +1,11 @@
 package edu.rosehulman.dan;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -19,15 +16,12 @@ import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
 import com.datasalt.pangool.io.Tuple;
 import com.datasalt.pangool.io.TupleFile;
-import com.datasalt.pangool.io.TupleFile.Reader;
 import com.datasalt.pangool.tuplemr.Criteria.Order;
 import com.datasalt.pangool.tuplemr.OrderBy;
 import com.datasalt.pangool.tuplemr.TupleMRBuilder;
 import com.datasalt.pangool.tuplemr.TupleMRException;
 import com.datasalt.pangool.tuplemr.TupleMapper;
 import com.datasalt.pangool.tuplemr.TupleReducer;
-import com.datasalt.pangool.tuplemr.mapred.lib.input.TupleFileRecordReader;
-import com.datasalt.pangool.tuplemr.mapred.lib.input.TupleInputFormat;
 
 public class KNNClassifier extends AbstractClassifier{
 
@@ -134,7 +128,6 @@ public class KNNClassifier extends AbstractClassifier{
 	}
 
 	public static void calculateDistances(Path normalizedModel,Path result,Map<String,Integer> textVector,Configuration conf) throws TupleMRException, ClassNotFoundException, IOException, InterruptedException, URISyntaxException{
-		FileSystem f = FileSystem.get(conf);
 		final Map<String,Double> normalizedTextVector = normalizeTextVector(textVector);
 		TupleMRBuilder builder = new TupleMRBuilder(conf);
 		builder.addTupleInput(normalizedModel,TERM_MAGNITUDE_SCHEMA,new TupleMapper<ITuple,NullWritable>(){
