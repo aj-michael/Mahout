@@ -59,6 +59,9 @@
     <div id="slideshow">
       <img src="skyline.jpg" class="bgM"/>
       <img src="skyline2.jpg" class="bgM"/>
+      <img src="skyline3.jpg" class="bgM"/>
+      <img src="skyline4.jpg" class="bgM"/>
+      <img src="skyline5.jpg" class="bgM"/>
     </div>
     <div class="site-wrapper">
 
@@ -68,7 +71,15 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">Powerful. Innovative. Mahout.</h3>
+              <h3 class="masthead-brand"><?php $bullshit = array("Powerful", "Precise", "Stunning", "Innovative", "Massive", "Advanced", "Stylish", "Fresh");
+                  $rand1 = rand(0,6);
+                  $rand2 = $rand1;
+                  while ($rand2 == $rand1) {
+                    $rand2 = rand(0,6);
+                  }
+                  $output = $bullshit[$rand1] . ". " . $bullshit[$rand2] . ". ";
+                  echo $output;
+              ?>Mahout.</h3>
             </div>
           </div>
 
