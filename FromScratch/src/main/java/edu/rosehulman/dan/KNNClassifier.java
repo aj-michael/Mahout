@@ -3,30 +3,28 @@ package edu.rosehulman.dan;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.util.PriorityQueue;
 
 import com.datasalt.pangool.io.Fields;
 import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
 import com.datasalt.pangool.io.Tuple;
 import com.datasalt.pangool.io.TupleFile;
-import com.datasalt.pangool.tuplemr.Criteria.Order;
-import com.datasalt.pangool.tuplemr.OrderBy;
 import com.datasalt.pangool.tuplemr.TupleMRBuilder;
 import com.datasalt.pangool.tuplemr.TupleMRException;
 import com.datasalt.pangool.tuplemr.TupleMapper;
 import com.datasalt.pangool.tuplemr.TupleReducer;
-import com.datasalt.pangool.utils.Pair;
 
 public class KNNClassifier extends AbstractClassifier{
 
@@ -170,7 +168,12 @@ public class KNNClassifier extends AbstractClassifier{
 			public void map(ITuple tuple, NullWritable n, TupleMRContext con, Collector col) throws IOException, InterruptedException {
 				String word = tuple.getString("word");
 				int year = tuple.getInteger("year");
-				double distCompSquared = Math.pow(tuple.getDouble("magnitude") - normalizedTextVector.getOrDefault(word,0.0),2);
+				double distCompSquared;
+				if(normalizedTextVector.containsKey(word)){
+					distCompSquared = Math.pow(tuple.getDouble("magnitude") - normalizedTextVector.get(word),2);
+				} else {
+					distCompSquared = Math.pow(tuple.getDouble("magnitude"),2);
+				}
 				val.set("year",year);
 				val.set("magnitude",distCompSquared);
 				col.write(val);
@@ -231,13 +234,7 @@ public class KNNClassifier extends AbstractClassifier{
 		}
 		calculateDistances(normalizedModel,results,textVector,conf);
 		FileSystem f = FileSystem.get(conf);
-		PriorityQueue<ITuple> answers = new PriorityQueue<ITuple>(new Comparator<ITuple>(){
-			@Override
-			public int compare(ITuple o1, ITuple o2) {
-				// TODO Auto-generated method stub
-				return o1.getDouble("magnitude").compareTo(o2.getDouble("magnitude"));
-			}
-		});
+		List<ITuple> answers = new ArrayList<ITuple>();
 		for(FileStatus stat : f.listStatus(results)){
 			if(stat.isDirectory() || stat.getLen() == 0){
 				continue;
@@ -250,9 +247,13 @@ public class KNNClassifier extends AbstractClassifier{
 			}
 			resultReader.close();
 		}
-		while(!answers.isEmpty()){
-			System.out.println(answers.poll());
-		}
+		answers.sort(new Comparator<ITuple>(){
+			@Override
+			public int compare(ITuple o1, ITuple o2) {
+				return o1.getDouble("magnitude").compareTo(o2.getDouble("magnitude"));
+			}		
+		});
+		System.out.println(Arrays.toString(answers.toArray()));
 		return 0;
 	}
 
