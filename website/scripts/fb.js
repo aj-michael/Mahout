@@ -9,7 +9,7 @@ $(function() {
 	  	// Display the top three results #initialForm | #resultDiv
 	  	$("#resultDiv").show();
 	  	$('#initialForm').show();
-      $('#circularG').hide();
+      $('#loading').hide();
 
 	  	$('#queryString').html("\"" + data.query + "\"");
 	  	$('#firstResult').html("1. " + data.results[1]);
@@ -20,7 +20,7 @@ $(function() {
 	  	$("#resultDiv").hide();
 	  	$("#initialForm").hide();
 
-      $('#circularG').show();
+      $('#loading').show();
 	  }
 	}, function (errorObject) {
 	  console.log("The read failed: " + errorObject.code);
