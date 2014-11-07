@@ -9,6 +9,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.util.Tool;
+
 import com.datasalt.pangool.io.Fields;
 import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
@@ -43,6 +44,18 @@ public abstract class AbstractClassifier implements Tool, Serializable {
 	public Configuration getConf() {
 		return null;
 	}
+
+	public static final TupleReducer<ITuple,NullWritable> IDENTITY_REDUCER = new TupleReducer<ITuple,NullWritable>(){
+
+		private static final long serialVersionUID = 1L;
+
+		public void reduce(ITuple key, Iterable<ITuple> tups, TupleMRContext con, Collector col) throws IOException, InterruptedException{
+			for(ITuple tup : tups){
+				col.write(tup,NullWritable.get());
+			}
+		}
+		
+	};
 
 	public static void filter(String model, final Set<String> words, String output) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
 		Configuration conf = new Configuration();
