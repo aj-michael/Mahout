@@ -97,7 +97,7 @@
        <!--     <h1 class="cover-heading">Type a phrase:</h1>
            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p> -->
             
-            <div class="container dark-matter">
+            <div class="container dark-matter" id="loading">
 
             <h1>Reticulating Splines</h1> 
               <div id="circularG">
