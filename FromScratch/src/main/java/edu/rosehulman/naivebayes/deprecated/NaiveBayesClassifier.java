@@ -1,8 +1,9 @@
-package edu.rosehulman.naivebayes;
+package edu.rosehulman.naivebayes.deprecated;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.apache.hadoop.conf.Configuration;
@@ -53,8 +54,8 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 			@Override
 			protected void map(ITuple key, NullWritable value, Context context) throws IOException, InterruptedException {
 				String word = key.get("word").toString();
-				key.get("year");
-				key.get("count");
+				int year = (Integer) key.get("year");
+				int count = (Integer) key.get("count");
 				if (words.contains(word.toLowerCase())) {
 					context.write(key,value);
 				}
@@ -63,6 +64,34 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 		MapOnlyJobBuilder job = new MapOnlyJobBuilder(conf,"Filter");
 		job.addTupleInput(new Path(model), mapper);
 		job.setTupleOutput(new Path(filterOutput), input_schema);
+		job.createJob().waitForCompletion(true);
+		job.cleanUpInstanceFiles();
+	}
+	
+	public void countByYear(String model, String countOutput) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
+		Configuration conf = new Configuration();
+		
+		TupleReducer<ITuple, NullWritable> reducer = new TupleReducer<ITuple,NullWritable>() {
+			private static final long serialVersionUID = 7208815953760503728L;
+			public void reduce(ITuple key, Iterable<ITuple> values, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
+				int year = (Integer) key.getInteger("year");
+				int count = 0;
+				for (ITuple tuple : values) {
+					count += (Integer) tuple.getInteger("count");
+				}
+				ITuple outTuple = new Tuple(count_schema);
+				outTuple.set("year",year);
+				outTuple.set("count",count);
+				collector.write(outTuple, NullWritable.get() );
+			}
+		};
+		
+		TupleMRBuilder job = new TupleMRBuilder(conf,"Count");
+		job.addTupleInput(new Path(model),new IdentityTupleMapper());
+		job.addIntermediateSchema(input_schema);
+		job.setGroupByFields("year");
+		job.setTupleOutput(new Path(countOutput), count_schema);
+		job.setTupleReducer(reducer);
 		job.createJob().waitForCompletion(true);
 		job.cleanUpInstanceFiles();
 	}
@@ -97,6 +126,7 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 				outTuple.set("year", year);
 				outTuple.set("score", score);
 				collector.write(outTuple, NullWritable.get());
+				System.out.println(outTuple);
 			}
 		};
 		TupleMRBuilder job = new TupleMRBuilder(conf,"Distributed Scorer");
@@ -126,13 +156,15 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 		String text = args[1];
 		String output = args[2];
 		String filterOutput = output+"/filtered";
+		String countsOutput = output+"/counts";
 		String tempOutput = output+"/temp";
 		String scoresOutput = output+"/scores";
 		Firebase ref = new Firebase("https://mahout.firebaseio.com");
 		final Set<String> words = Sets.newHashSet(text.toLowerCase().split(" "));
 		ref.child("status").setValue("phase 1");
-		this.preprocess(model+"/filtered", words, filterOutput);
-		this.distributedScore(words,0,filterOutput,model+"/counts",tempOutput,scoresOutput);
+		this.preprocess(model, words, filterOutput);
+		this.countByYear(model,countsOutput);
+		this.distributedScore(words,0,filterOutput,countsOutput,tempOutput,scoresOutput);
 		return 0;
 	}
 	

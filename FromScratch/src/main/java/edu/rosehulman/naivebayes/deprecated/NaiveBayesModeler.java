@@ -1,8 +1,7 @@
-package edu.rosehulman.naivebayes;
+package edu.rosehulman.naivebayes.deprecated;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.URISyntaxException;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -17,7 +16,6 @@ import com.datasalt.pangool.io.Tuple;
 import com.datasalt.pangool.tuplemr.IdentityTupleMapper;
 import com.datasalt.pangool.tuplemr.IdentityTupleReducer;
 import com.datasalt.pangool.tuplemr.TupleMRBuilder;
-import com.datasalt.pangool.tuplemr.TupleMRException;
 import com.datasalt.pangool.tuplemr.TupleMapper;
 import com.datasalt.pangool.tuplemr.TupleReducer;
 import com.datasalt.pangool.tuplemr.mapred.lib.input.TupleTextInputFormat;
@@ -32,9 +30,6 @@ public class NaiveBayesModeler implements Tool, Serializable {
 	static Schema input_schema = new Schema("first schema",
 			Fields.parse("word: string, year: int, count: int, dcount: int"));
 
-	static Schema count_schema = new Schema("count schema",
-			Fields.parse("year: int, count: int"));
-	
 	public static void main(String[] args) throws Exception {
 		ToolRunner.run(new NaiveBayesModeler(), args);
 	}
@@ -45,36 +40,10 @@ public class NaiveBayesModeler implements Tool, Serializable {
 	public Configuration getConf() {
 		return null;
 	}
-	
-	public void countByYear(String model, String countOutput) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
-		Configuration conf = new Configuration();
-		
-		TupleReducer<ITuple, NullWritable> reducer = new TupleReducer<ITuple,NullWritable>() {
-			private static final long serialVersionUID = 7208815953760503728L;
-			public void reduce(ITuple key, Iterable<ITuple> values, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
-				int year = (Integer) key.getInteger("year");
-				int count = 0;
-				for (ITuple tuple : values) {
-					count += (Integer) tuple.getInteger("count");
-				}
-				ITuple outTuple = new Tuple(count_schema);
-				outTuple.set("year",year);
-				outTuple.set("count",count);
-				collector.write(outTuple, NullWritable.get() );
-			}
-		};
-		
-		TupleMRBuilder job = new TupleMRBuilder(conf,"Count");
-		job.addTupleInput(new Path(model),new IdentityTupleMapper());
-		job.addIntermediateSchema(input_schema);
-		job.setGroupByFields("year");
-		job.setTupleOutput(new Path(countOutput), count_schema);
-		job.setTupleReducer(reducer);
-		job.createJob().waitForCompletion(true);
-		job.cleanUpInstanceFiles();
-	}
-	
-	public void filter(String input, String output) throws TupleMRException, IOException, ClassNotFoundException, InterruptedException {
+
+	public int run(String[] args) throws Exception {
+		String input = args[0];
+		String output = args[1];
 		Configuration conf = new Configuration();
 		TupleMRBuilder job = new TupleMRBuilder(conf, "Model Generator");
 		job.addIntermediateSchema(input_schema);
@@ -99,7 +68,7 @@ public class NaiveBayesModeler implements Tool, Serializable {
 					outTuple.set("dcount",dcount);
 					collector.write(outTuple);
 				} catch (Exception e) {
-					// great coding practice right here
+					// do nothing
 				}
 				
 			}
@@ -131,13 +100,6 @@ public class NaiveBayesModeler implements Tool, Serializable {
 		job.setTupleOutput(new Path(output), input_schema);
 		job.createJob().waitForCompletion(true);
 		job.cleanUpInstanceFiles();
-	}
-
-	public int run(String[] args) throws Exception {
-		String input = args[0];
-		String output = args[1];
-		filter(input,output+"/filtered");
-		countByYear(output+"/filtered",output+"/counts");
 		return 0;
 	}
 }
