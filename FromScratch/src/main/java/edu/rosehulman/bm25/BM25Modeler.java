@@ -53,6 +53,13 @@ public class BM25Modeler implements Tool, Serializable {
 		return null;
 	}
 
+	private static final long throwIfNegative(long number, String message){
+		if(number < 0){
+			throw new ArithmeticException(message);
+		}
+		return number;
+	}
+
 	public void wordsByYear(String input, String output) {}
 	
 	public void filterBadRecords(String input, String output) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
@@ -121,8 +128,8 @@ public class BM25Modeler implements Tool, Serializable {
 				int uniqueWords = 0;
 				int totalWords = 0;
 				for (ITuple t : tuples) {
-					uniqueWords += 1;
-					totalWords += (Integer) t.getInteger("count");
+					throwIfNegative(uniqueWords += 1,"Integer Overflow");
+					throwIfNegative(totalWords += (Integer) t.getInteger("count"),"Integer Overflow");
 				}
 				ITuple uniqueOut = new Tuple(words_per_year_schema);
 				uniqueOut.set("year", year); 
@@ -204,7 +211,7 @@ public class BM25Modeler implements Tool, Serializable {
 				int count = 0;
 				for (ITuple t : tuples) {
 					int yearcount = (Integer) t.get("count");
-					count += yearcount;
+					throwIfNegative(count += yearcount,"Integer Overflow");
 				}
 				ITuple outTuple = new Tuple(total_word_count_schema);
 				outTuple.set("word", word);
@@ -264,7 +271,7 @@ public class BM25Modeler implements Tool, Serializable {
 				int total = 0;
 				int count = 0;
 				for (ITuple t : tuples) {
-					total += (Integer) t.get("value");
+					throwIfNegative(total += (Integer) t.get("value"),"Integer Overflow");
 					count++;
 				}
 				double avg = ((double) total) / ((double) count); 

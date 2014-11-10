@@ -15,14 +15,11 @@ import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
 import com.datasalt.pangool.io.Tuple;
 import com.datasalt.pangool.tuplemr.IdentityTupleMapper;
-import com.datasalt.pangool.tuplemr.IdentityTupleReducer;
 import com.datasalt.pangool.tuplemr.MapOnlyJobBuilder;
-import com.datasalt.pangool.tuplemr.OrderBy;
 import com.datasalt.pangool.tuplemr.TupleMRBuilder;
 import com.datasalt.pangool.tuplemr.TupleMRException;
 import com.datasalt.pangool.tuplemr.TupleReducer;
 import com.datasalt.pangool.tuplemr.mapred.MapOnlyMapper;
-import com.datasalt.pangool.tuplemr.mapred.lib.output.TupleTextOutputFormat;
 
 public abstract class AbstractClassifier implements Tool, Serializable {
 
@@ -45,17 +42,12 @@ public abstract class AbstractClassifier implements Tool, Serializable {
 		return null;
 	}
 
-	public static final TupleReducer<ITuple,NullWritable> IDENTITY_REDUCER = new TupleReducer<ITuple,NullWritable>(){
-
-		private static final long serialVersionUID = 1L;
-
-		public void reduce(ITuple key, Iterable<ITuple> tups, TupleMRContext con, Collector col) throws IOException, InterruptedException{
-			for(ITuple tup : tups){
-				col.write(tup,NullWritable.get());
-			}
+	public static final long throwIfNegative(long l, String message){
+		if(l < 0){
+			throw new ArithmeticException(message);
 		}
-		
-	};
+		return l;
+	}
 
 	public static void filter(String model, final Set<String> words, String output) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
 		Configuration conf = new Configuration();

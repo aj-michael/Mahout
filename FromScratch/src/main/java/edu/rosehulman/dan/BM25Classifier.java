@@ -8,6 +8,7 @@ import com.datasalt.pangool.tuplemr.TupleMRBuilder;
 
 public class BM25Classifier extends AbstractClassifier {
 
+	private static final long serialVersionUID = 1L;
 	private final double b;
 	private final double k;
 

@@ -13,7 +13,6 @@ import com.datasalt.pangool.io.Fields;
 import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
 import com.datasalt.pangool.io.Tuple;
-import com.datasalt.pangool.tuplemr.IdentityTupleMapper;
 import com.datasalt.pangool.tuplemr.IdentityTupleReducer;
 import com.datasalt.pangool.tuplemr.TupleMRBuilder;
 import com.datasalt.pangool.tuplemr.TupleMapper;
@@ -32,6 +31,13 @@ public class NaiveBayesModeler implements Tool, Serializable {
 
 	public static void main(String[] args) throws Exception {
 		ToolRunner.run(new NaiveBayesModeler(), args);
+	}
+
+	private static final long throwIfNegative(long number, String message){
+		if(number < 0){
+			throw new ArithmeticException(message);
+		}
+		return number;
 	}
 
 	public void setConf(Configuration conf) {
@@ -83,7 +89,7 @@ public class NaiveBayesModeler implements Tool, Serializable {
 				int count = 0;
 				ITuple outputTuple = null;
 				for (ITuple tuple : tuples) {
-					count += (Integer) tuple.get("count");
+					throwIfNegative(count += (Integer) tuple.get("count"),"Integer Overflow");
 					outputTuple = tuple;
 				}
 				outputTuple.set("count", count);

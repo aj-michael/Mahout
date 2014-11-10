@@ -6,25 +6,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
-import org.apache.hadoop.util.PriorityQueue;
 
 import com.datasalt.pangool.io.Fields;
 import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
 import com.datasalt.pangool.io.Tuple;
 import com.datasalt.pangool.io.TupleFile;
+import com.datasalt.pangool.tuplemr.IdentityTupleReducer;
 import com.datasalt.pangool.tuplemr.TupleMRBuilder;
 import com.datasalt.pangool.tuplemr.TupleMRException;
 import com.datasalt.pangool.tuplemr.TupleMapper;
 import com.datasalt.pangool.tuplemr.TupleReducer;
+import com.datasalt.pangool.tuplemr.mapred.lib.output.TupleTextOutputFormat;
 
 public class KNNClassifier extends AbstractClassifier{
 
@@ -39,7 +38,17 @@ public class KNNClassifier extends AbstractClassifier{
 	public static final Schema DISTANCE_COMPONENT_SCHEMA = new Schema("distance component schema",
 			Fields.parse("year:int,magnitude:double"));
 
+	public static final Schema FOUND_WORD_SCHEMA = new Schema("found word schema",
+			Fields.parse("year:int,word:string"));
+
 	Map<String,Integer> textVector = new HashMap<String,Integer>();
+
+	protected static final Comparator<? super ITuple> DISTANCE_COMPONENT_COMPARATOR = new Comparator<ITuple>(){
+		@Override
+		public int compare(ITuple o1, ITuple o2) {
+			return o1.getDouble("magnitude").compareTo(o2.getDouble("magnitude"));
+		}		
+	};
 
 	public static void calculateMagnitudesSquared(Path model, Path magnitudes, Configuration conf) throws IOException, TupleMRException, ClassNotFoundException, InterruptedException{
 		FileSystem f = FileSystem.get(conf);
@@ -56,9 +65,9 @@ public class KNNClassifier extends AbstractClassifier{
 			@Override
 			public void map(ITuple tuple, NullWritable arg1, TupleMRContext con, Collector col) throws IOException, InterruptedException {
 				long count = tuple.getInteger("count");	// TODO use longs instead
-				int year = tuple.getInteger("year");
-				val.set("year",year);
-				val.set("magSquared",count*count);
+				val.set("year",tuple.get("year"));
+				val.set("magSquared",throwIfNegative(count*count,"long oveflow"));
+				//System.out.println("Calculate Magnitude Mapper: "+val);
 				col.write(val);
 			}
 		});
@@ -75,11 +84,11 @@ public class KNNClassifier extends AbstractClassifier{
 			public void reduce(ITuple key,Iterable<ITuple> tuples, TupleMRContext con, Collector col) throws IOException, InterruptedException{
 				long totalMagSquared = 0;
 				for(ITuple tuple : tuples){
-					totalMagSquared += tuple.getLong("magSquared");
+					throwIfNegative(totalMagSquared += tuple.getLong("magSquared"),"long overflow");
 				}
 				val.set("magSquared",totalMagSquared);
 				val.set("year",key.getInteger("year"));
-				//System.out.println("GET MAGNITUDE SQUARED: "+val.toString());
+				//System.out.println("Calculate Magnitude Squared Reducer: "+val.toString());
 				col.write(val,NullWritable.get());
 			}
 		};
@@ -126,7 +135,7 @@ public class KNNClassifier extends AbstractClassifier{
 				val.set("year",year);
 				val.set("word", word);
 				val.set("magnitude", ((double)count) / mags.get(year));
-				//System.out.println("normalize model: "+val.toString());
+				//System.out.println("normalize model mapper: "+val.toString());
 				col.write(val);
 			}
 		});
@@ -134,7 +143,7 @@ public class KNNClassifier extends AbstractClassifier{
 		normalizeJob.addIntermediateSchema(TERM_MAGNITUDE_SCHEMA);
 		normalizeJob.setGroupByFields("year");
 		normalizeJob.setTupleOutput(normalizedModel,TERM_MAGNITUDE_SCHEMA);
-		normalizeJob.setTupleReducer(IDENTITY_REDUCER);
+		normalizeJob.setTupleReducer(new IdentityTupleReducer());
 		boolean worked = normalizeJob.createJob().waitForCompletion(true);
 		normalizeJob.cleanUpInstanceFiles();
 		if(!worked){
@@ -144,9 +153,9 @@ public class KNNClassifier extends AbstractClassifier{
 
 	public static Map<String,Double> normalizeTextVector(Map<String,Integer> textVector){
 		Map<String,Double> normalizedMap = new HashMap<String,Double>(textVector.size());
-		int lengthSquared = 0;
+		long lengthSquared = 0;
 		for(Integer count : textVector.values()){
-			lengthSquared = count << 1;
+			throwIfNegative(lengthSquared += count * count,"long overflow");
 		}
 		double length = Math.sqrt(lengthSquared);
 		for(Map.Entry<String,Integer> ent : textVector.entrySet()){
@@ -157,12 +166,16 @@ public class KNNClassifier extends AbstractClassifier{
 
 	public static void calculateDistances(Path normalizedModel,Path result,Map<String,Integer> textVector,Configuration conf) throws TupleMRException, ClassNotFoundException, IOException, InterruptedException, URISyntaxException{
 		final Map<String,Double> normalizedTextVector = normalizeTextVector(textVector);
+		/*for(Map.Entry<String, Double> ent : normalizedTextVector.entrySet()){
+			System.out.println(ent.getKey() + ": "+ent.getValue());
+		}*/
 		TupleMRBuilder builder = new TupleMRBuilder(conf);
 		builder.addTupleInput(normalizedModel,TERM_MAGNITUDE_SCHEMA,new TupleMapper<ITuple,NullWritable>(){
 
 			private static final long serialVersionUID = 1L;
 
 			Tuple val = new Tuple(DISTANCE_COMPONENT_SCHEMA);
+			Tuple foundWord = new Tuple(FOUND_WORD_SCHEMA);
 
 			@Override
 			public void map(ITuple tuple, NullWritable n, TupleMRContext con, Collector col) throws IOException, InterruptedException {
@@ -171,16 +184,22 @@ public class KNNClassifier extends AbstractClassifier{
 				double distCompSquared;
 				if(normalizedTextVector.containsKey(word)){
 					distCompSquared = Math.pow(tuple.getDouble("magnitude") - normalizedTextVector.get(word),2);
+					foundWord.set("year",year);
+					foundWord.set("word",word);
+					//System.out.println("Calculate Distance Mapper: "+foundWord);
+					col.write(foundWord);
 				} else {
 					distCompSquared = Math.pow(tuple.getDouble("magnitude"),2);
 				}
 				val.set("year",year);
 				val.set("magnitude",distCompSquared);
+				//System.out.println("Calculate Distance Mapper: "+val);
 				col.write(val);
 			}
 		});
-		TupleReducer<ITuple,NullWritable> distanceAdder = new TupleReducer<ITuple,NullWritable>(){
 
+		TupleReducer<ITuple,NullWritable> distanceCombiner = new TupleReducer<ITuple,NullWritable>(){
+	
 			private static final long serialVersionUID = 1L;
 
 			Tuple val = new Tuple(DISTANCE_COMPONENT_SCHEMA);
@@ -188,25 +207,74 @@ public class KNNClassifier extends AbstractClassifier{
 			@Override
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext con, Collector col) throws IOException, InterruptedException{
 				double distSquared = 0;
+				int year = key.getInteger("year");
 				for(ITuple tup : tuples){
-					distSquared += tup.getDouble("magnitude");
+					if(tup.getSchema().equals(DISTANCE_COMPONENT_SCHEMA)){
+						distSquared += tup.getDouble("magnitude");
+					} else {
+						col.write(tup,NullWritable.get());
+					}
 				}
 				val.set("magnitude",distSquared);
-				val.set("year",key.get("year"));
-				//System.out.println("calculate distances: "+val.toString());
+				val.set("year",year);
+				//System.out.println("Calculate Distance Combiner: "+val);
 				col.write(val,NullWritable.get());
 			}
+		
 		};
-		builder.setTupleReducer(distanceAdder);
-		builder.setTupleCombiner(distanceAdder);
+
+		TupleReducer<ITuple,NullWritable> distanceReducer = new TupleReducer<ITuple,NullWritable>(){
+
+			private static final long serialVersionUID = 1L;
+
+
+			ArrayList<ITuple> results = new ArrayList<ITuple>();
+
+			@Override
+			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext con, Collector col){
+				Map<String,Double> localNormalizedTextVector = new HashMap<String,Double>(normalizedTextVector);
+				double distSquared = 0;
+				int year = key.getInteger("year");
+				for(ITuple tup : tuples){
+					if(tup.getSchema().equals(DISTANCE_COMPONENT_SCHEMA)){
+						distSquared += tup.getDouble("magnitude");
+					} else {
+						localNormalizedTextVector.remove(tup.getString("word")); // normalizedTextVector is copied in mapreduce jobs
+					}
+				}
+				for(Map.Entry<String, Double> ent : localNormalizedTextVector.entrySet()){
+					distSquared += Math.pow(ent.getValue(),2);
+				}
+				Tuple val = new Tuple(DISTANCE_COMPONENT_SCHEMA);
+				val.set("magnitude",distSquared);
+				val.set("year",year);
+				//System.out.println(val);
+				results.add(val);
+			}
+
+			@Override
+			public void cleanup(TupleMRContext con, Collector col) throws IOException, InterruptedException{
+				ITuple[] arr = results.toArray(new ITuple[results.size()]); // list.sort does not work!! Neither does priority queues
+				Arrays.sort(arr,DISTANCE_COMPONENT_COMPARATOR);
+				for(ITuple tup : arr){
+					//System.out.println("Calculate Distance Reducer: "+tup);
+					col.write(tup,NullWritable.get());
+				}
+			}
+		};
+
+		builder.setTupleReducer(distanceReducer);
+		builder.setTupleCombiner(distanceCombiner);
+		builder.setOutput(result,new TupleTextOutputFormat(DISTANCE_COMPONENT_SCHEMA,false,'\t','"','\\'),ITuple.class,NullWritable.class);
 		builder.addIntermediateSchema(DISTANCE_COMPONENT_SCHEMA);
-		builder.setTupleOutput(result,DISTANCE_COMPONENT_SCHEMA);
+		builder.addIntermediateSchema(FOUND_WORD_SCHEMA);
 		builder.setGroupByFields("year");
 		boolean worked = builder.createJob().waitForCompletion(true);
 		builder.cleanUpInstanceFiles();
 		if(!worked){
 			throw new TupleMRException("Job Failed");
 		}
+		
 	}
 
 	@Override
@@ -233,27 +301,6 @@ public class KNNClassifier extends AbstractClassifier{
 			}
 		}
 		calculateDistances(normalizedModel,results,textVector,conf);
-		FileSystem f = FileSystem.get(conf);
-		List<ITuple> answers = new ArrayList<ITuple>();
-		for(FileStatus stat : f.listStatus(results)){
-			if(stat.isDirectory() || stat.getLen() == 0){
-				continue;
-			}
-			Path file = stat.getPath();
-			TupleFile.Reader resultReader = new TupleFile.Reader(f, conf,file);
-			Tuple tuple = new Tuple(DISTANCE_COMPONENT_SCHEMA);
-			while(resultReader.next(tuple)){
-				answers.add(tuple.deepCopy());
-			}
-			resultReader.close();
-		}
-		answers.sort(new Comparator<ITuple>(){
-			@Override
-			public int compare(ITuple o1, ITuple o2) {
-				return o1.getDouble("magnitude").compareTo(o2.getDouble("magnitude"));
-			}		
-		});
-		System.out.println(Arrays.toString(answers.toArray()));
 		return 0;
 	}
 
