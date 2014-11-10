@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <!-- saved from url=(0040)http://getbootstrap.com/examples/cover/# -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +11,8 @@
     <meta name="author" content="">
     <link rel="icon" href="http://www.clipartlord.com/wp-content/uploads/2013/04/elephant8.png">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="loading.css" />
     <script src="https://cdn.firebase.com/js/client/2.0.1/firebase.js"></script>
     <title>The Large NGram Collider</title>
 
@@ -31,6 +35,8 @@
     <?php
       if ($_GET['submitted'] == 1) {
         $url = "hadoop26.csse.rose-hulman.edu:8002";
+        $phrase = $_GET['words'];
+
         $data = array("phrase" => $_GET['words'], "algorithm" => $_GET['alg']);
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -54,11 +60,11 @@
     });
     </script>
 
-        <script src="./scripts/fb.js"></script>
   </head>
 
   <body>
     
+        <script src="./scripts/fb.js"></script>
     </script>
     <div id="slideshow">
       <img src="skyline.jpg" class="bgM"/>
@@ -90,6 +96,30 @@
           <div class="inner cover">
        <!--     <h1 class="cover-heading">Type a phrase:</h1>
            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p> -->
+            
+            <div class="container dark-matter" id="loading">
+
+            <h1>Reticulating Splines</h1> 
+              <div id="circularG">
+              <div id="circularG_1" class="circularG">
+              </div>
+              <div id="circularG_2" class="circularG">
+              </div>
+              <div id="circularG_3" class="circularG">
+              </div>
+              <div id="circularG_4" class="circularG">
+              </div>
+              <div id="circularG_5" class="circularG">
+              </div>
+              <div id="circularG_6" class="circularG">
+              </div>
+              <div id="circularG_7" class="circularG">
+              </div>
+              <div id="circularG_8" class="circularG">
+              </div>
+              </div>
+            </div>
+
             <div id="resultDiv" class="dark-matter">
               <p id="queryString"></p><br />
               <h1 id="firstResult"></h1>
@@ -105,13 +135,15 @@
               <p class="lead">Naive Bayes</p>
               <input type="radio" style="margin-right:30px;" name="alg" value="NBayes" />
               <p class="lead">Okapi BM25</p>
-              <input type="radio" name="alg" value="BM25" />
+              <input type="radio" name="alg" value="BM25" checked/><br />
+              <p class="lead">Normalized K-Nearest Neighbor</p>
+              <input type="radio" name="alg" value="knn" />
             </form>
           </div>
 
           <div class="mastfoot">
             <div class="inner">
-              <p>&copy Jacob Delio Carducci, 2014.</p>
+              <p>&copy Man Hanson LLC., 2014.</p>
             </div>
           </div>
 
