@@ -39,13 +39,6 @@ public class NaiveBayesModeler implements Tool, Serializable {
 		ToolRunner.run(new NaiveBayesModeler(), args);
 	}
 
-	private static final long throwIfNegative(long number, String message){
-		if(number < 0){
-			throw new ArithmeticException(message);
-		}
-		return number;
-	}
-
 	public void setConf(Configuration conf) {
 	}
 
@@ -62,7 +55,7 @@ public class NaiveBayesModeler implements Tool, Serializable {
 				int year = (Integer) key.getInteger("year");
 				int count = 0;
 				for (ITuple tuple : values) {
-					throwIfNegative(count += (Integer) tuple.getInteger("count"),"Integer Overflow");
+					count += (Integer) tuple.getInteger("count");
 				}
 				ITuple outTuple = new Tuple(count_schema);
 				outTuple.set("year",year);
@@ -121,7 +114,7 @@ public class NaiveBayesModeler implements Tool, Serializable {
 				int count = 0;
 				ITuple outputTuple = null;
 				for (ITuple tuple : tuples) {
-					throwIfNegative(count += (Integer) tuple.get("count"),"Integer Overflow");
+					count += (Integer) tuple.get("count");
 					outputTuple = tuple;
 				}
 				outputTuple.set("count", count);

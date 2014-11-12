@@ -45,7 +45,6 @@ public class KNNClassifier extends AbstractClassifier{
 	Map<String,Integer> textVector = new HashMap<String,Integer>();
 
 	protected static final Comparator<? super ITuple> DISTANCE_COMPONENT_COMPARATOR = new Comparator<ITuple>(){
-		@Override
 		public int compare(ITuple o1, ITuple o2) {
 			return o1.getDouble("magnitude").compareTo(o2.getDouble("magnitude"));
 		}		
