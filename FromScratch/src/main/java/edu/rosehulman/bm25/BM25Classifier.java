@@ -122,7 +122,7 @@ public class BM25Classifier implements Tool, Serializable {
 		job.createJob().waitForCompletion(true);
 		job.cleanUpInstanceFiles();
 
-		ref.child("status").setValue("phase 4");
+		//ref.child("status").setValue("phase 4");
 		
 		TupleReducer<ITuple,NullWritable> scorer = new TupleReducer<ITuple,NullWritable>() {
 			private static final long serialVersionUID = 2046753994886472655L;
@@ -162,7 +162,7 @@ public class BM25Classifier implements Tool, Serializable {
 		score.createJob().waitForCompletion(true);
 		score.cleanUpInstanceFiles();
 		
-		ref.child("status").setValue("phase 5");
+		//ref.child("status").setValue("phase 5");
 		
 		TupleMapper<ITuple,NullWritable> firebaseMapper = new TupleMapper<ITuple,NullWritable>() {
 			private static final long serialVersionUID = 3432835275171567372L;
@@ -193,8 +193,8 @@ public class BM25Classifier implements Tool, Serializable {
 					out.set("score",t.get("score"));
 					collector.write(out, NullWritable.get());
 				}
-				Firebase ref = new Firebase("https://mahout.firebaseio.com");
-				ref.child("results").setValue(map);					
+				//Firebase ref = new Firebase("https://mahout.firebaseio.com");
+				//ref.child("results").setValue(map);					
 			}
 		};
 		
@@ -217,14 +217,14 @@ public class BM25Classifier implements Tool, Serializable {
 		double b = Double.parseDouble(args[4]);
 		final Set<String> words = Sets.newHashSet(text.toLowerCase().split(" "));
 		Firebase ref = new Firebase("https://mahout.firebaseio.com");
-		ref.child("status").setValue("phase 1");
+		//ref.child("status").setValue("phase 1");
 		filterFrequencies(words,model+"/filtered",output+"/filteredfrequencies");
-		ref.child("status").setValue("phase 2");
+		//ref.child("status").setValue("phase 2");
 		filterIDFs(words,model+"/idf",output+"/filteredidf");
-		ref.child("status").setValue("phase 3");
+		//ref.child("status").setValue("phase 3");
 		double averageYearCount = readAverageYearCount(model+"/averageyearcount");
 		distributedScore(ref,words, k1, b, output+"/filteredfrequencies",output+"/filteredidf",output+"/unsorted",model+"/wordsperyear/total",output+"/scores", averageYearCount);
-		ref.child("status").setValue("complete");
+		//ref.child("status").setValue("complete");
 		return 0;
 	}
 	

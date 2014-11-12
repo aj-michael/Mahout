@@ -127,7 +127,7 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 		sort.createJob().waitForCompletion(true);
 		sort.cleanUpInstanceFiles();
 	}
-	
+
 	public int run(String[] args) throws Exception {
 		String model = args[0];
 		String text = args[1];
@@ -137,7 +137,7 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 		String scoresOutput = output+"/scores";
 		Firebase ref = new Firebase("https://mahout.firebaseio.com");
 		final Set<String> words = Sets.newHashSet(text.toLowerCase().split(" "));
-		ref.child("status").setValue("phase 1");
+		//ref.child("status").setValue("phase 1");
 		this.preprocess(model+"/filtered", words, filterOutput);
 		this.distributedScore(words,0,filterOutput,model+"/counts",tempOutput,scoresOutput);
 		return 0;

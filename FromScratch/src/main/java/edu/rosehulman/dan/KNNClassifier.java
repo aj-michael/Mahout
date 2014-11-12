@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
@@ -277,16 +278,7 @@ public class KNNClassifier extends AbstractClassifier{
 		
 	}
 
-	@Override
-	public int run(String[] args) throws Exception {
-		if(args.length != 4){
-			System.out.println("usage: [text] [model] [workspace] [results]");
-			return 0;
-		}
-		String text = args[0];
-		Path model = new Path(args[1]);
-		Path work = new Path(args[2]);
-		Path results = new Path(args[3]);
+	static int classify(Path model, Path work, Path results, String text, Configuration conf) throws Exception {
 		Path magnitudesSquared = new Path(work,"magnitudes-squared");
 		Path normalizedModel = new Path(work,"normalized-model");
 		calculateMagnitudesSquared(model,magnitudesSquared,conf);
@@ -301,7 +293,20 @@ public class KNNClassifier extends AbstractClassifier{
 			}
 		}
 		calculateDistances(normalizedModel,results,textVector,conf);
-		return 0;
+		return 0;	
+	}
+
+	@Override
+	public int run(String[] args) throws Exception {
+		if(args.length != 4){
+			System.out.println("usage: [text] [model] [workspace] [results]");
+			return 0;
+		}
+		String text = args[0];
+		Path model = new Path(args[1]);
+		Path work = new Path(args[2]);
+		Path results = new Path(args[3]);
+		return classify(model,work,results,text,new Configuration());
 	}
 
 	public static void main(String[] args) throws Exception{

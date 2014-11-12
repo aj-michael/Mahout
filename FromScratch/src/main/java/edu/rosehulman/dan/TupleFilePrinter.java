@@ -12,7 +12,7 @@ import com.datasalt.pangool.io.TupleFile;
 
 public class TupleFilePrinter {
 
-	public void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException{
 		Path p = new Path(args[0]);
 		Configuration conf = new Configuration();
 		FileSystem f = FileSystem.get(conf);
