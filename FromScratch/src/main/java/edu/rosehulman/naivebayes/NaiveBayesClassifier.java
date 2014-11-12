@@ -46,13 +46,6 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 		return null;
 	}
 
-	private static final long throwIfNegative(long number, String message){
-		if(number < 0){
-			throw new ArithmeticException(message);
-		}
-		return number;
-	}
-
 	public void preprocess(String model, final Set<String> words, String filterOutput) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
 		Configuration conf = new Configuration();
 		MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable> mapper = new MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable>() {
@@ -87,7 +80,7 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 					if (tuple.getSchema().getName().equals("input schema")) {
 						int wordcount = (Integer) tuple.get("count") + 1;
 						score += Math.log(wordcount);
-						throwIfNegative(words += 1,"Integer Overflow");
+						words += 1;
 					} else if (tuple.getSchema().getName().equals("count schema")) {
 						yeartotalwords = (Integer) tuple.get("count") + 1;
 					}
