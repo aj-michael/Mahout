@@ -31,21 +31,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <?php
-      if ($_GET['submitted'] == 1) {
-        $url = "hadoop26.csse.rose-hulman.edu:8002";
-        $phrase = $_GET['words'];
-
-        $data = array("phrase" => $_GET['words'], "algorithm" => $_GET['alg']);
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-        curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($data));
-
-        $response = curl_exec($ch);
-      }
-    ?>
+    
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.cycle.all.2.74.js"></script>
     <script>
@@ -60,12 +46,36 @@
     });
     </script>
 
+    <?php
+      if (isset($_POST['submitted'])) {
+        $url = "hadoop26.csse.rose-hulman.edu:8002";
+        $phrase = 'something went wrong...';
+        if ($_FILES['userfile']['name'] != '') {
+          if ($_FILES['userfile']['error'] == UPLOAD_ERR_OK               //checks for errors
+                  && is_uploaded_file($_FILES['userfile']['tmp_name'])) { //checks that file is uploaded
+            $phrase = file_get_contents($_FILES['userfile']['tmp_name']); 
+          } else {
+            echo "File upload didn't work :(((((<br/>";
+            echo "Error: " . $_FILES['userfile']['error'];
+          }
+        } else {
+          $phrase = $_POST['words'];
+        } 
+
+        echo $phrase;
+        $data = array("phrase" => $phrase, "algorithm" => $_POST['alg']);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+        curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($data));
+
+     //   $response = curl_exec($ch);
+      }
+    ?>
   </head>
 
   <body>
-    
-        <script src="./scripts/fb.js"></script>
-    </script>
+    <script src="./scripts/fb.js"></script>
     <div id="slideshow">
       <img src="skyline.jpg" class="bgM"/>
       <img src="skyline2.jpg" class="bgM"/>
@@ -128,10 +138,15 @@
               <div id="fireworks"></div>
             </div>
             
-            <form id="initialForm" class="dark-matter" action="index.php" method="GET">
+            <form enctype="multipart/form-data" id="initialForm" class="dark-matter" action="index.php" method="POST">
+              <!-- MAX_FILE_SIZE must precede the file input field -->
+              <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
+              <!-- Name of input element determines name in $_FILES array -->
+              <input type="file" name="userfile" />
+
               <input type="text" name="words" value="The quick brown fox jumps over the lazy dog" onfocus="this.value = '';"/>
               <input type="hidden" name='submitted' value="1" />
-              <input type="submit" value="Go!" class="button"/><br />
+              <input id="submitbutton" type="submit" value="Go!" class="button"/><br />
               <p class="lead">Naive Bayes</p>
               <input type="radio" style="margin-right:30px;" name="alg" value="NBayes" />
               <p class="lead">Okapi BM25</p>
