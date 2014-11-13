@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_testdir
+
+override_dh_auto_build:
+	dh_testdir
+	# Add here commands to compile the package.
+	$(MAKE) APACHE_USER=www-data DESTDIR=$(CURDIR)/debian/ganglia-webfrontend
+
+override_dh_auto_clean:
+	dh_testdir
+	dh_testroot
+	$(MAKE) clean
+
+override_dh_auto_install:
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	# Add here commands to install the package into debian/ganglia.
+	$(MAKE) install APACHE_USER=www-data DESTDIR=$(CURDIR)/debian/ganglia-webfrontend
+	# Install webfrontend
+	mkdir -p debian/ganglia-webfrontend/etc/apache2/conf.d/
+	cp -f debian/apache.conf \
+		 debian/ganglia-webfrontend/etc/ganglia-webfrontend
+	cp -f debian/conf_debian.php \
+		 debian/ganglia-webfrontend/usr/share/ganglia-webfrontend/conf.php
