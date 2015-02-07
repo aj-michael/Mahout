@@ -32,10 +32,10 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 	private static final long serialVersionUID = -2375691330604388212L;
 
 	static Schema input_schema = new Schema("input schema",
-			Fields.parse("word: string, year: int, count: int, dcount: int"));	
+			Fields.parse("word: string, year: int, count: long, dcount: long"));	
 	
 	static Schema count_schema = new Schema("count schema",
-			Fields.parse("year: int, count: int"));
+			Fields.parse("year: int, count: long"));
 	
 	static Schema score_schema = new Schema("score schema",
 			Fields.parse("year: int, score: double"));
@@ -73,16 +73,16 @@ public class NaiveBayesClassifier implements Tool, Serializable {
 			private static final long serialVersionUID = -7293758282851758882L;
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
 				int year = (Integer) key.get("year");
-				int yeartotalwords = 0;
+				long yeartotalwords = 0;
 				double score = 0;
-				int words = 0;
+				long words = 0;
 				for (ITuple tuple : tuples) {
 					if (tuple.getSchema().getName().equals("input schema")) {
-						int wordcount = (Integer) tuple.get("count") + 1;
+						long wordcount = tuple.getLong("count") + 1;
 						score += Math.log(wordcount);
 						words += 1;
 					} else if (tuple.getSchema().getName().equals("count schema")) {
-						yeartotalwords = (Integer) tuple.get("count") + 1;
+						yeartotalwords = tuple.getLong("count") + 1;
 					}
 				}
 

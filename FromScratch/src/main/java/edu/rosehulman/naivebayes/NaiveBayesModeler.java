@@ -30,10 +30,10 @@ public class NaiveBayesModeler implements Tool, Serializable {
 			Fields.parse("line: string"));
 	
 	static Schema input_schema = new Schema("first schema",
-			Fields.parse("word: string, year: int, count: int, dcount: int"));
+			Fields.parse("word: string, year: int, count: long, dcount: long"));
 
 	static Schema count_schema = new Schema("count schema",
-			Fields.parse("year: int, count: int"));
+			Fields.parse("year: int, count: long"));
 	
 	public static void main(String[] args) throws Exception {
 		ToolRunner.run(new NaiveBayesModeler(), args);
@@ -53,9 +53,9 @@ public class NaiveBayesModeler implements Tool, Serializable {
 			private static final long serialVersionUID = 7208815953760503728L;
 			public void reduce(ITuple key, Iterable<ITuple> values, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
 				int year = (Integer) key.getInteger("year");
-				int count = 0;
+				long count = 0;
 				for (ITuple tuple : values) {
-					count += (Integer) tuple.getInteger("count");
+					count += tuple.getLong("count");
 				}
 				ITuple outTuple = new Tuple(count_schema);
 				outTuple.set("year",year);
@@ -90,8 +90,8 @@ public class NaiveBayesModeler implements Tool, Serializable {
 					String[] tokens = line.split("\t");
 					String word = tokens[0];
 					int year = Integer.parseInt(tokens[1]);
-					int count = Integer.parseInt(tokens[2]);
-					int dcount = Integer.parseInt(tokens[3]);
+					long count = Long.parseLong(tokens[2]);
+					long dcount = Long.parseLong(tokens[3]);
 					ITuple outTuple = new Tuple(input_schema);
 					outTuple.set("word", word);
 					outTuple.set("year", year);

@@ -26,6 +26,11 @@
     	<artifactId>firebase-client-android</artifactId>
     	<version>2.0.0</version>
     </dependency>
+    <dependency>
+    	<groupId>com.google.guava</groupId>
+    	<artifactId>guava</artifactId>
+    	<version>15.0</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

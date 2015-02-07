@@ -15,7 +15,7 @@ public class Analyzer {
 	
 	public static final Path KNN_MODEL = new Path("ngrams/BM25model/filtered");
 	public static final Path KNN_WORK = new Path("knnworkspace");
-	public static final Path BAYES_MODEL = new Path("realoutput");
+	public static final Path BAYES_MODEL = new Path("ngrams/NBModel");
 	public static final Path BM25_MODEL = new Path("ngrams/BM25model");
 	public static final Path RESULTS = new Path("analysis/results");
 

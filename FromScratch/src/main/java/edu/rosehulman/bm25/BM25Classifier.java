@@ -1,5 +1,10 @@
 package edu.rosehulman.bm25;
 
+import static edu.rosehulman.bm25.BM25Modeler.IDF_schema;
+import static edu.rosehulman.bm25.BM25Modeler.input_schema;
+import static edu.rosehulman.bm25.BM25Modeler.readAverageYearCount;
+import static edu.rosehulman.bm25.BM25Modeler.words_per_year_schema;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
@@ -18,7 +23,6 @@ import com.datasalt.pangool.io.ITuple;
 import com.datasalt.pangool.io.Schema;
 import com.datasalt.pangool.io.Tuple;
 import com.datasalt.pangool.tuplemr.IdentityTupleMapper;
-import com.datasalt.pangool.tuplemr.IdentityTupleReducer;
 import com.datasalt.pangool.tuplemr.MapOnlyJobBuilder;
 import com.datasalt.pangool.tuplemr.OrderBy;
 import com.datasalt.pangool.tuplemr.TupleMRBuilder;
@@ -32,13 +36,11 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
-import static edu.rosehulman.bm25.BM25Modeler.*;
-
 public class BM25Classifier implements Tool, Serializable {
 
 	private static final long serialVersionUID = -7355240271344556170L;
 
-	static Schema joined_schema = new Schema("joined schema",Fields.parse("word: string, year: int, count: int, idf: double"));
+	static Schema joined_schema = new Schema("joined schema",Fields.parse("word: string, year: int, count: long, idf: double"));
 	static Schema score_schema = new Schema("score schema",Fields.parse("year: int, score: double"));
 	static Schema firebase_schema = new Schema("firebase schema",Fields.parse("year: int, score: double, zero: int"));
 
@@ -98,7 +100,7 @@ public class BM25Classifier implements Tool, Serializable {
 					if (t.getSchema().getName().equals("input schema")) {
 						intuples.add(t);
 					} else if (t.getSchema().getName().equals("IDF schema")) {
-						idf = (Double) t.get("idf");
+						idf = t.getDouble("idf");
 					}
 				}
 				for (ITuple t : intuples) {
@@ -130,18 +132,18 @@ public class BM25Classifier implements Tool, Serializable {
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
 				int year = (Integer) key.get("year");
 				double score = 0;
-				int totalwords = 0;
+				long totalwords = 0;
 				List<ITuple> cached = Lists.newArrayList();
 				for (ITuple t : tuples) {
 					if (t.getSchema().getName().equals("words per year schema")) {
-						totalwords = (Integer) t.get("count");
+						totalwords = t.getLong("count");
 					} else {
 						cached.add(t);
 					}
 				}
 				for (ITuple t : cached) {
 					double idf = (Double) t.get("idf");
-					int freq = (Integer) t.get("count");
+					long freq = t.getLong("count");
 					score += idf * freq * (k1 + 1) / (freq + k1 * (1 - b + b * ((double)totalwords) / ((double)averageYearCount)));
 				}
 				ITuple out = new Tuple(score_schema);
@@ -183,13 +185,13 @@ public class BM25Classifier implements Tool, Serializable {
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
 				int rank = 1;
 				Map<Integer,Integer> map = Maps.newHashMap();
-				int year = 0;
+				int year;
 				for (ITuple t : tuples) {
 					year = (Integer) t.get("year");
-					map.put(rank, (Integer)t.get("year"));
+					map.put(rank,year);
 					rank++;
 					ITuple out = new Tuple(score_schema);
-					out.set("year", t.get("year"));
+					out.set("year", year);
 					out.set("score",t.get("score"));
 					collector.write(out, NullWritable.get());
 				}

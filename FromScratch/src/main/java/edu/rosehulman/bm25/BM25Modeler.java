@@ -34,14 +34,14 @@ public class BM25Modeler implements Tool, Serializable {
 	private static final long serialVersionUID = 8730911456123262901L;
 	
 	static Schema line_schema = new Schema("line schema",Fields.parse("line: string"));
-	static Schema number_schema = new Schema("number schema",Fields.parse("value: int"));
+	static Schema number_schema = new Schema("number schema",Fields.parse("value: long"));
 	static Schema double_schema = new Schema("double schema",Fields.parse("value: double"));
-	static Schema input_schema = new Schema("input schema",Fields.parse("word: string, year: int, count: int"));
-	static Schema years_per_word_schema = new Schema("years per word schema",Fields.parse("word: string, count: int"));
-	static Schema words_per_year_schema = new Schema("words per year schema",Fields.parse("year: int, count: int"));
-	static Schema total_word_count_schema = new Schema("total word count schema",Fields.parse("word: string, count: int"));
+	static Schema input_schema = new Schema("input schema",Fields.parse("word: string, year: int, count: long"));
+	static Schema years_per_word_schema = new Schema("years per word schema",Fields.parse("word: string, count: long"));
+	static Schema words_per_year_schema = new Schema("words per year schema",Fields.parse("year: int, count: long"));
+	static Schema total_word_count_schema = new Schema("total word count schema",Fields.parse("word: string, count: long"));
 	static Schema IDF_schema = new Schema("IDF schema",Fields.parse("word: string, idf: double"));
-	static Schema one_reducer_number_schema = new Schema("one reducer number schema",Fields.parse("value: int, reducer: int"));
+	static Schema one_reducer_number_schema = new Schema("one reducer number schema",Fields.parse("value: long, reducer: int"));
 
 	public static void main(String[] args) throws Exception {
 		ToolRunner.run(new BM25Modeler(), args);
@@ -53,15 +53,6 @@ public class BM25Modeler implements Tool, Serializable {
 		return null;
 	}
 
-	private static final long throwIfNegative(long number, String message){
-		if(number < 0){
-			throw new ArithmeticException(message);
-		}
-		return number;
-	}
-
-	public void wordsByYear(String input, String output) {}
-	
 	public void filterBadRecords(String input, String output) throws ClassNotFoundException, IOException, InterruptedException, TupleMRException, URISyntaxException {
 		Configuration conf = new Configuration();
 		MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable> mapper = new MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable>(){
@@ -74,13 +65,14 @@ public class BM25Modeler implements Tool, Serializable {
 					String[] tokens = line.split("\t");
 					String word = tokens[0];
 					int year = Integer.parseInt(tokens[1]);
-					int count = Integer.parseInt(tokens[2]);
+					long count = Long.parseLong(tokens[2]);
 					ITuple outTuple = new Tuple(input_schema);
 					outTuple.set("word",word);
 					outTuple.set("year", year);
 					outTuple.set("count",count);
 					context.write(outTuple,NullWritable.get());
 				} catch (Exception e) {
+					e.printStackTrace();
 					// flawless coding practice right here
 				}
 			}
@@ -99,7 +91,7 @@ public class BM25Modeler implements Tool, Serializable {
 		TupleReducer<ITuple,NullWritable> reducer = new TupleReducer<ITuple,NullWritable>() {
 			private static final long serialVersionUID = 5717147519795618810L;
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
-				int count = 0;
+				long count = 0;
 				for (ITuple t : tuples) {
 					count++;
 				}
@@ -125,11 +117,11 @@ public class BM25Modeler implements Tool, Serializable {
 			private static final long serialVersionUID = -8360227290180720239L;
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
 				int year = (Integer) key.get("year");
-				int uniqueWords = 0;
-				int totalWords = 0;
+				long uniqueWords = 0;
+				long totalWords = 0;
 				for (ITuple t : tuples) {
-					throwIfNegative(uniqueWords += 1,"Integer Overflow");
-					throwIfNegative(totalWords += (Integer) t.getInteger("count"),"Integer Overflow");
+					uniqueWords += 1;
+					totalWords += t.getLong("count");
 				}
 				ITuple uniqueOut = new Tuple(words_per_year_schema);
 				uniqueOut.set("year", year); 
@@ -169,7 +161,7 @@ public class BM25Modeler implements Tool, Serializable {
 			private static final long serialVersionUID = -5654351407813197875L;
 			@Override
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
-				int count = 0;
+				long count = 0;
 				for (ITuple t : tuples) {
 					count++;
 				}
@@ -200,7 +192,7 @@ public class BM25Modeler implements Tool, Serializable {
 		}
 		return 0;
 	}
-	
+
 	public void totalWordCount(String input, String output) throws TupleMRException, ClassNotFoundException, IOException, InterruptedException {
 		Configuration conf = new Configuration();
 		TupleReducer<ITuple,NullWritable> reducer = new TupleReducer<ITuple,NullWritable>() {
@@ -208,10 +200,10 @@ public class BM25Modeler implements Tool, Serializable {
 			@Override
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
 				String word = key.get("word").toString();
-				int count = 0;
+				long count = 0;
 				for (ITuple t : tuples) {
-					int yearcount = (Integer) t.get("count");
-					throwIfNegative(count += yearcount,"Integer Overflow");
+					long yearcount = t.getLong("count");
+					count += yearcount;
 				}
 				ITuple outTuple = new Tuple(total_word_count_schema);
 				outTuple.set("word", word);
@@ -228,14 +220,14 @@ public class BM25Modeler implements Tool, Serializable {
 		job.createJob().waitForCompletion(true);
 		job.cleanUpInstanceFiles();
 	}
-	
+
 	public void inverseDocumentFrequency(String input, String output, final int yearcount) throws IOException, ClassNotFoundException, InterruptedException, TupleMRException, URISyntaxException {
 		Configuration conf = new Configuration();
 		MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable> mapper = new MapOnlyMapper<ITuple,NullWritable,ITuple,NullWritable>() {
 			private static final long serialVersionUID = -3994149355198862871L;
 			@Override
 			public void map(ITuple key, NullWritable value, Context context) throws IOException, InterruptedException {
-				int numyears = (Integer) key.get("count");
+				int numyears = key.getInteger("count");
 				double idf = (yearcount-numyears+0.5)/(numyears+0.5);
 				ITuple outTuple = new Tuple(IDF_schema);
 				outTuple.set("word",key.get("word"));
@@ -257,7 +249,7 @@ public class BM25Modeler implements Tool, Serializable {
 			@Override
 			public void map(ITuple key, NullWritable value, TupleMRContext context, Collector collector)
 					throws IOException, InterruptedException {
-				int count = (Integer) key.get("count");
+				long count = key.getLong("count");
 				ITuple out = new Tuple(one_reducer_number_schema);
 				out.set("value",count);
 				out.set("reducer",0);
@@ -268,10 +260,10 @@ public class BM25Modeler implements Tool, Serializable {
 			private static final long serialVersionUID = 4335010215134962998L;
 			@Override
 			public void reduce(ITuple key, Iterable<ITuple> tuples, TupleMRContext context, Collector collector) throws IOException, InterruptedException {
-				int total = 0;
-				int count = 0;
+				long total = 0;
+				long count = 0;
 				for (ITuple t : tuples) {
-					throwIfNegative(total += (Integer) t.get("value"),"Integer Overflow");
+					total += t.getLong("value");
 					count++;
 				}
 				double avg = ((double) total) / ((double) count); 
